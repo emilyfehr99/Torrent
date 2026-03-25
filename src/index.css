@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+
+  --color-pwhl-cream: #F4F1EA;
+  --color-pwhl-surface: #FFFFFF;
+  --color-pwhl-surface-hover: #EAE6DD;
+  --color-pwhl-border: #D8D2C4;
+
+  --color-pwhl-navy: #0A1C3A;
+  --color-pwhl-blue: #1D4F91;
+  --color-pwhl-light-blue: #5C88C4;
+
+  --color-pwhl-text: #0A1C3A;
+  --color-pwhl-muted: #5C6B89;
+
+  --color-pwhl-accent: #D94838;
+  --color-pwhl-success: #2E8B57;
+
+  /* Seattle Torrent hub accents (logo + Puget palette) */
+  --color-torrent-teal: #00A3AD;
+  --color-torrent-deep: #0A1C3A;
+  --color-torrent-cream: #F4F1EA;
+  --color-torrent-coral: #E85D4A;
+  --color-torrent-navy: #082040;
+}
+
+body {
+  background-color: var(--color-pwhl-cream);
+  color: var(--color-pwhl-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-pwhl-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-pwhl-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-pwhl-muted);
+}

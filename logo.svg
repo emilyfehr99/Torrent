@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Seattle Torrent">
+  <defs>
+    <linearGradient id="wave" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00B5C9"/>
+      <stop offset="55%" style="stop-color:#0088A8"/>
+      <stop offset="100%" style="stop-color:#0A1C3A"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="22" fill="url(#wave)"/>
+  <path fill="#F4F1EA" fill-opacity="0.95" d="M28 78c12-18 26-22 38-22 18 0 28 10 38 20v14H28V78z"/>
+  <path fill="#F4F1EA" fill-opacity="0.85" d="M24 52c14-16 30-18 44-10 10 5 16 4 24-2 6-4 12-6 18-6v12c-8 0-14 2-20 6-12 9-22 10-36 4-12-5-22-4-30 6v-10z"/>
+  <path fill="#F4F1EA" fill-opacity="0.7" d="M30 32c10-8 22-10 34-6 8 3 14 2 20-4l4 10c-10 8-20 10-30 6-8-3-16-2-22 4l-6-10z"/>
+</svg>

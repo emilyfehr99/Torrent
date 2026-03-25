@@ -70,7 +70,7 @@ export default function App() {
         <div className="p-6 border-b border-pwhl-border">
           <div className="flex items-center gap-3 mb-4">
             <img
-              src="/Seattle_Torrent_logo.png"
+              src={`${import.meta.env.BASE_URL}Seattle_Torrent_logo.png`}
               alt="Seattle Torrent"
               className="h-12 w-auto max-w-[88px] shrink-0 object-contain drop-shadow-md"
             />

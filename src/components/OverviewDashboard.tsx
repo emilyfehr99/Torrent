@@ -21,7 +21,7 @@ import {
 import { StatCard } from './StatCard';
 import { useHubData } from '../context/HubDataContext';
 import { averageDisplay } from '../lib/hubUtils';
-import { excelDownloadUrl } from '../lib/api';
+import { excelDownloadUrl, githubPagesApiHint, HUB_API_BASE } from '../lib/api';
 
 export function OverviewDashboard() {
   const { data, loading, error, refresh } = useHubData();
@@ -47,12 +47,32 @@ export function OverviewDashboard() {
   }, [data, meanEntries]);
 
   if (error) {
+    const pagesHint = githubPagesApiHint();
     return (
       <div className="rounded-xl border border-pwhl-accent/40 bg-pwhl-surface p-8 text-pwhl-navy">
         <h2 className="font-serif text-2xl font-bold text-pwhl-accent mb-2">Could not load microstats</h2>
-        <p className="text-sm text-pwhl-muted mb-4 font-mono">{error}</p>
+        <p className="text-sm text-pwhl-muted mb-4 font-mono break-words">{error}</p>
+        {pagesHint ? (
+          <div className="mb-4 rounded-lg border border-torrent-teal/40 bg-torrent-teal/5 px-4 py-3 text-sm text-pwhl-navy">
+            <p className="font-semibold text-torrent-teal mb-1">GitHub Pages</p>
+            <p className="text-pwhl-muted">{pagesHint}</p>
+            <a
+              className="mt-2 inline-block text-sm font-semibold text-pwhl-blue underline"
+              href="https://github.com/emilyfehr99/Torrent/blob/main/DEPLOY_API.md"
+            >
+              Open DEPLOY_API.md (API + CORS)
+            </a>
+          </div>
+        ) : null}
+        {HUB_API_BASE ? (
+          <p className="text-sm text-pwhl-muted mb-2">
+            API base in this build:{' '}
+            <code className="bg-pwhl-cream px-1 rounded text-pwhl-navy">{HUB_API_BASE}</code>
+          </p>
+        ) : null}
         <p className="text-sm mb-4">
-          Start the Python API from <code className="bg-pwhl-cream px-1 rounded">Microstats/hub_python</code>:
+          <strong>Local dev:</strong> run the FastAPI hub from <code className="bg-pwhl-cream px-1 rounded">hub_python</code> (Vite
+          proxies <code className="bg-pwhl-cream px-1 rounded">/api</code> to port 8787).
         </p>
         <pre className="bg-pwhl-navy text-pwhl-cream p-4 rounded-lg text-xs overflow-x-auto">
           uvicorn api_server:app --host 127.0.0.1 --port 8787

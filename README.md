@@ -1,3 +1,11 @@
+# Seattle Torrent · Analytics Hub
+
+**GitHub Pages (frontend):** [https://emilyfehr99.github.io/Torrent/](https://emilyfehr99.github.io/Torrent/)
+
+The UI needs a **separate FastAPI** service for `/api/hub`. Set the Actions secret **`VITE_API_URL`** to your API origin (no trailing slash), then redeploy. Full steps: [DEPLOY_API.md](./DEPLOY_API.md).
+
+---
+
 <div align="center">
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>

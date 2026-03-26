@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shot Overlay Calibrator</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        background: #f7f7f8;
+        color: #111827;
+      }
+      .wrap {
+        max-width: 1200px;
+        margin: 24px auto;
+        padding: 0 16px;
+      }
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(120px, 1fr));
+        gap: 10px;
+        align-items: end;
+        margin-bottom: 12px;
+      }
+      .controls label {
+        font-size: 12px;
+        display: block;
+      }
+      .controls input[type="range"] {
+        width: 100%;
+      }
+      .btn {
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        padding: 8px 10px;
+        background: white;
+        cursor: pointer;
+      }
+      .stage {
+        position: relative;
+        border: 1px solid #d1d5db;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      #canvas {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: white;
+      }
+      .hint {
+        margin-top: 8px;
+        font-size: 12px;
+        color: #4b5563;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h2>Shot Overlay Calibrator</h2>
+      <div class="controls">
+        <label>Rink image
+          <input id="rinkFile" type="file" accept="image/*" />
+        </label>
+        <label>Shot plot image
+          <input id="shotsFile" type="file" accept="image/*" />
+        </label>
+        <label>Opacity
+          <input id="opacity" type="range" min="0.1" max="1" step="0.01" value="0.8" />
+        </label>
+        <label>Scale
+          <input id="scale" type="range" min="0.2" max="2.5" step="0.01" value="1" />
+        </label>
+        <label>Rotation (deg)
+          <input id="rotation" type="range" min="-360" max="360" step="1" value="0" />
+        </label>
+        <label>Rotation value
+          <input id="rotationNumber" type="number" min="-360" max="360" step="1" value="0" />
+        </label>
+        <label>X offset
+          <input id="xOffset" type="range" min="-1200" max="1200" step="1" value="0" />
+        </label>
+        <label>Y offset
+          <input id="yOffset" type="range" min="-900" max="900" step="1" value="0" />
+        </label>
+        <button id="dragToggleBtn" class="btn" type="button">Drag ON</button>
+        <button id="flipXBtn" class="btn" type="button">Flip X: OFF</button>
+        <button id="flipYBtn" class="btn" type="button">Flip Y: OFF</button>
+        <button id="invertBtn" class="btn" type="button">Invert: OFF</button>
+        <button id="copySettingsBtn" class="btn" type="button">Copy placement settings</button>
+        <button id="scaleDownBtn" class="btn" type="button">Resize -</button>
+        <button id="scaleUpBtn" class="btn" type="button">Resize +</button>
+        <button id="resetBtn" class="btn" type="button">Reset</button>
+        <button id="exportBtn" class="btn" type="button">Export PNG</button>
+      </div>
+      <pre id="settingsPreview" class="hint" style="white-space: pre-wrap; background: #fff; border: 1px solid #d1d5db; border-radius: 8px; padding: 8px;"></pre>
+
+      <div class="stage">
+        <canvas id="canvas" width="1400" height="900"></canvas>
+      </div>
+      <p class="hint">
+        Drag inside the shot box to move. Drag corner handles to resize. Drag the top handle to rotate.
+      </p>
+    </div>
+
+    <script>
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      const rinkFile = document.getElementById('rinkFile');
+      const shotsFile = document.getElementById('shotsFile');
+      const opacityInput = document.getElementById('opacity');
+      const scaleInput = document.getElementById('scale');
+      const rotationInput = document.getElementById('rotation');
+      const rotationNumber = document.getElementById('rotationNumber');
+      const xOffsetInput = document.getElementById('xOffset');
+      const yOffsetInput = document.getElementById('yOffset');
+      const dragToggleBtn = document.getElementById('dragToggleBtn');
+      const flipXBtn = document.getElementById('flipXBtn');
+      const flipYBtn = document.getElementById('flipYBtn');
+      const invertBtn = document.getElementById('invertBtn');
+      const copySettingsBtn = document.getElementById('copySettingsBtn');
+      const settingsPreview = document.getElementById('settingsPreview');
+      const scaleDownBtn = document.getElementById('scaleDownBtn');
+      const scaleUpBtn = document.getElementById('scaleUpBtn');
+      const resetBtn = document.getElementById('resetBtn');
+      const exportBtn = document.getElementById('exportBtn');
+
+      const rinkImg = new Image();
+      const shotsImg = new Image();
+
+      let rinkLoaded = false;
+      let shotsLoaded = false;
+      let shotsX = canvas.width / 2;
+      let shotsY = canvas.height / 2;
+      let shotsScale = 1;
+      let shotsRotationDeg = 0;
+      let shotsOpacity = 0.8;
+      let flipX = 1;
+      let flipY = 1;
+      let invertShots = false;
+      let dragging = false;
+      let dragEnabled = true;
+      let interactionMode = null; // 'drag' | 'resize' | 'rotate'
+      let dragStartX = 0;
+      let dragStartY = 0;
+      let baseX = 0;
+      let baseY = 0;
+      let baseScale = 1;
+      let baseRotationRad = 0;
+      let startRadius = 1;
+      let rotateOffset = 0;
+
+      function degToRad(d) {
+        return (d * Math.PI) / 180;
+      }
+
+      function radToDeg(r) {
+        return (r * 180) / Math.PI;
+      }
+
+      function clamp(v, lo, hi) {
+        return Math.max(lo, Math.min(hi, v));
+      }
+
+      function syncControls() {
+        xOffsetInput.value = String(Math.round(shotsX - canvas.width / 2));
+        yOffsetInput.value = String(Math.round(shotsY - canvas.height / 2));
+        scaleInput.value = String(shotsScale);
+        rotationInput.value = String(Math.round(shotsRotationDeg));
+        rotationNumber.value = String(Math.round(shotsRotationDeg));
+        const payload = {
+          xOffset: Number(xOffsetInput.value),
+          yOffset: Number(yOffsetInput.value),
+          scale: Number(shotsScale.toFixed(4)),
+          rotationDeg: Number(shotsRotationDeg.toFixed(2)),
+          flipX: flipX === -1,
+          flipY: flipY === -1,
+          opacity: Number(shotsOpacity.toFixed(3)),
+        };
+        settingsPreview.textContent = JSON.stringify(payload, null, 2);
+      }
+
+      function worldToLocal(wx, wy) {
+        const th = degToRad(shotsRotationDeg);
+        const dx = wx - shotsX;
+        const dy = wy - shotsY;
+        const c = Math.cos(th);
+        const s = Math.sin(th);
+        return { x: dx * c + dy * s, y: -dx * s + dy * c };
+      }
+
+      function localToWorld(lx, ly) {
+        const th = degToRad(shotsRotationDeg);
+        const c = Math.cos(th);
+        const s = Math.sin(th);
+        return { x: shotsX + lx * c - ly * s, y: shotsY + lx * s + ly * c };
+      }
+
+      function imageLocalToWorld(ix, iy) {
+        const lx = ix * shotsScale * flipX;
+        const ly = iy * shotsScale * flipY;
+        return localToWorld(lx, ly);
+      }
+
+      function fitRinkToCanvas() {
+        if (!rinkLoaded) return { x: 0, y: 0, w: canvas.width, h: canvas.height };
+        const rw = rinkImg.naturalWidth;
+        const rh = rinkImg.naturalHeight;
+        const cRatio = canvas.width / canvas.height;
+        const rRatio = rw / rh;
+        let w, h, x, y;
+        if (rRatio > cRatio) {
+          w = canvas.width;
+          h = w / rRatio;
+          x = 0;
+          y = (canvas.height - h) / 2;
+        } else {
+          h = canvas.height;
+          w = h * rRatio;
+          y = 0;
+          x = (canvas.width - w) / 2;
+        }
+        return { x, y, w, h };
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const rinkBox = fitRinkToCanvas();
+        if (rinkLoaded) {
+          ctx.drawImage(rinkImg, rinkBox.x, rinkBox.y, rinkBox.w, rinkBox.h);
+        }
+
+        if (shotsLoaded) {
+          const w = shotsImg.naturalWidth * shotsScale;
+          const h = shotsImg.naturalHeight * shotsScale;
+          ctx.save();
+          ctx.globalAlpha = shotsOpacity;
+          ctx.translate(shotsX, shotsY);
+          ctx.rotate(degToRad(shotsRotationDeg));
+          ctx.scale(shotsScale * flipX, shotsScale * flipY);
+          if (invertShots) ctx.filter = 'invert(1)';
+          ctx.drawImage(shotsImg, -shotsImg.naturalWidth / 2, -shotsImg.naturalHeight / 2);
+          ctx.restore();
+
+          // Transform box + handles
+          ctx.save();
+          ctx.translate(shotsX, shotsY);
+          ctx.rotate(degToRad(shotsRotationDeg));
+          ctx.strokeStyle = '#1D4F91';
+          ctx.lineWidth = 2;
+          ctx.setLineDash([6, 4]);
+          ctx.strokeRect(-w / 2, -h / 2, w, h);
+          ctx.setLineDash([]);
+          const hs = 14;
+          const corners = [
+            [-w / 2, -h / 2],
+            [w / 2, -h / 2],
+            [w / 2, h / 2],
+            [-w / 2, h / 2],
+          ];
+          ctx.fillStyle = '#ffffff';
+          ctx.strokeStyle = '#1D4F91';
+          corners.forEach(([x, y]) => {
+            ctx.fillRect(x - hs / 2, y - hs / 2, hs, hs);
+            ctx.strokeRect(x - hs / 2, y - hs / 2, hs, hs);
+          });
+          // Rotation handle
+          ctx.beginPath();
+          ctx.moveTo(0, -h / 2);
+          ctx.lineTo(0, -h / 2 - 30);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(0, -h / 2 - 40, 7, 0, Math.PI * 2);
+          ctx.fillStyle = '#1D4F91';
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      function fileToImage(file, img, onLoad) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          img.onload = () => onLoad();
+          img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      }
+
+      rinkFile.addEventListener('change', (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        fileToImage(file, rinkImg, () => {
+          rinkLoaded = true;
+          draw();
+        });
+      });
+
+      shotsFile.addEventListener('change', (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        fileToImage(file, shotsImg, () => {
+          shotsLoaded = true;
+          shotsX = canvas.width / 2;
+          shotsY = canvas.height / 2;
+          shotsScale = Number(scaleInput.value);
+          shotsRotationDeg = 0;
+          syncControls();
+          draw();
+        });
+      });
+
+      opacityInput.addEventListener('input', () => {
+        shotsOpacity = Number(opacityInput.value);
+        draw();
+      });
+
+      scaleInput.addEventListener('input', () => {
+        shotsScale = Number(scaleInput.value);
+        draw();
+      });
+      rotationInput.addEventListener('input', () => {
+        shotsRotationDeg = Number(rotationInput.value);
+        rotationNumber.value = String(Math.round(shotsRotationDeg));
+        draw();
+      });
+      rotationNumber.addEventListener('input', () => {
+        shotsRotationDeg = clamp(Number(rotationNumber.value) || 0, -360, 360);
+        rotationInput.value = String(Math.round(shotsRotationDeg));
+        draw();
+      });
+      xOffsetInput.addEventListener('input', () => {
+        shotsX = canvas.width / 2 + Number(xOffsetInput.value);
+        draw();
+      });
+      yOffsetInput.addEventListener('input', () => {
+        shotsY = canvas.height / 2 + Number(yOffsetInput.value);
+        draw();
+      });
+      dragToggleBtn.addEventListener('click', () => {
+        dragEnabled = !dragEnabled;
+        dragToggleBtn.textContent = dragEnabled ? 'Drag ON' : 'Drag OFF';
+      });
+      flipXBtn.addEventListener('click', () => {
+        flipX *= -1;
+        flipXBtn.textContent = flipX === -1 ? 'Flip X: ON' : 'Flip X: OFF';
+        draw();
+      });
+      flipYBtn.addEventListener('click', () => {
+        flipY *= -1;
+        flipYBtn.textContent = flipY === -1 ? 'Flip Y: ON' : 'Flip Y: OFF';
+        draw();
+      });
+      invertBtn.addEventListener('click', () => {
+        invertShots = !invertShots;
+        invertBtn.textContent = invertShots ? 'Invert: ON' : 'Invert: OFF';
+        syncControls();
+        draw();
+      });
+      copySettingsBtn.addEventListener('click', async () => {
+        const text = settingsPreview.textContent || '{}';
+        try {
+          await navigator.clipboard.writeText(text);
+          copySettingsBtn.textContent = 'Copied!';
+          setTimeout(() => (copySettingsBtn.textContent = 'Copy placement settings'), 1200);
+        } catch {
+          copySettingsBtn.textContent = 'Copy failed';
+          setTimeout(() => (copySettingsBtn.textContent = 'Copy placement settings'), 1200);
+        }
+      });
+      scaleDownBtn.addEventListener('click', () => {
+        shotsScale = Math.max(0.2, shotsScale - 0.02);
+        scaleInput.value = String(shotsScale);
+        syncControls();
+        draw();
+      });
+      scaleUpBtn.addEventListener('click', () => {
+        shotsScale = Math.min(2.5, shotsScale + 0.02);
+        scaleInput.value = String(shotsScale);
+        syncControls();
+        draw();
+      });
+
+      resetBtn.addEventListener('click', () => {
+        shotsX = canvas.width / 2;
+        shotsY = canvas.height / 2;
+        shotsScale = 1;
+        shotsRotationDeg = 0;
+        shotsOpacity = 0.8;
+        flipX = 1;
+        flipY = 1;
+        invertShots = false;
+        flipXBtn.textContent = 'Flip X: OFF';
+        flipYBtn.textContent = 'Flip Y: OFF';
+        invertBtn.textContent = 'Invert: OFF';
+        syncControls();
+        opacityInput.value = String(shotsOpacity);
+        draw();
+      });
+
+      exportBtn.addEventListener('click', () => {
+        const a = document.createElement('a');
+        a.href = canvas.toDataURL('image/png');
+        a.download = 'aligned_shots_overlay.png';
+        a.click();
+      });
+
+      canvas.addEventListener('mousedown', (e) => {
+        if (!shotsLoaded || !dragEnabled) return;
+        const mx = e.offsetX;
+        const my = e.offsetY;
+        const local = worldToLocal(mx, my);
+        const imageLocal = {
+          x: local.x / (shotsScale * flipX),
+          y: local.y / (shotsScale * flipY),
+        };
+        const w = shotsImg.naturalWidth * shotsScale;
+        const h = shotsImg.naturalHeight * shotsScale;
+        const handleR = 20;
+
+        const rotHandle = { x: 0, y: -h / 2 - 40 };
+        const rotDist = Math.hypot(local.x - rotHandle.x, local.y - rotHandle.y);
+        if (rotDist <= handleR) {
+          interactionMode = 'rotate';
+          baseRotationRad = degToRad(shotsRotationDeg);
+          rotateOffset = Math.atan2(my - shotsY, mx - shotsX) - baseRotationRad;
+          dragging = true;
+          return;
+        }
+
+        const corners = [
+          { x: -shotsImg.naturalWidth / 2, y: -shotsImg.naturalHeight / 2 },
+          { x: shotsImg.naturalWidth / 2, y: -shotsImg.naturalHeight / 2 },
+          { x: shotsImg.naturalWidth / 2, y: shotsImg.naturalHeight / 2 },
+          { x: -shotsImg.naturalWidth / 2, y: shotsImg.naturalHeight / 2 },
+        ];
+        for (const c of corners) {
+          const cw = imageLocalToWorld(c.x, c.y);
+          if (Math.hypot(mx - cw.x, my - cw.y) <= handleR) {
+            interactionMode = 'resize';
+            baseScale = shotsScale;
+            startRadius = Math.max(20, Math.hypot(local.x, local.y));
+            dragging = true;
+            return;
+          }
+        }
+
+        if (
+          Math.abs(imageLocal.x) <= shotsImg.naturalWidth / 2 &&
+          Math.abs(imageLocal.y) <= shotsImg.naturalHeight / 2
+        ) {
+          interactionMode = 'drag';
+          dragStartX = mx;
+          dragStartY = my;
+          baseX = shotsX;
+          baseY = shotsY;
+          dragging = true;
+        }
+      });
+      canvas.addEventListener('mousemove', (e) => {
+        if (!dragging) return;
+        const mx = e.offsetX;
+        const my = e.offsetY;
+        if (interactionMode === 'drag') {
+          const dx = mx - dragStartX;
+          const dy = my - dragStartY;
+          shotsX = baseX + dx;
+          shotsY = baseY + dy;
+        } else if (interactionMode === 'resize') {
+          const local = worldToLocal(mx, my);
+          const r = Math.max(20, Math.hypot(local.x, local.y));
+          const ratio = r / startRadius;
+          shotsScale = clamp(baseScale * ratio, 0.2, 2.5);
+        } else if (interactionMode === 'rotate') {
+          const a = Math.atan2(my - shotsY, mx - shotsX) - rotateOffset;
+          shotsRotationDeg = clamp(radToDeg(a), -360, 360);
+        }
+        syncControls();
+        draw();
+      });
+      window.addEventListener('mouseup', () => {
+        dragging = false;
+        interactionMode = null;
+      });
+
+      syncControls();
+      draw();
+    </script>
+  </body>
+</html>

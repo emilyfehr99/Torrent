@@ -39,22 +39,16 @@ function buildTorontoBlueprint(data: HubPayload | undefined): string {
   const rink = rinkForScope(data?.rink_report, data?.rink_report_by_game, { opponent: 'Toronto' });
   const scopeNote =
     'Scope: games vs Toronto (substring match on opponent name in hub per-game metadata).';
-  if (data?.rink_report) {
-    out.push(formatShotsGoalsBlock(team, rink, scopeNote));
-    out.push('');
-    out.push(formatEntriesBlock(team, rink, scopeNote));
-  } else {
-    out.push(
-      'Rink geometry not in hub — rebuild API with `/api/hub?refresh=1` for shot/entry zones.',
-    );
-  }
+  out.push(formatShotsGoalsBlock(team, rink, scopeNote));
+  out.push('');
+  out.push(formatEntriesBlock(team, rink, scopeNote));
   out.push('');
   const av = formatAveragesSnapshot(data?.averages);
   if (av) {
     out.push(av);
     out.push('');
   }
-  out.push('Use Custom report in Reports library to change opponent string or add player focus.');
+  out.push('Use Custom report in Reports library to adjust focus and section scope.');
   return out.join('\n');
 }
 

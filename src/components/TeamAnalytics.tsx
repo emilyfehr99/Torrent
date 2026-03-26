@@ -2,27 +2,10 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { Check, Shield, Users, X, Building2 } from 'lucide-react';
 import { PWHL_STANDINGS_2526 } from '../data/pwhlStandings2526';
-import { PWHL_FOCUS_TEAMS } from '../data/pwhlFocusTargets';
 import { projectedPoints30, mockSosScore } from '../lib/leagueKpis';
 import { useHubData } from '../context/HubDataContext';
 import { averageDisplay, formatPctCell } from '../lib/hubUtils';
 import { HubDataTable } from './HubDataTable';
-
-const PG_COLS = [
-  'date',
-  'opponent',
-  'final_score',
-  'Win',
-  'Scoring Chances',
-  'Shot Assists',
-  'Zone Entries',
-  'Carry-in%',
-  'Possession Exit %',
-  'Entry Scoring Chance %',
-  'Shots off Rush',
-  'Shots off Forecheck',
-  'Forecheck Recoveries',
-] as const;
 
 function formatPgCell(col: string, val: unknown): string {
   if (val == null || val === '') return '—';
@@ -53,23 +36,22 @@ function WinCell({ val }: { val: unknown }) {
 export function TeamAnalytics() {
   const { data, loading, error } = useHubData();
   const [defIdx, setDefIdx] = useState(0);
+  const [unitSearch, setUnitSearch] = useState('');
   const hubTeam = data?.team_name ?? 'Seattle Torrent';
-  const [selectedTeam, setSelectedTeam] = useState(hubTeam);
-
-  useEffect(() => {
-    setSelectedTeam(hubTeam);
-  }, [hubTeam]);
-
-  const standingRow = PWHL_STANDINGS_2526.find((r) => r.team === selectedTeam);
-  const isHubTeam = selectedTeam === hubTeam;
-  const isFocusTarget = PWHL_FOCUS_TEAMS.includes(selectedTeam as (typeof PWHL_FOCUS_TEAMS)[number]);
+  const standingRow = PWHL_STANDINGS_2526.find((r) => r.team === hubTeam);
 
   const pgCols = useMemo(() => {
-    const row = data?.per_game_metrics?.[0];
-    if (!row) return [] as string[];
-    const keys = new Set(Object.keys(row));
-    return PG_COLS.filter((c) => keys.has(c)) as string[];
-  }, [data]);
+    const rows = data?.per_game_metrics ?? [];
+    if (!rows.length) return [] as string[];
+    const preferred = ['date', 'opponent', 'result', 'Goals For', 'Goals Against'];
+    const union = new Set<string>();
+    for (const r of rows) Object.keys(r).forEach((k) => union.add(k));
+    const hideTeamOnly = new Set(['NZ shift %', 'DZ shift %', 'OZ shift %']);
+    const rest = [...union]
+      .filter((k) => !preferred.includes(k) && !hideTeamOnly.has(k))
+      .sort((a, b) => a.localeCompare(b));
+    return [...preferred.filter((k) => union.has(k)), ...rest];
+  }, [data?.per_game_metrics]);
 
   const barData = useMemo(() => {
     if (!data?.per_game_metrics?.length) return [];
@@ -85,6 +67,37 @@ export function TeamAnalytics() {
   }
 
   const av = data?.averages ?? [];
+  const seasonAvgRows = useMemo(() => {
+    const hideTeamOnly = new Set(['NZ shift %', 'DZ shift %', 'OZ shift %']);
+    return av
+      .map((r) => ({
+        metric: String((r['Metric'] ?? r['metric'] ?? '') as string),
+        value: String((r['Average'] ?? r['value'] ?? '—') as string),
+      }))
+      .filter((r) => r.metric && !hideTeamOnly.has(r.metric));
+  }, [av]);
+  const fallbackLines = useMemo(() => {
+    const players = [...(data?.player_season ?? [])]
+      .sort((a, b) => Number(b['Game Score'] ?? 0) - Number(a['Game Score'] ?? 0))
+      .map((r) => String(r['Player'] ?? ''))
+      .filter(Boolean);
+    const out: Record<string, string | number>[] = [];
+    for (let i = 0; i + 2 < Math.min(players.length, 9); i += 3) {
+      out.push({ unit: `${players[i]} · ${players[i + 1]} · ${players[i + 2]}`, source: 'Estimated from season impact' });
+    }
+    return out;
+  }, [data?.player_season]);
+  const fallbackPairs = useMemo(() => {
+    const players = [...(data?.player_season ?? [])]
+      .sort((a, b) => Number(b['Game Score'] ?? 0) - Number(a['Game Score'] ?? 0))
+      .map((r) => String(r['Player'] ?? ''))
+      .filter(Boolean);
+    const out: Record<string, string | number>[] = [];
+    for (let i = 0; i + 1 < Math.min(players.length, 12); i += 2) {
+      out.push({ unit: `${players[i]} · ${players[i + 1]}`, source: 'Estimated from season impact' });
+    }
+    return out;
+  }, [data?.player_season]);
   const defGame = data?.defense_by_game?.[defIdx];
 
   return (
@@ -99,8 +112,7 @@ export function TeamAnalytics() {
         <div>
           <h2 className="text-3xl font-serif font-bold text-pwhl-navy">Team analytics</h2>
           <p className="text-pwhl-muted text-sm mt-1">
-            One page per PWHL club · full PBP transition stack when the hub team is selected (
-            <span className="font-mono text-pwhl-navy">{hubTeam}</span>).
+            Team-only view from Seattle hub exports.
           </p>
         </div>
         {loading && <span className="text-xs font-mono text-pwhl-muted">Updating…</span>}
@@ -109,22 +121,10 @@ export function TeamAnalytics() {
       <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-5 shadow-sm mb-8 flex flex-col lg:flex-row lg:items-end gap-4">
         <div className="flex-1">
           <label className="block text-[10px] font-bold uppercase tracking-wider text-pwhl-muted mb-2">Team</label>
-          <select
-            className="w-full max-w-md bg-pwhl-cream border border-pwhl-border text-sm rounded-lg px-3 py-2 outline-none focus:border-torrent-teal font-semibold text-pwhl-navy"
-            value={selectedTeam}
-            onChange={(e) => setSelectedTeam(e.target.value)}
-          >
-            {PWHL_STANDINGS_2526.map((r) => (
-              <option key={r.team} value={r.team}>
-                {r.team}
-                {r.team === hubTeam ? ' (hub)' : ''}
-                {PWHL_FOCUS_TEAMS.includes(r.team as (typeof PWHL_FOCUS_TEAMS)[number]) ? ' ★' : ''}
-              </option>
-            ))}
-          </select>
-          <p className="text-[11px] text-pwhl-muted mt-2">
-            ★ = one of five narrative targets. Hub CSVs drive charts only for <strong>{hubTeam}</strong>.
-          </p>
+          <div className="w-full max-w-md bg-pwhl-cream border border-pwhl-border text-sm rounded-lg px-3 py-2 font-semibold text-pwhl-navy">
+            {hubTeam}
+          </div>
+          <p className="text-[11px] text-pwhl-muted mt-2">Only Seattle data is loaded in this build.</p>
         </div>
         {standingRow ? (
           <div className="flex flex-wrap gap-4 text-sm font-mono text-pwhl-navy">
@@ -148,38 +148,7 @@ export function TeamAnalytics() {
           </div>
         ) : null}
       </div>
-
-      {!isHubTeam ? (
-        <div className="space-y-4 mb-10">
-          <div className="rounded-xl border border-dashed border-pwhl-border bg-white p-6">
-            <div className="flex items-center gap-2 mb-2">
-              <Building2 className="text-pwhl-blue" size={20} />
-              <h3 className="font-serif font-bold text-lg text-pwhl-navy">League profile — {selectedTeam}</h3>
-              {isFocusTarget ? (
-                <span className="text-[10px] font-bold uppercase bg-torrent-teal/15 text-torrent-teal px-2 py-0.5 rounded">Target club</span>
-              ) : null}
-            </div>
-            <p className="text-sm text-pwhl-muted mb-4 leading-relaxed">
-              <strong>Possession / share</strong> and <strong>special-teams underlying</strong> (xG on PP/PK) are not yet wired for every opponent —
-              they require league shot feeds. <strong>Transition dump vs carry</strong> out of the defensive zone needs team-scoped tracking exports.
-            </p>
-            <ul className="text-sm text-pwhl-navy space-y-2 list-disc pl-5">
-              <li>Standings-based projected finish uses pts pace to 30 GP (see Projections tab for full table).</li>
-              <li>For {hubTeam}-specific carry/dump/exit rates, lines, and pairings, switch the team dropdown to the hub club.</li>
-              <li>Line / pairing impact charts below are hub-only until multi-team PBP is ingested.</li>
-            </ul>
-          </div>
-        </div>
-      ) : null}
-
-      {!isHubTeam ? (
-        <p className="text-sm text-pwhl-muted mb-8 border border-pwhl-border rounded-lg p-4 bg-pwhl-cream/80">
-          Select <strong>{hubTeam}</strong> above to load transition microstats, per-game tables, and defense extracts from your Python hub.
-        </p>
-      ) : null}
-
-      {isHubTeam ? (
-        <>
+      <>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm">
           <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-4">Entries vs scoring chances by opponent</h3>
@@ -216,17 +185,10 @@ export function TeamAnalytics() {
             <h3 className="font-serif font-bold text-lg text-pwhl-navy">Season averages (selection)</h3>
           </div>
           <ul className="space-y-3 text-sm">
-            {[
-              'Exit off Retrieval %',
-              'Entry Scoring Chance %',
-              'Shots off Rush',
-              'Shots off Forecheck',
-              'SOGA off NZ Turnovers',
-              'NZ Turnovers',
-            ].map((m) => (
+            {seasonAvgRows.map((m) => (
               <li key={m} className="flex justify-between border-b border-pwhl-border/60 pb-2">
-                <span className="text-pwhl-muted">{m}</span>
-                <span className="font-mono font-semibold text-pwhl-navy">{averageDisplay(av, m)}</span>
+                <span className="text-pwhl-muted">{m.metric}</span>
+                <span className="font-mono font-semibold text-pwhl-navy">{m.value}</span>
               </li>
             ))}
           </ul>
@@ -277,24 +239,38 @@ export function TeamAnalytics() {
           From play-by-play order (same roster-based logic as your Line:Pairing scripts). Shown here and under{' '}
           <strong>Reports library</strong>. Use <strong>Rebuild hub</strong> in the sidebar if counts look wrong.
         </p>
+        <div className="mb-4">
+          <input
+            type="text"
+            value={unitSearch}
+            onChange={(e) => setUnitSearch(e.target.value)}
+            placeholder="Search player in lines/pairs..."
+            className="w-full max-w-md bg-pwhl-cream border border-pwhl-border rounded-lg px-3 py-2 text-sm"
+          />
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div>
             <h4 className="text-sm font-bold text-pwhl-navy mb-2">Forward trios</h4>
             <HubDataTable
-              rows={data?.line_combos_season ?? []}
-              emptyHint="No line data — start the API on :8787 and click Rebuild hub."
+              rows={((data?.line_combos_season?.length ? data.line_combos_season : fallbackLines) ?? []).filter((r) =>
+                String(r.unit ?? '').toLowerCase().includes(unitSearch.trim().toLowerCase()),
+              )}
+              emptyHint="No line-combo data available."
             />
           </div>
           <div>
             <h4 className="text-sm font-bold text-pwhl-navy mb-2">Defensive pairs</h4>
             <HubDataTable
-              rows={data?.pairings_season ?? []}
-              emptyHint="No pairing data — start the API on :8787 and click Rebuild hub."
+              rows={((data?.pairings_season?.length ? data.pairings_season : fallbackPairs) ?? []).filter((r) =>
+                String(r.unit ?? '').toLowerCase().includes(unitSearch.trim().toLowerCase()),
+              )}
+              emptyHint="No pairing data available."
             />
           </div>
         </div>
       </div>
 
+      {(data?.defense_season?.length || data?.defense_by_game?.length) ? (
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm overflow-x-auto">
           <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-4">Defense · season totals (player)</h3>
@@ -322,9 +298,9 @@ export function TeamAnalytics() {
           </table>
         </div>
 
+        {data?.defense_by_game?.length ? (
         <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm">
           <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-2">Defense · single game</h3>
-          {data?.defense_by_game?.length ? (
             <>
               <select
                 className="mb-4 w-full bg-pwhl-cream border border-pwhl-border text-sm rounded-lg px-3 py-2 outline-none focus:border-torrent-teal font-medium"
@@ -364,9 +340,6 @@ export function TeamAnalytics() {
                 </table>
               </div>
             </>
-          ) : (
-            <p className="text-sm text-pwhl-muted">No per-game defense tables.</p>
-          )}
 
           {data?.win_correlations && data.win_correlations.length > 0 && (
             <>
@@ -392,9 +365,10 @@ export function TeamAnalytics() {
             </>
           )}
         </div>
+        ) : null}
       </div>
-        </>
       ) : null}
+      </>
     </div>
   );
 }

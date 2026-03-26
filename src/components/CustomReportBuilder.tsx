@@ -12,6 +12,7 @@ import {
 import { buildBrandedPdf } from '../lib/brandedPdf';
 import { HubDataTable } from './HubDataTable';
 import { BrandedReportShell } from './BrandedReportShell';
+import { ShotHeatmap } from './ShotHeatmap';
 
 type Focus = 'opponent' | 'player' | 'timeframe';
 
@@ -82,14 +83,10 @@ export function CustomReportBuilder() {
         : `Scope: full loaded season (${data?.n_games ?? 0} games).`;
 
     const out: string[] = [];
-    out.push('EXECUTIVE SUMMARY');
+    out.push(`Microstats report · ${team}`);
+    out.push(`Focus: ${focusLabel} · Games: ${nGames != null ? nGames : '—'} · Record: ${rec}`);
     out.push('');
-    out.push(
-      `Microstats report for ${team} (${focusLabel}). Games in hub: ${nGames != null ? nGames : '—'}; record ${rec}. ` +
-        `Shot/goal zones, distance buckets, and entry lanes below are computed from tracked pos_x / pos_y in your game CSVs (same extract as the hub API).`,
-    );
-    out.push('');
-    out.push('SCOPE');
+    out.push('Scope');
     out.push(`• Focus: ${focusLabel}`);
     if (focus === 'opponent') {
       out.push(`• Opponent filter: ${opponent.trim() || '(none — using full season rink totals)'}`);
@@ -103,32 +100,25 @@ export function CustomReportBuilder() {
       out.push('• Timeframe: all loaded games.');
     }
     out.push('');
-    out.push('SECTIONS INCLUDED');
+    out.push('Included sections');
     for (const s of SECTIONS) {
       out.push(sections[s.id] ? `[x] ${s.label}` : `[ ] ${s.label}`);
     }
     out.push('');
-    out.push('DETAIL — EXTRACTED DATA');
+    out.push('Report details');
     out.push('');
 
-    if (!data?.rink_report) {
-      out.push(
-        'Rink geometry block not available. Rebuild the hub with the latest API (`/api/hub?refresh=1`) so `rink_report` is included.',
-      );
+    if (sections.shots) {
+      out.push(formatShotsGoalsBlock(team, rink, scopeNote));
       out.push('');
-    } else {
-      if (sections.shots) {
-        out.push(formatShotsGoalsBlock(team, rink, scopeNote));
-        out.push('');
-        const n = data?.viz_shots?.length ?? 0;
-        const ng = data?.viz_shot_games?.length ?? 0;
-        out.push(`Shot map / viz: ${n} shot points (season); ${ng} games with for/against shot lists.`);
-        out.push('');
-      }
-      if (sections.transition) {
-        out.push(formatEntriesBlock(team, rink, scopeNote));
-        out.push('');
-      }
+      const n = data?.viz_shots?.length ?? 0;
+      const ng = data?.viz_shot_games?.length ?? 0;
+      out.push(`Shot plot dataset: ${n} total points across ${ng || nGames || 0} games.`);
+      out.push('');
+    }
+    if (sections.transition) {
+      out.push(formatEntriesBlock(team, rink, scopeNote));
+      out.push('');
     }
 
     if (focus === 'player' && player.trim()) {
@@ -159,11 +149,6 @@ export function CustomReportBuilder() {
       out.push('');
     }
 
-    out.push('DATA SOURCES');
-    out.push(
-      'Primary: microstats hub (Python) over local game CSVs. Optional league schedule API: github.com/masonlanger/pwhl_api (docs/pwhl_api/endpoints).',
-    );
-    out.push('');
     out.push(`Generated: ${new Date().toLocaleString()}`);
 
     setBuilt(out.join('\n'));
@@ -197,17 +182,6 @@ export function CustomReportBuilder() {
             <p className="text-xs text-pwhl-muted mt-1 max-w-2xl">
               Configure opponent, player, or date range, then generate a printable brief. PDF export uses the
               same text as the preview below.
-            </p>
-            <p className="text-[11px] text-pwhl-muted mt-2">
-              League schedule &amp; endpoints:{' '}
-              <a
-                href="https://github.com/masonlanger/pwhl_api/tree/main/docs/pwhl_api/endpoints"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-pwhl-blue hover:underline font-mono"
-              >
-                pwhl_api endpoints
-              </a>
             </p>
           </div>
         </div>
@@ -370,6 +344,14 @@ export function CustomReportBuilder() {
                 <p className="text-[11px] text-pwhl-muted">
                   Hub tables (lines / pairs) for reference — full export is in the Excel workbook.
                 </p>
+                <div className="mt-4">
+                  <p className="text-[10px] font-bold uppercase text-pwhl-muted mb-2">Rink shot plot &amp; heatmap</p>
+                  <ShotHeatmap
+                    games={data?.viz_shot_games ?? []}
+                    nGames={data?.n_games ?? 0}
+                    fallbackShotsFor={(data?.viz_shot_games?.length ?? 0) === 0 ? data?.viz_shots : undefined}
+                  />
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
                   <div>
                     <p className="text-[10px] font-bold uppercase text-pwhl-muted mb-1">Forward trios (sample)</p>

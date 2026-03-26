@@ -25,6 +25,24 @@ export function RosterConstruction({
   const lines = data?.line_combos_season ?? [];
   const pairs = data?.pairings_season ?? [];
   const playerCount = data?.player_season?.length ?? data?.roster?.length ?? 0;
+  const fallbackLines = [...(data?.player_season ?? [])]
+    .sort((a, b) => Number(b['Game Score'] ?? 0) - Number(a['Game Score'] ?? 0))
+    .map((r) => String(r['Player'] ?? ''))
+    .filter(Boolean)
+    .slice(0, 9)
+    .reduce<Record<string, string>[]>((acc, _, i, arr) => {
+      if (i % 3 === 0 && arr[i + 2]) acc.push({ unit: `${arr[i]} · ${arr[i + 1]} · ${arr[i + 2]}`, source: 'Estimated from season impact' });
+      return acc;
+    }, []);
+  const fallbackPairs = [...(data?.player_season ?? [])]
+    .sort((a, b) => Number(b['Game Score'] ?? 0) - Number(a['Game Score'] ?? 0))
+    .map((r) => String(r['Player'] ?? ''))
+    .filter(Boolean)
+    .slice(0, 12)
+    .reduce<Record<string, string>[]>((acc, _, i, arr) => {
+      if (i % 2 === 0 && arr[i + 1]) acc.push({ unit: `${arr[i]} · ${arr[i + 1]}`, source: 'Estimated from season impact' });
+      return acc;
+    }, []);
 
   return (
     <div className="animate-in fade-in duration-500">
@@ -223,11 +241,11 @@ export function RosterConstruction({
               <div className="p-6 grid grid-cols-1 xl:grid-cols-2 gap-6 flex-1 overflow-y-auto">
                 <div>
                   <h4 className="text-sm font-bold text-pwhl-navy mb-2">Forward trios (season)</h4>
-                  <HubDataTable rows={lines} emptyHint="No line combos — rebuild hub with game CSVs." />
+                  <HubDataTable rows={lines.length ? lines : fallbackLines} emptyHint="No line combos available." />
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-pwhl-navy mb-2">Defensive pairs (season)</h4>
-                  <HubDataTable rows={pairs} emptyHint="No D pairs — rebuild hub with game CSVs." />
+                  <HubDataTable rows={pairs.length ? pairs : fallbackPairs} emptyHint="No D pairs available." />
                 </div>
               </div>
             </>

@@ -1,11 +1,37 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { AlertTriangle, Globe2, Target } from 'lucide-react';
-import { PWHL_STANDINGS_2526 } from '../data/pwhlStandings2526';
+import { PWHL_STANDINGS_2526, type PwhlStandingRow } from '../data/pwhlStandings2526';
 import { PWHL_FOCUS_TEAMS } from '../data/pwhlFocusTargets';
 import { leagueAggregates, mockSosScore, projectedPoints30 } from '../lib/leagueKpis';
 import { computeOffSeasonFlags } from '../lib/offSeasonHeuristics';
 import type { HubPayload } from '../types/hub';
 import { TEAM_LOGO_PATH } from '../lib/branding';
+import { fetchPwhlStandings } from '../lib/pwhlApi';
+
+function useLeagueStandings() {
+  const [standings, setStandings] = useState<PwhlStandingRow[]>(PWHL_STANDINGS_2526);
+  const [liveSource, setLiveSource] = useState<'live' | 'snapshot'>('snapshot');
+
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      try {
+        const live = await fetchPwhlStandings();
+        if (alive && Array.isArray(live.standings) && live.standings.length) {
+          setStandings(live.standings);
+          setLiveSource('live');
+        }
+      } catch {
+        if (alive) setLiveSource('snapshot');
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  return { standings, liveSource };
+}
 
 export function LeagueBreadcrumb() {
   return (
@@ -20,8 +46,8 @@ export function LeagueBreadcrumb() {
 }
 
 export function LeagueKpiStrip() {
-  const agg = useMemo(() => leagueAggregates(PWHL_STANDINGS_2526), []);
-  const standings = PWHL_STANDINGS_2526;
+  const { standings, liveSource } = useLeagueStandings();
+  const agg = useMemo(() => leagueAggregates(standings), [standings]);
 
   return (
     <div className="mb-8 space-y-4">
@@ -29,7 +55,7 @@ export function LeagueKpiStrip() {
         <div>
           <h3 className="font-serif font-bold text-xl text-pwhl-navy">League quick-hit KPIs</h3>
           <p className="text-xs text-pwhl-muted mt-1 max-w-3xl">
-            Board-level view from <strong>2025–26 standings snapshot</strong> (GF/GA/GD as league outcome proxies).{' '}
+            Board-level view from <strong>{liveSource === 'live' ? 'live PWHL feed' : '2025–26 standings snapshot'}</strong> (GF/GA/GD as league outcome proxies).{' '}
             <strong>xG differential</strong>, <strong>score-adjusted Corsi%</strong>, and <strong>ST underlying</strong> require a league
             shot-quality feed — shown as <span className="font-mono">N/A</span> until wired; your hub still provides transition truth for Seattle.
           </p>
@@ -100,7 +126,8 @@ export function LeagueKpiStrip() {
 }
 
 export function TargetTeamDeepDiveCards({ hub }: { hub: HubPayload | null | undefined }) {
-  const byTeam = useMemo(() => new Map(PWHL_STANDINGS_2526.map((r) => [r.team, r])), []);
+  const { standings } = useLeagueStandings();
+  const byTeam = useMemo(() => new Map(standings.map((r) => [r.team, r])), [standings]);
 
   return (
     <div className="mb-8">
@@ -162,7 +189,8 @@ export function TargetTeamDeepDiveCards({ hub }: { hub: HubPayload | null | unde
 }
 
 export function OffSeasonPrioritiesWidget() {
-  const flags = useMemo(() => computeOffSeasonFlags(PWHL_STANDINGS_2526), []);
+  const { standings } = useLeagueStandings();
+  const flags = useMemo(() => computeOffSeasonFlags(standings), [standings]);
 
   return (
     <div className="mb-8 rounded-xl border border-torrent-coral/30 bg-gradient-to-br from-pwhl-cream to-white p-6 shadow-sm">

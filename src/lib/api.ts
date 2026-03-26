@@ -24,14 +24,32 @@ async function readErrorSnippet(res: Response): Promise<string> {
   return oneLine.length > 280 ? `${oneLine.slice(0, 280)}…` : oneLine;
 }
 
-export async function fetchHub(refresh = false): Promise<HubPayload> {
-  const q = refresh ? '?refresh=1' : '';
-  const res = await fetch(hubFetchUrl(`/api/hub${q}`));
+async function fetchStaticHub(): Promise<HubPayload> {
+  const staticUrl = `${import.meta.env.BASE_URL}hub-static.json`;
+  const res = await fetch(staticUrl);
   if (!res.ok) {
-    const detail = await readErrorSnippet(res);
-    throw new Error(`Hub API ${res.status}: ${detail}`);
+    throw new Error(`Static hub ${res.status}: ${await readErrorSnippet(res)}`);
   }
   return res.json() as Promise<HubPayload>;
+}
+
+export async function fetchHub(refresh = false): Promise<HubPayload> {
+  const q = refresh ? '?refresh=1' : '';
+  try {
+    const res = await fetch(hubFetchUrl(`/api/hub${q}`));
+    if (!res.ok) {
+      const detail = await readErrorSnippet(res);
+      throw new Error(`Hub API ${res.status}: ${detail}`);
+    }
+    return res.json() as Promise<HubPayload>;
+  } catch (apiErr) {
+    // Static-host fallback: lets Vercel/GitHub Pages run without FastAPI.
+    try {
+      return await fetchStaticHub();
+    } catch {
+      throw apiErr;
+    }
+  }
 }
 
 export function excelDownloadUrl(): string {

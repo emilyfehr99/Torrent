@@ -1,12 +1,5 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Activity, Crosshair, RefreshCw, TrendingUp, Shield, Download } from 'lucide-react';
-import {
-  LeagueBreadcrumb,
-  LeagueKpiStrip,
-  TargetTeamDeepDiveCards,
-  OffSeasonPrioritiesWidget,
-} from './LeagueDashboardSections';
-import { ExecutiveSummary } from './ExecutiveSummary';
 import {
   AreaChart,
   Area,
@@ -22,9 +15,44 @@ import { StatCard } from './StatCard';
 import { useHubData } from '../context/HubDataContext';
 import { averageDisplay } from '../lib/hubUtils';
 import { excelDownloadUrl, githubPagesApiHint, HUB_API_BASE } from '../lib/api';
+import { fetchPwhlStandings, fetchPwhlTopScorers } from '../lib/pwhlApi';
+import { PWHL_STANDINGS_2526, type PwhlStandingRow } from '../data/pwhlStandings2526';
 
 export function OverviewDashboard() {
   const { data, loading, error, refresh } = useHubData();
+  const [standings, setStandings] = useState<PwhlStandingRow[]>(PWHL_STANDINGS_2526);
+  const [topScorerLabel, setTopScorerLabel] = useState<string>('—');
+
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      try {
+        const live = await fetchPwhlStandings();
+        if (alive && live.standings?.length) setStandings(live.standings);
+      } catch {
+        // keep snapshot
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      try {
+        const top = await fetchPwhlTopScorers();
+        const first = top.players?.[0];
+        if (alive && first) setTopScorerLabel(`${first.player} (${first.points})`);
+      } catch {
+        // ignore
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, []);
 
   const meanEntries = useMemo(() => {
     if (!data?.per_game_metrics?.length) return 0;
@@ -89,6 +117,59 @@ export function OverviewDashboard() {
   }
 
   const av = data?.averages ?? [];
+  const seattleRow = standings.find((r) => r.team === (data?.team_name ?? 'Seattle Torrent'));
+  const gamesRemaining = seattleRow ? Math.max(0, 30 - seattleRow.gp) : '—';
+  const sosProxy = seattleRow ? standings.length - seattleRow.pos + 1 : '—';
+  const teamPointsLeaders = useMemo(() => {
+    const rows = [...(data?.player_season ?? [])];
+    return rows
+      .map((r) => ({
+        player: String(r['Player'] ?? ''),
+        points: Number(r['Goals'] ?? 0) + Number(r['Assists'] ?? 0),
+      }))
+      .sort((a, b) => b.points - a.points)
+      .slice(0, 5);
+  }, [data?.player_season]);
+  const last5 = useMemo(() => {
+    const rows = [...(data?.per_game_metrics ?? [])];
+    rows.sort((a, b) => String(a.date ?? '').localeCompare(String(b.date ?? '')));
+    return rows.slice(-5);
+  }, [data?.per_game_metrics]);
+  const last5Summary = useMemo(() => {
+    if (!last5.length) return null;
+    const avg = (key: string) => last5.reduce((acc, r) => acc + (Number(r[key]) || 0), 0) / last5.length;
+    return {
+      scoring: avg('Scoring Chances').toFixed(1),
+      entries: avg('Zone Entries').toFixed(1),
+      carry: `${avg('Carry-in%').toFixed(1)}%`,
+      exits: `${avg('Possession Exit %').toFixed(1)}%`,
+    };
+  }, [last5]);
+  const seasonAverageMap = useMemo(() => {
+    const m = new Map<string, number>();
+    for (const r of av) {
+      const k = String((r['Metric'] ?? r['metric'] ?? '') as string);
+      const raw = String((r['Average'] ?? r['value'] ?? '') as string).replace('%', '');
+      const n = Number(raw);
+      if (k && Number.isFinite(n)) m.set(k, n);
+    }
+    return m;
+  }, [av]);
+  const redFlags = useMemo(() => {
+    const flags: string[] = [];
+    if (!last5Summary) return flags;
+    const checks: Array<[string, number, string]> = [
+      ['Scoring Chances', Number(last5Summary.scoring), 'Scoring chances trending below season average'],
+      ['Zone Entries', Number(last5Summary.entries), 'Zone entries trending below season average'],
+      ['Carry-in%', parseFloat(last5Summary.carry), 'Carry-in rate trending below season average'],
+      ['Possession Exit %', parseFloat(last5Summary.exits), 'Possession exits trending below season average'],
+    ];
+    for (const [metric, current, label] of checks) {
+      const seasonAvg = seasonAverageMap.get(metric);
+      if (seasonAvg != null && Number.isFinite(current) && current < seasonAvg) flags.push(label);
+    }
+    return flags;
+  }, [last5Summary, seasonAverageMap]);
 
   return (
     <div className="animate-in fade-in duration-500">
@@ -98,12 +179,40 @@ export function OverviewDashboard() {
         </div>
       )}
 
-      <LeagueBreadcrumb />
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 mb-8">
+        <StatCard title="Games remaining" value={String(gamesRemaining)} subtitle="To 30 GP season" icon={Activity} />
+        <StatCard title="SoS proxy" value={String(sosProxy)} subtitle="Rank-based difficulty" icon={Shield} />
+        <StatCard title="PWHL points leader" value={topScorerLabel} subtitle="Live player leaderboard" icon={TrendingUp} />
+        <StatCard title="Seattle points leader" value={teamPointsLeaders[0] ? `${teamPointsLeaders[0].player} (${teamPointsLeaders[0].points})` : '—'} subtitle="Goals + assists" icon={Crosshair} />
+      </div>
 
-      <LeagueKpiStrip />
-      <TargetTeamDeepDiveCards hub={data} />
-      <OffSeasonPrioritiesWidget />
-      <ExecutiveSummary />
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8">
+        <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm">
+          <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-3">Last 5 games (most relevant)</h3>
+          {last5Summary ? (
+            <div className="grid grid-cols-2 gap-3 text-sm font-mono">
+              <div>Scoring chances: <strong>{last5Summary.scoring}</strong></div>
+              <div>Zone entries: <strong>{last5Summary.entries}</strong></div>
+              <div>Carry-in %: <strong>{last5Summary.carry}</strong></div>
+              <div>Possession exit %: <strong>{last5Summary.exits}</strong></div>
+            </div>
+          ) : (
+            <p className="text-sm text-pwhl-muted">No recent game rows available.</p>
+          )}
+        </div>
+        <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm">
+          <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-3">NY red flag metrics</h3>
+          {redFlags.length ? (
+            <ul className="text-sm text-pwhl-navy space-y-2 list-disc pl-5">
+              {redFlags.map((f) => (
+                <li key={f}>{f}</li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-sm text-pwhl-muted">No high-severity red flags triggered right now.</p>
+          )}
+        </div>
+      </div>
 
       <div className="border-t border-pwhl-border pt-10 mt-10">
         <h2 className="text-2xl font-serif font-bold text-pwhl-navy mb-1">Your hub team — tracking dashboard</h2>

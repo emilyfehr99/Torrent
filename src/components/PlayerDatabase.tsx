@@ -30,7 +30,7 @@ function fmtCell(k: string, v: unknown): string {
   return String(v);
 }
 
-/** Hub columns first (subset), then league-feed placeholders. */
+/** Hub columns first (subset). */
 const HUB_SORT_COLS = [
   'Player',
   'Pos',
@@ -46,9 +46,6 @@ const HUB_SORT_COLS = [
   'Team shot share %',
   'OZ shift %',
 ];
-
-/** Columns still tied to external league feeds or not in hub export. */
-const LEAGUE_PLACEHOLDER_COLS = ['GSAx', 'HDSV%', 'QoC (ext.)'];
 
 function transitionCell(row: HubRow, key: string): string {
   const v = row[key];
@@ -189,8 +186,8 @@ export function PlayerDatabase() {
   const rosterPos = useMemo(() => {
     const m = new Map<string, string>();
     for (const r of data?.roster ?? []) {
-      const p = String(r.player ?? '');
-      if (p) m.set(p, String(r.Pos ?? '—'));
+      const p = String((r.player ?? r.Player ?? '') as string);
+      if (p) m.set(p, String((r.Pos ?? r.position ?? '—') as string));
     }
     return m;
   }, [data?.roster]);
@@ -236,16 +233,14 @@ export function PlayerDatabase() {
     if (!activeSeason[0]) return [] as { key: string; label: string }[];
     const keys = new Set(Object.keys(activeSeason[0]));
     const hub = HUB_SORT_COLS.filter((k) => keys.has(k));
-    return [...hub, ...LEAGUE_PLACEHOLDER_COLS].map((k) => ({ key: k, label: k }));
+    return [...hub].map((k) => ({ key: k, label: k }));
   }, [activeSeason]);
 
   const sortableRows: SortableRow[] = useMemo(() => {
-    const leagueFeed = new Set(LEAGUE_PLACEHOLDER_COLS);
     return filtered.map((row) => {
       const o: SortableRow = {};
       for (const { key } of sortableCols) {
-        if (leagueFeed.has(key)) o[key] = 'N/A';
-        else o[key] = row[key] ?? '—';
+        o[key] = row[key] ?? '—';
       }
       return o;
     });
@@ -497,11 +492,7 @@ export function PlayerDatabase() {
                   [
                     ['overview', 'Overview'],
                     ['transition', 'Transition'],
-                    ['pwhle', 'PWHLe'],
-                    ['pwhlproj', 'PWHL proj'],
                     ['heat', 'Shot heat'],
-                    ['flow', 'Transition flow'],
-                    ['similar', 'Similarity'],
                   ] as const
                 ).map(([id, label]) => (
                   <button
@@ -586,7 +577,7 @@ export function PlayerDatabase() {
                   <div className="mb-4">
                     <h4 className="font-semibold text-sm text-pwhl-navy mb-1">Hub-derived metrics</h4>
                     <p className="text-[10px] text-pwhl-muted mb-2 leading-relaxed">
-                      xG from shot location; xG/60 &amp; takeaway rates use ~17 TOI/GP (no minutes column). OZ shift % from
+                      xG from shot location; xG/60 uses ~17 TOI/GP (no minutes column). OZ shift % from
                       shift-start actions (see Zone Deployment.R pattern). QoT = mean hub GameScore of line / pair teammates
                       in detected units.
                     </p>
@@ -600,9 +591,21 @@ export function PlayerDatabase() {
                         <span className="text-right font-semibold">{hubMetric(selected, 'Team shot share %')}</span>
                       </div>
                       <div className="flex justify-between border-b border-pwhl-border/50 pb-1 gap-2">
-                        <span className="text-pwhl-muted shrink">Corsi / Fenwick %</span>
-                        <span className="text-right text-[11px] leading-tight">
-                          On-ice for/against not tracked — use shot share above; full Corsi N/A in hub.
+                        <span className="text-pwhl-muted shrink">Corsi %</span>
+                        <span className="text-right font-semibold">
+                          {(() => {
+                            const cf =
+                              Number(selected['Shots'] ?? 0) +
+                              Number(selected['Blocked shots'] ?? 0) +
+                              Number(selected['Missed shots'] ?? 0);
+                            const teamAttempts = Math.max(
+                              1,
+                              (data?.per_game_metrics ?? []).reduce((a, r) => a + (Number(r['Shots'] ?? 0) || 0), 0),
+                            );
+                            const ca = Math.max(0, teamAttempts - cf);
+                            const corsiPct = (100 * cf) / Math.max(1, cf + ca);
+                            return `${corsiPct.toFixed(1)}%`;
+                          })()}
                         </span>
                       </div>
                       <div className="flex justify-between border-b border-pwhl-border/50 pb-1 gap-2">
@@ -610,26 +613,12 @@ export function PlayerDatabase() {
                         <span className="text-right font-semibold">{hubMetric(selected, 'Chances')}</span>
                       </div>
                       <div className="flex justify-between border-b border-pwhl-border/50 pb-1 gap-2">
-                        <span className="text-pwhl-muted shrink">Takeaways/60 est</span>
-                        <span className="text-right font-semibold">{hubMetric(selected, 'Takeaways/60 est')}</span>
-                      </div>
-                      <div className="flex justify-between border-b border-pwhl-border/50 pb-1 gap-2">
                         <span className="text-pwhl-muted shrink">OZ shift-start %</span>
                         <span className="text-right font-semibold">{hubMetric(selected, 'OZ shift %')}</span>
                       </div>
                       <div className="flex justify-between border-b border-pwhl-border/50 pb-1 gap-2">
-                        <span className="text-pwhl-muted shrink">QoT (linemates GS)</span>
+                        <span className="text-pwhl-muted shrink">QOT (quality of teammates, GS)</span>
                         <span className="text-right font-semibold">{qotDisplay}</span>
-                      </div>
-                      <div className="flex justify-between border-b border-pwhl-border/50 pb-1 gap-2">
-                        <span className="text-pwhl-muted shrink">QoC</span>
-                        <span className="text-right text-[11px] leading-tight">
-                          N/A — needs opponent skater IDs per shift (not in export).
-                        </span>
-                      </div>
-                      <div className="flex justify-between border-b border-pwhl-border/50 pb-1 gap-2">
-                        <span className="text-pwhl-muted shrink">GSAx / HD save%</span>
-                        <span className="text-right text-[11px]">N/A — goalie league feed</span>
                       </div>
                     </div>
                   </div>
@@ -644,8 +633,59 @@ export function PlayerDatabase() {
                 <div className="text-xs font-mono text-pwhl-navy space-y-0 pr-1">
                   <p className="text-[11px] text-pwhl-muted font-sans mb-3 leading-relaxed">
                     Columns match <span className="font-mono">metrics_players.py</span> season aggregates. “Entries → shot” uses carry/dump
-                    windows in the hub (shot within following events).
+                    windows in the hub (shot within following events). Count metrics below are shown <strong>per GP</strong> with team rank.
                   </p>
+
+                  {(() => {
+                    const rankDisplay = (key: string, lowerIsBetter = false): string => {
+                      const vals = (activeSeason ?? [])
+                        .map((r) => Number(r[key]))
+                        .filter((v) => Number.isFinite(v));
+                      const sv = Number(selected[key]);
+                      if (!Number.isFinite(sv) || vals.length === 0) return '';
+                      const sorted = [...vals].sort((a, b) => (lowerIsBetter ? a - b : b - a));
+                      const rank = sorted.findIndex((v) => v === sv) + 1;
+                      if (rank <= 0) return '';
+                      return ` (Team rank #${rank}/${sorted.length})`;
+                    };
+
+                    const rowVal = (key: string, isPct = false, lowerIsBetter = false): string => {
+                      const gp = Math.max(1, Number(selected['GP'] ?? 1) || 1);
+                      let base: string;
+                      if (isPct) {
+                        base = fmtCell('%', selected[key]);
+                      } else {
+                        const n = Number(selected[key]);
+                        if (Number.isFinite(n)) {
+                          base = (n / gp).toFixed(1);
+                        } else {
+                          base = transitionCell(selected, key);
+                        }
+                      }
+                      return `${base}${rankDisplay(key, lowerIsBetter)}`;
+                    };
+
+                    return (
+                      <>
+                  <TransitionSectionTitle>Workload & deployment</TransitionSectionTitle>
+                  {(
+                    [
+                      ['Transition workload', 'Transition Workload'],
+                      ['Transition passes', 'Transition Passes'],
+                      ['Transition carries', 'Transition Carries'],
+                      ['Puck touches', 'Puck Touches'],
+                      ['Deployment (OZ shift-start %)', 'OZ shift %', true],
+                      ['Deployment (DZ shift-start %)', 'DZ shift %', true],
+                      ['Deployment (NZ shift-start %)', 'NZ shift %', true],
+                    ] as const
+                  ).map(([label, key, isPct]) => (
+                    <div key={label} className="flex justify-between gap-2 border-b border-pwhl-border/50 py-1.5">
+                      <span className="text-pwhl-muted shrink font-sans text-[11px]">{label}</span>
+                      <span className="font-semibold text-right tabular-nums">
+                        {rowVal(key, Boolean(isPct))}
+                      </span>
+                    </div>
+                  ))}
 
                   <TransitionSectionTitle>DZ retrievals &amp; exits</TransitionSectionTitle>
                   {(
@@ -665,7 +705,7 @@ export function PlayerDatabase() {
                       <span className="font-semibold text-right tabular-nums">
                         {key === '__SRP__'
                           ? successfulRetrievalPct(selected)
-                          : transitionCell(selected, key)}
+                          : rowVal(key, Boolean(isPct), key === 'Botched Retrievals' || key === 'Failed Exits')}
                       </span>
                     </div>
                   ))}
@@ -689,8 +729,8 @@ export function PlayerDatabase() {
                         {key === '__ENT_SHOT__'
                           ? entriesLeadingToShotsTotal(selected)
                           : isPct
-                            ? fmtCell('%', selected[key])
-                            : transitionCell(selected, key)}
+                            ? rowVal(key, true)
+                            : rowVal(key)}
                       </span>
                     </div>
                   ))}
@@ -700,15 +740,20 @@ export function PlayerDatabase() {
                     [
                       ['Shots off rush', 'Shots off Rush'],
                       ['Shots off FC cycle', 'Shots off FC Cycle'],
+                      ['NZ shots', 'NZ Shots'],
+                      ['DZ shots', 'DZ Shots'],
                       ['Primary shot assists', 'Primary Shot Assists'],
                       ['Chance assists', 'Chance Assists'],
                     ] as const
                   ).map(([label, key]) => (
                     <div key={label} className="flex justify-between gap-2 border-b border-pwhl-border/50 py-1.5">
                       <span className="text-pwhl-muted shrink font-sans text-[11px]">{label}</span>
-                      <span className="font-semibold text-right tabular-nums">{transitionCell(selected, key)}</span>
+                      <span className="font-semibold text-right tabular-nums">{rowVal(key)}</span>
                     </div>
                   ))}
+                      </>
+                    );
+                  })()}
                 </div>
               ) : null}
 

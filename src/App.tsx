@@ -12,7 +12,6 @@ import {
   Lock,
   RefreshCw,
 } from 'lucide-react';
-import { cn } from './lib/utils';
 import { SidebarItem } from './components/SidebarItem';
 import { OverviewDashboard } from './components/OverviewDashboard';
 import { RosterConstruction } from './components/RosterConstruction';
@@ -28,7 +27,6 @@ import { HubSearchBar } from './components/HubSearchBar';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('overview');
-  const [userRole, setUserRole] = useState('GM');
   const { data, loading, refresh } = useHubData();
 
   const renderContent = () => {
@@ -82,28 +80,6 @@ export default function App() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between bg-pwhl-cream rounded-md p-1 border border-pwhl-border">
-            <button
-              type="button"
-              onClick={() => setUserRole('GM')}
-              className={cn(
-                'text-xs font-semibold px-3 py-1.5 rounded w-1/2 transition-colors',
-                userRole === 'GM' ? 'bg-white shadow-sm text-pwhl-navy' : 'text-pwhl-muted',
-              )}
-            >
-              Staff
-            </button>
-            <button
-              type="button"
-              onClick={() => setUserRole('Scout')}
-              className={cn(
-                'text-xs font-semibold px-3 py-1.5 rounded w-1/2 transition-colors',
-                userRole === 'Scout' ? 'bg-white shadow-sm text-pwhl-navy' : 'text-pwhl-muted',
-              )}
-            >
-              Coaches
-            </button>
-          </div>
         </div>
 
         <div className="flex-1 py-6 px-4 space-y-1 overflow-y-auto">

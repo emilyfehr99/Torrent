@@ -8,6 +8,7 @@ import { PassingNetwork } from './PassingNetwork';
 import { ShotHeatmap } from './ShotHeatmap';
 import { CustomReportBuilder } from './CustomReportBuilder';
 import { AdvancedAnalytics } from './AdvancedAnalytics';
+import { projectPwhleEliteToPwhl } from '../lib/pwhlProspectProjection';
 
 const QUICK_REPORTS: {
   id: QuickReportVariant;
@@ -42,6 +43,9 @@ const QUICK_REPORTS: {
 export function ReportsLibrary() {
   const { data, loading, error, refresh } = useHubData();
   const [quickBusy, setQuickBusy] = useState<QuickReportVariant | null>(null);
+  const [pwhlePpg, setPwhlePpg] = useState('');
+  const [pwhlePos, setPwhlePos] = useState<'F' | 'D'>('F');
+  const [pwhleGp, setPwhleGp] = useState('30');
   const shots = data?.viz_shots ?? [];
   const shotGames = data?.viz_shot_games ?? [];
   const edges = data?.viz_pass_edges ?? [];
@@ -59,6 +63,11 @@ export function ReportsLibrary() {
       setQuickBusy(null);
     }
   };
+  const pwhleResult = projectPwhleEliteToPwhl({
+    ppg: Number(pwhlePpg),
+    position: pwhlePos,
+    pwhlScheduleGp: Number(pwhleGp) || 30,
+  });
 
   return (
     <div className="animate-in fade-in duration-500">
@@ -86,6 +95,42 @@ export function ReportsLibrary() {
       <CustomReportBuilder />
 
       <AdvancedAnalytics />
+
+      <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm mb-6">
+        <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-2">PWHLe projection tool</h3>
+        <p className="text-xs text-pwhl-muted mb-4">Convert PWHLe PPG to projected PWHL points.</p>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <input
+            type="number"
+            step="0.01"
+            min="0"
+            value={pwhlePpg}
+            onChange={(e) => setPwhlePpg(e.target.value)}
+            placeholder="PWHLe PPG"
+            className="border border-pwhl-border rounded-lg px-3 py-2 text-sm font-mono"
+          />
+          <select
+            value={pwhlePos}
+            onChange={(e) => setPwhlePos(e.target.value as 'F' | 'D')}
+            className="border border-pwhl-border rounded-lg px-3 py-2 text-sm"
+          >
+            <option value="F">Forward</option>
+            <option value="D">Defense</option>
+          </select>
+          <input
+            type="number"
+            min="1"
+            max="40"
+            value={pwhleGp}
+            onChange={(e) => setPwhleGp(e.target.value)}
+            placeholder="PWHL GP"
+            className="border border-pwhl-border rounded-lg px-3 py-2 text-sm font-mono"
+          />
+          <div className="rounded-lg bg-pwhl-cream border border-pwhl-border px-3 py-2 text-sm font-mono">
+            Proj pts: <strong>{pwhleResult.projectedPointsPwhlSeason > 0 ? pwhleResult.projectedPointsPwhlSeason.toFixed(1) : '—'}</strong>
+          </div>
+        </div>
+      </div>
 
       <div className="mb-6">
         <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-1">Quick exports</h3>

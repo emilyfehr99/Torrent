@@ -95,7 +95,7 @@
       "Forecheck Recoveries": 5.0,
       "SOGA off NZ Turnovers": 1.0,
       "Shots Against": 69.0,
-      "Expected Goals (xG)": 3.329999999999999
+      "Expected Goals (xG)": 3.0
     },
     {
       "date": "Mar 21, 2026",
@@ -121,7 +121,7 @@
       "Forecheck Recoveries": 7.0,
       "SOGA off NZ Turnovers": 3.0,
       "Shots Against": 58.0,
-      "Expected Goals (xG)": 3.299999999999998
+      "Expected Goals (xG)": 3.0
     },
     {
       "date": "Jan 11, 2026",
@@ -147,7 +147,7 @@
       "Forecheck Recoveries": 4.0,
       "SOGA off NZ Turnovers": 2.0,
       "Shots Against": 83.0,
-      "Expected Goals (xG)": 4.35
+      "Expected Goals (xG)": 4.0
     },
     {
       "date": "Mar 19, 2026",
@@ -173,7 +173,7 @@
       "Forecheck Recoveries": 7.0,
       "SOGA off NZ Turnovers": 1.0,
       "Shots Against": 71.0,
-      "Expected Goals (xG)": 4.049999999999999
+      "Expected Goals (xG)": 4.0
     },
     {
       "date": "Jan 28, 2026",
@@ -199,7 +199,7 @@
       "Forecheck Recoveries": 3.0,
       "SOGA off NZ Turnovers": 1.0,
       "Shots Against": 67.0,
-      "Expected Goals (xG)": 3.779999999999999
+      "Expected Goals (xG)": 4.0
     },
     {
       "date": "Mar 04, 2026",
@@ -225,7 +225,7 @@
       "Forecheck Recoveries": 8.0,
       "SOGA off NZ Turnovers": 5.0,
       "Shots Against": 49.0,
-      "Expected Goals (xG)": 5.400000000000001
+      "Expected Goals (xG)": 5.0
     },
     {
       "date": "Jan 18, 2026",
@@ -251,7 +251,7 @@
       "Forecheck Recoveries": 0.0,
       "SOGA off NZ Turnovers": 1.0,
       "Shots Against": 51.0,
-      "Expected Goals (xG)": 7.350000000000006
+      "Expected Goals (xG)": 7.0
     },
     {
       "date": "Jan 25, 2026",
@@ -277,7 +277,7 @@
       "Forecheck Recoveries": 7.0,
       "SOGA off NZ Turnovers": 1.0,
       "Shots Against": 45.0,
-      "Expected Goals (xG)": 4.739999999999999
+      "Expected Goals (xG)": 5.0
     },
     {
       "date": "Feb 27, 2026",
@@ -303,7 +303,7 @@
       "Forecheck Recoveries": 7.0,
       "SOGA off NZ Turnovers": 2.0,
       "Shots Against": 52.0,
-      "Expected Goals (xG)": 4.7700000000000005
+      "Expected Goals (xG)": 5.0
     },
     {
       "date": "Mar 11, 2026",
@@ -329,7 +329,7 @@
       "Forecheck Recoveries": 3.0,
       "SOGA off NZ Turnovers": 3.0,
       "Shots Against": 59.0,
-      "Expected Goals (xG)": 5.610000000000001
+      "Expected Goals (xG)": 6.0
     },
     {
       "date": "Jan 20, 2026",
@@ -355,7 +355,7 @@
       "Forecheck Recoveries": 6.0,
       "SOGA off NZ Turnovers": 2.0,
       "Shots Against": 68.0,
-      "Expected Goals (xG)": 6.0000000000000036
+      "Expected Goals (xG)": 6.0
     },
     {
       "date": "Mar 15, 2026",
@@ -381,7 +381,7 @@
       "Forecheck Recoveries": 1.0,
       "SOGA off NZ Turnovers": 4.0,
       "Shots Against": 57.0,
-      "Expected Goals (xG)": 3.6599999999999975
+      "Expected Goals (xG)": 4.0
     },
     {
       "date": "Jan 03, 2026",
@@ -407,7 +407,7 @@
       "Forecheck Recoveries": 9.0,
       "SOGA off NZ Turnovers": 5.0,
       "Shots Against": 59.0,
-      "Expected Goals (xG)": 7.110000000000002
+      "Expected Goals (xG)": 7.0
     }
   ],
   "averages": [
@@ -489,7 +489,7 @@
     },
     {
       "Metric": "Expected Goals (xG)",
-      "Average": "4.9"
+      "Average": "5"
     }
   ],
   "win_correlations": [
@@ -499,7 +499,7 @@
     },
     {
       "Metric": "Expected Goals (xG)",
-      "Correlation": 0.576
+      "Correlation": 0.631
     },
     {
       "Metric": "Entry Scoring Chance %",
@@ -2750,13 +2750,14 @@
       "Exits w Possession": 13.0,
       "Botched Retrievals": 15.0,
       "Failed Exits": 3.0,
-      "xG": 7.38,
+      "xG": 7.0,
       "NZ Shots": 1.0,
       "DZ Shots": 0.0,
       "Transition Workload": 73.0,
       "Transition Passes": 22.0,
       "Transition Carries": 30.0,
       "Puck Touches": 407.0,
+      "Shots Against": 235.0,
       "GP": 13,
       "Takeaways": 0.0,
       "Carry-in %": 85.0,
@@ -2765,7 +2766,7 @@
       "NZ shift %": 21.4,
       "DZ shift %": 29.6,
       "Team shot share %": 11.1,
-      "xG/60 est": 2.004,
+      "xG/60 est": 1.9,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 1.62,
       "Shots off FC Cycle/GP": 0.77,
@@ -2794,13 +2795,14 @@
       "Exits w Possession": 12.0,
       "Botched Retrievals": 20.0,
       "Failed Exits": 8.0,
-      "xG": 6.36,
+      "xG": 8.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 73.0,
       "Transition Passes": 25.0,
       "Transition Carries": 19.0,
       "Puck Touches": 365.0,
+      "Shots Against": 0.0,
       "GP": 11,
       "Takeaways": 0.0,
       "Carry-in %": 74.0,
@@ -2809,7 +2811,7 @@
       "NZ shift %": 17.0,
       "DZ shift %": 34.4,
       "Team shot share %": 6.7,
-      "xG/60 est": 2.041,
+      "xG/60 est": 2.567,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 1.27,
       "Shots off FC Cycle/GP": 0.73,
@@ -2838,13 +2840,14 @@
       "Exits w Possession": 27.0,
       "Botched Retrievals": 33.0,
       "Failed Exits": 16.0,
-      "xG": 6.21,
+      "xG": 6.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 119.0,
       "Transition Passes": 49.0,
       "Transition Carries": 46.0,
       "Puck Touches": 588.0,
+      "Shots Against": 342.0,
       "GP": 13,
       "Takeaways": 0.0,
       "Carry-in %": 99.0,
@@ -2853,7 +2856,7 @@
       "NZ shift %": 22.0,
       "DZ shift %": 32.3,
       "Team shot share %": 7.8,
-      "xG/60 est": 1.686,
+      "xG/60 est": 1.629,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 1.23,
       "Shots off FC Cycle/GP": 0.92,
@@ -2882,13 +2885,14 @@
       "Exits w Possession": 18.0,
       "Botched Retrievals": 13.0,
       "Failed Exits": 10.0,
-      "xG": 6.18,
+      "xG": 5.0,
       "NZ Shots": 1.0,
       "DZ Shots": 0.0,
       "Transition Workload": 103.0,
       "Transition Passes": 28.0,
       "Transition Carries": 52.0,
       "Puck Touches": 427.0,
+      "Shots Against": 242.0,
       "GP": 13,
       "Takeaways": 0.0,
       "Carry-in %": 93.0,
@@ -2897,7 +2901,7 @@
       "NZ shift %": 21.6,
       "DZ shift %": 30.5,
       "Team shot share %": 7.3,
-      "xG/60 est": 1.678,
+      "xG/60 est": 1.357,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 1.23,
       "Shots off FC Cycle/GP": 0.77,
@@ -2926,13 +2930,14 @@
       "Exits w Possession": 10.0,
       "Botched Retrievals": 13.0,
       "Failed Exits": 11.0,
-      "xG": 4.5,
+      "xG": 2.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 70.0,
       "Transition Passes": 10.0,
       "Transition Carries": 34.0,
       "Puck Touches": 299.0,
+      "Shots Against": 217.0,
       "GP": 13,
       "Takeaways": 0.0,
       "Carry-in %": 85.0,
@@ -2941,7 +2946,7 @@
       "NZ shift %": 18.8,
       "DZ shift %": 28.8,
       "Team shot share %": 5.9,
-      "xG/60 est": 1.222,
+      "xG/60 est": 0.543,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 1.31,
       "Shots off FC Cycle/GP": 0.38,
@@ -2970,13 +2975,14 @@
       "Exits w Possession": 21.0,
       "Botched Retrievals": 48.0,
       "Failed Exits": 16.0,
-      "xG": 3.66,
+      "xG": 1.0,
       "NZ Shots": 3.0,
       "DZ Shots": 0.0,
       "Transition Workload": 102.0,
       "Transition Passes": 37.0,
       "Transition Carries": 27.0,
       "Puck Touches": 639.0,
+      "Shots Against": 310.0,
       "GP": 13,
       "Takeaways": 0.0,
       "Carry-in %": 86.0,
@@ -2985,7 +2991,7 @@
       "NZ shift %": 22.4,
       "DZ shift %": 54.9,
       "Team shot share %": 10.4,
-      "xG/60 est": 0.994,
+      "xG/60 est": 0.271,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 1.08,
       "Shots off FC Cycle/GP": 0.62,
@@ -3014,13 +3020,14 @@
       "Exits w Possession": 9.0,
       "Botched Retrievals": 18.0,
       "Failed Exits": 13.0,
-      "xG": 4.38,
+      "xG": 2.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 61.0,
       "Transition Passes": 17.0,
       "Transition Carries": 17.0,
       "Puck Touches": 258.0,
+      "Shots Against": 264.0,
       "GP": 13,
       "Takeaways": 0.0,
       "Carry-in %": 78.0,
@@ -3029,7 +3036,7 @@
       "NZ shift %": 17.0,
       "DZ shift %": 34.2,
       "Team shot share %": 4.9,
-      "xG/60 est": 1.189,
+      "xG/60 est": 0.543,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 0.69,
       "Shots off FC Cycle/GP": 0.85,
@@ -3058,13 +3065,14 @@
       "Exits w Possession": 11.0,
       "Botched Retrievals": 19.0,
       "Failed Exits": 7.0,
-      "xG": 4.17,
+      "xG": 2.0,
       "NZ Shots": 1.0,
       "DZ Shots": 0.0,
       "Transition Workload": 63.0,
       "Transition Passes": 13.0,
       "Transition Carries": 36.0,
       "Puck Touches": 266.0,
+      "Shots Against": 228.0,
       "GP": 10,
       "Takeaways": 0.0,
       "Carry-in %": 95.0,
@@ -3073,7 +3081,7 @@
       "NZ shift %": 23.5,
       "DZ shift %": 34.6,
       "Team shot share %": 5.7,
-      "xG/60 est": 1.472,
+      "xG/60 est": 0.706,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 1.9,
       "Shots off FC Cycle/GP": 0.5,
@@ -3102,13 +3110,14 @@
       "Exits w Possession": 10.0,
       "Botched Retrievals": 6.0,
       "Failed Exits": 5.0,
-      "xG": 5.22,
+      "xG": 5.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 53.0,
       "Transition Passes": 16.0,
       "Transition Carries": 30.0,
       "Puck Touches": 232.0,
+      "Shots Against": 114.0,
       "GP": 7,
       "Takeaways": 0.0,
       "Carry-in %": 100.0,
@@ -3117,7 +3126,7 @@
       "NZ shift %": 23.7,
       "DZ shift %": 21.5,
       "Team shot share %": 5.7,
-      "xG/60 est": 2.632,
+      "xG/60 est": 2.521,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 2.0,
       "Shots off FC Cycle/GP": 1.0,
@@ -3146,13 +3155,14 @@
       "Exits w Possession": 8.0,
       "Botched Retrievals": 15.0,
       "Failed Exits": 6.0,
-      "xG": 4.05,
+      "xG": 4.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 44.0,
       "Transition Passes": 14.0,
       "Transition Carries": 19.0,
       "Puck Touches": 288.0,
+      "Shots Against": 108.0,
       "GP": 7,
       "Takeaways": 0.0,
       "Carry-in %": 83.0,
@@ -3161,7 +3171,7 @@
       "NZ shift %": 22.5,
       "DZ shift %": 25.8,
       "Team shot share %": 5.8,
-      "xG/60 est": 2.042,
+      "xG/60 est": 2.017,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 1.14,
       "Shots off FC Cycle/GP": 1.86,
@@ -3190,13 +3200,14 @@
       "Exits w Possession": 30.0,
       "Botched Retrievals": 65.0,
       "Failed Exits": 13.0,
-      "xG": 2.82,
+      "xG": 0.0,
       "NZ Shots": 1.0,
       "DZ Shots": 0.0,
       "Transition Workload": 107.0,
       "Transition Passes": 41.0,
       "Transition Carries": 32.0,
       "Puck Touches": 656.0,
+      "Shots Against": 240.0,
       "GP": 13,
       "Takeaways": 0.0,
       "Carry-in %": 93.0,
@@ -3205,7 +3216,7 @@
       "NZ shift %": 20.0,
       "DZ shift %": 61.2,
       "Team shot share %": 8.6,
-      "xG/60 est": 0.766,
+      "xG/60 est": 0.0,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 0.38,
       "Shots off FC Cycle/GP": 0.85,
@@ -3234,13 +3245,14 @@
       "Exits w Possession": 13.0,
       "Botched Retrievals": 28.0,
       "Failed Exits": 13.0,
-      "xG": 1.02,
+      "xG": 0.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 47.0,
       "Transition Passes": 17.0,
       "Transition Carries": 8.0,
       "Puck Touches": 358.0,
+      "Shots Against": 153.0,
       "GP": 8,
       "Takeaways": 0.0,
       "Carry-in %": 86.0,
@@ -3249,7 +3261,7 @@
       "NZ shift %": 16.1,
       "DZ shift %": 54.6,
       "Team shot share %": 3.2,
-      "xG/60 est": 0.45,
+      "xG/60 est": 0.0,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 0.12,
       "Shots off FC Cycle/GP": 0.62,
@@ -3278,13 +3290,14 @@
       "Exits w Possession": 3.0,
       "Botched Retrievals": 4.0,
       "Failed Exits": 1.0,
-      "xG": 1.11,
+      "xG": 1.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 13.0,
       "Transition Passes": 3.0,
       "Transition Carries": 6.0,
       "Puck Touches": 67.0,
+      "Shots Against": 45.0,
       "GP": 2,
       "Takeaways": 0.0,
       "Carry-in %": 67.0,
@@ -3293,7 +3306,7 @@
       "NZ shift %": 13.8,
       "DZ shift %": 21.5,
       "Team shot share %": 1.3,
-      "xG/60 est": 1.959,
+      "xG/60 est": 1.765,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 2.0,
       "Shots off FC Cycle/GP": 0.5,
@@ -3322,13 +3335,14 @@
       "Exits w Possession": 6.0,
       "Botched Retrievals": 7.0,
       "Failed Exits": 5.0,
-      "xG": 0.87,
+      "xG": 0.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 24.0,
       "Transition Passes": 6.0,
       "Transition Carries": 11.0,
       "Puck Touches": 120.0,
+      "Shots Against": 152.0,
       "GP": 13,
       "Takeaways": 0.0,
       "Carry-in %": 92.0,
@@ -3337,7 +3351,7 @@
       "NZ shift %": 25.0,
       "DZ shift %": 29.5,
       "Team shot share %": 1.1,
-      "xG/60 est": 0.236,
+      "xG/60 est": 0.0,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 0.15,
       "Shots off FC Cycle/GP": 0.23,
@@ -3366,13 +3380,14 @@
       "Exits w Possession": 10.0,
       "Botched Retrievals": 36.0,
       "Failed Exits": 12.0,
-      "xG": 0.6,
+      "xG": 0.0,
       "NZ Shots": 1.0,
       "DZ Shots": 0.0,
       "Transition Workload": 38.0,
       "Transition Passes": 12.0,
       "Transition Carries": 4.0,
       "Puck Touches": 277.0,
+      "Shots Against": 175.0,
       "GP": 13,
       "Takeaways": 0.0,
       "Carry-in %": 75.0,
@@ -3381,7 +3396,7 @@
       "NZ shift %": 16.5,
       "DZ shift %": 66.2,
       "Team shot share %": 2.3,
-      "xG/60 est": 0.163,
+      "xG/60 est": 0.0,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 0.31,
       "Shots off FC Cycle/GP": 0.08,
@@ -3410,13 +3425,14 @@
       "Exits w Possession": 16.0,
       "Botched Retrievals": 45.0,
       "Failed Exits": 17.0,
-      "xG": 1.38,
+      "xG": 0.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 53.0,
       "Transition Passes": 30.0,
       "Transition Carries": 4.0,
       "Puck Touches": 320.0,
+      "Shots Against": 286.0,
       "GP": 13,
       "Takeaways": 0.0,
       "Carry-in %": 100.0,
@@ -3425,7 +3441,7 @@
       "NZ shift %": 20.9,
       "DZ shift %": 61.6,
       "Team shot share %": 4.0,
-      "xG/60 est": 0.375,
+      "xG/60 est": 0.0,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 0.15,
       "Shots off FC Cycle/GP": 0.54,
@@ -3454,13 +3470,14 @@
       "Exits w Possession": 9.0,
       "Botched Retrievals": 5.0,
       "Failed Exits": 8.0,
-      "xG": 0.39,
+      "xG": 0.0,
       "NZ Shots": 1.0,
       "DZ Shots": 0.0,
       "Transition Workload": 20.0,
       "Transition Passes": 9.0,
       "Transition Carries": 4.0,
       "Puck Touches": 80.0,
+      "Shots Against": 77.0,
       "GP": 10,
       "Takeaways": 0.0,
       "Carry-in %": 50.0,
@@ -3469,7 +3486,7 @@
       "NZ shift %": 28.4,
       "DZ shift %": 22.5,
       "Team shot share %": 0.9,
-      "xG/60 est": 0.138,
+      "xG/60 est": 0.0,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 0.2,
       "Shots off FC Cycle/GP": 0.2,
@@ -3498,13 +3515,14 @@
       "Exits w Possession": 2.0,
       "Botched Retrievals": 5.0,
       "Failed Exits": 3.0,
-      "xG": 0.45,
+      "xG": 0.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 18.0,
       "Transition Passes": 1.0,
       "Transition Carries": 8.0,
       "Puck Touches": 80.0,
+      "Shots Against": 107.0,
       "GP": 11,
       "Takeaways": 0.0,
       "Carry-in %": 78.0,
@@ -3513,7 +3531,7 @@
       "NZ shift %": 26.0,
       "DZ shift %": 42.0,
       "Team shot share %": 0.4,
-      "xG/60 est": 0.144,
+      "xG/60 est": 0.0,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 0.09,
       "Shots off FC Cycle/GP": 0.0,
@@ -3542,13 +3560,14 @@
       "Exits w Possession": 14.0,
       "Botched Retrievals": 11.0,
       "Failed Exits": 4.0,
-      "xG": 0.66,
+      "xG": 0.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 21.0,
       "Transition Passes": 14.0,
       "Transition Carries": 5.0,
       "Puck Touches": 109.0,
+      "Shots Against": 97.0,
       "GP": 11,
       "Takeaways": 0.0,
       "Carry-in %": 100.0,
@@ -3557,7 +3576,7 @@
       "NZ shift %": 26.2,
       "DZ shift %": 39.3,
       "Team shot share %": 0.9,
-      "xG/60 est": 0.212,
+      "xG/60 est": 0.0,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 0.27,
       "Shots off FC Cycle/GP": 0.27,
@@ -3586,13 +3605,14 @@
       "Exits w Possession": 9.0,
       "Botched Retrievals": 34.0,
       "Failed Exits": 4.0,
-      "xG": 0.69,
+      "xG": 0.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 25.0,
       "Transition Passes": 13.0,
       "Transition Carries": 2.0,
       "Puck Touches": 195.0,
+      "Shots Against": 122.0,
       "GP": 11,
       "Takeaways": 0.0,
       "Carry-in %": 86.0,
@@ -3601,7 +3621,7 @@
       "NZ shift %": 18.6,
       "DZ shift %": 59.9,
       "Team shot share %": 2.3,
-      "xG/60 est": 0.221,
+      "xG/60 est": 0.0,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 0.18,
       "Shots off FC Cycle/GP": 0.27,
@@ -3637,6 +3657,7 @@
       "Transition Passes": 0.0,
       "Transition Carries": 0.0,
       "Puck Touches": 0.0,
+      "Shots Against": 0.0,
       "GP": 0,
       "Takeaways": 0.0,
       "Carry-in %": 0.0,
@@ -3674,13 +3695,14 @@
       "Exits w Possession": 5.0,
       "Botched Retrievals": 6.0,
       "Failed Exits": 3.0,
-      "xG": 0.51,
+      "xG": 0.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 18.0,
       "Transition Passes": 6.0,
       "Transition Carries": 7.0,
       "Puck Touches": 72.0,
+      "Shots Against": 39.0,
       "GP": 6,
       "Takeaways": 0.0,
       "Carry-in %": 89.0,
@@ -3689,7 +3711,7 @@
       "NZ shift %": 24.3,
       "DZ shift %": 26.2,
       "Team shot share %": 0.7,
-      "xG/60 est": 0.3,
+      "xG/60 est": 0.0,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 0.0,
       "Shots off FC Cycle/GP": 0.17,
@@ -3718,13 +3740,14 @@
       "Exits w Possession": 0.0,
       "Botched Retrievals": 4.0,
       "Failed Exits": 3.0,
-      "xG": 0.24,
+      "xG": 0.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 9.0,
       "Transition Passes": 1.0,
       "Transition Carries": 5.0,
       "Puck Touches": 38.0,
+      "Shots Against": 26.0,
       "GP": 3,
       "Takeaways": 0.0,
       "Carry-in %": 100.0,
@@ -3733,7 +3756,7 @@
       "NZ shift %": 16.4,
       "DZ shift %": 27.3,
       "Team shot share %": 0.3,
-      "xG/60 est": 0.282,
+      "xG/60 est": 0.0,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 0.0,
       "Shots off FC Cycle/GP": 0.0,
@@ -3769,6 +3792,7 @@
       "Transition Passes": 0.0,
       "Transition Carries": 0.0,
       "Puck Touches": 99.0,
+      "Shots Against": 0.0,
       "GP": 6,
       "Takeaways": 0.0,
       "Carry-in %": 0.0,
@@ -3806,13 +3830,14 @@
       "Exits w Possession": 18.0,
       "Botched Retrievals": 63.0,
       "Failed Exits": 17.0,
-      "xG": 0.6,
+      "xG": 0.0,
       "NZ Shots": 0.0,
       "DZ Shots": 0.0,
       "Transition Workload": 62.0,
       "Transition Passes": 26.0,
       "Transition Carries": 8.0,
       "Puck Touches": 424.0,
+      "Shots Against": 286.0,
       "GP": 13,
       "Takeaways": 0.0,
       "Carry-in %": 89.0,
@@ -3821,7 +3846,7 @@
       "NZ shift %": 18.4,
       "DZ shift %": 65.4,
       "Team shot share %": 2.7,
-      "xG/60 est": 0.163,
+      "xG/60 est": 0.0,
       "Takeaways/60 est": 0.0,
       "Shots off Rush/GP": 0.08,
       "Shots off FC Cycle/GP": 0.38,
@@ -3857,6 +3882,7 @@
       "Transition Passes": 0.0,
       "Transition Carries": 0.0,
       "Puck Touches": 99.0,
+      "Shots Against": 0.0,
       "GP": 7,
       "Takeaways": 0.0,
       "Carry-in %": 0.0,
@@ -3899,7 +3925,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 5,
       "Failed Exits": 1,
-      "xG": 0.27,
+      "xG": 0.0,
       "shift_oz": 27,
       "shift_nz": 6,
       "shift_dz": 26,
@@ -3909,7 +3935,8 @@
       "Transition Workload": 5,
       "Transition Passes": 3,
       "Transition Carries": 2,
-      "Puck Touches": 34
+      "Puck Touches": 34,
+      "Shots Against": 16
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -3937,7 +3964,7 @@
       "Exits w Poss %": 25.0,
       "Botched Retrievals": 5,
       "Failed Exits": 1,
-      "xG": 0.18,
+      "xG": 0.0,
       "shift_oz": 9,
       "shift_nz": 4,
       "shift_dz": 20,
@@ -3947,7 +3974,8 @@
       "Transition Workload": 7,
       "Transition Passes": 3,
       "Transition Carries": 1,
-      "Puck Touches": 47
+      "Puck Touches": 47,
+      "Shots Against": 33
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -3975,7 +4003,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 5,
       "Failed Exits": 2,
-      "xG": 0.48,
+      "xG": 0.0,
       "shift_oz": 10,
       "shift_nz": 7,
       "shift_dz": 23,
@@ -3985,7 +4013,8 @@
       "Transition Workload": 6,
       "Transition Passes": 3,
       "Transition Carries": 1,
-      "Puck Touches": 52
+      "Puck Touches": 52,
+      "Shots Against": 29
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4013,7 +4042,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 3,
       "Failed Exits": 1,
-      "xG": 0.57,
+      "xG": 1.0,
       "shift_oz": 21,
       "shift_nz": 15,
       "shift_dz": 8,
@@ -4023,7 +4052,8 @@
       "Transition Workload": 8,
       "Transition Passes": 4,
       "Transition Carries": 3,
-      "Puck Touches": 38
+      "Puck Touches": 38,
+      "Shots Against": 9
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4051,7 +4081,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 3,
       "Failed Exits": 0,
-      "xG": 0.36,
+      "xG": 0.0,
       "shift_oz": 21,
       "shift_nz": 10,
       "shift_dz": 11,
@@ -4061,7 +4091,8 @@
       "Transition Workload": 3,
       "Transition Passes": 0,
       "Transition Carries": 2,
-      "Puck Touches": 27
+      "Puck Touches": 27,
+      "Shots Against": 11
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4099,7 +4130,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 17
+      "Puck Touches": 17,
+      "Shots Against": 0
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4127,7 +4159,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 0,
       "Failed Exits": 1,
-      "xG": 0.45,
+      "xG": 0.0,
       "shift_oz": 19,
       "shift_nz": 6,
       "shift_dz": 19,
@@ -4137,7 +4169,8 @@
       "Transition Workload": 5,
       "Transition Passes": 2,
       "Transition Carries": 3,
-      "Puck Touches": 19
+      "Puck Touches": 19,
+      "Shots Against": 20
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4165,7 +4198,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 5,
       "Failed Exits": 0,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 3,
       "shift_nz": 7,
       "shift_dz": 23,
@@ -4175,7 +4208,8 @@
       "Transition Workload": 3,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 23
+      "Puck Touches": 23,
+      "Shots Against": 29
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4213,7 +4247,8 @@
       "Transition Workload": 2,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 16
+      "Puck Touches": 16,
+      "Shots Against": 13
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4241,7 +4276,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.3,
+      "xG": 0.0,
       "shift_oz": 13,
       "shift_nz": 7,
       "shift_dz": 8,
@@ -4251,7 +4286,8 @@
       "Transition Workload": 7,
       "Transition Passes": 3,
       "Transition Carries": 4,
-      "Puck Touches": 21
+      "Puck Touches": 21,
+      "Shots Against": 22
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4279,7 +4315,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 4,
       "Failed Exits": 1,
-      "xG": 0.18,
+      "xG": 0.0,
       "shift_oz": 3,
       "shift_nz": 5,
       "shift_dz": 15,
@@ -4289,7 +4325,8 @@
       "Transition Workload": 6,
       "Transition Passes": 2,
       "Transition Carries": 1,
-      "Puck Touches": 29
+      "Puck Touches": 29,
+      "Shots Against": 0
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4317,7 +4354,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 6,
       "Failed Exits": 0,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 4,
       "shift_nz": 3,
       "shift_dz": 17,
@@ -4327,7 +4364,8 @@
       "Transition Workload": 2,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 24
+      "Puck Touches": 24,
+      "Shots Against": 14
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4355,7 +4393,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 0,
       "Failed Exits": 1,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 18,
       "shift_nz": 9,
       "shift_dz": 22,
@@ -4365,7 +4403,8 @@
       "Transition Workload": 1,
       "Transition Passes": 0,
       "Transition Carries": 1,
-      "Puck Touches": 14
+      "Puck Touches": 14,
+      "Shots Against": 37
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4393,7 +4432,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.15,
+      "xG": 0.0,
       "shift_oz": 11,
       "shift_nz": 7,
       "shift_dz": 7,
@@ -4403,7 +4442,8 @@
       "Transition Workload": 4,
       "Transition Passes": 1,
       "Transition Carries": 3,
-      "Puck Touches": 15
+      "Puck Touches": 15,
+      "Shots Against": 21
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4431,7 +4471,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 4,
       "Failed Exits": 1,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 13,
       "shift_nz": 5,
       "shift_dz": 17,
@@ -4441,7 +4481,8 @@
       "Transition Workload": 5,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 21
+      "Puck Touches": 21,
+      "Shots Against": 32
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4469,7 +4510,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 1,
       "Failed Exits": 3,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 6,
       "shift_nz": 7,
       "shift_dz": 13,
@@ -4479,7 +4520,8 @@
       "Transition Workload": 6,
       "Transition Passes": 3,
       "Transition Carries": 1,
-      "Puck Touches": 19
+      "Puck Touches": 19,
+      "Shots Against": 20
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4517,7 +4559,8 @@
       "Transition Workload": 2,
       "Transition Passes": 0,
       "Transition Carries": 1,
-      "Puck Touches": 5
+      "Puck Touches": 5,
+      "Shots Against": 9
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4555,7 +4598,8 @@
       "Transition Workload": 2,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 8
+      "Puck Touches": 8,
+      "Shots Against": 8
     },
     {
       "game_id": "Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026",
@@ -4593,7 +4637,8 @@
       "Transition Workload": 1,
       "Transition Passes": 0,
       "Transition Carries": 1,
-      "Puck Touches": 7
+      "Puck Touches": 7,
+      "Shots Against": 3
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -4621,7 +4666,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 2,
       "Failed Exits": 3,
-      "xG": 0.33,
+      "xG": 0.0,
       "shift_oz": 24,
       "shift_nz": 14,
       "shift_dz": 19,
@@ -4631,7 +4676,8 @@
       "Transition Workload": 8,
       "Transition Passes": 3,
       "Transition Carries": 2,
-      "Puck Touches": 40
+      "Puck Touches": 40,
+      "Shots Against": 33
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -4659,7 +4705,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.96,
+      "xG": 1.0,
       "shift_oz": 20,
       "shift_nz": 8,
       "shift_dz": 6,
@@ -4669,7 +4715,8 @@
       "Transition Workload": 9,
       "Transition Passes": 2,
       "Transition Carries": 4,
-      "Puck Touches": 33
+      "Puck Touches": 33,
+      "Shots Against": 21
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -4697,7 +4744,7 @@
       "Exits w Poss %": 60.0,
       "Botched Retrievals": 3,
       "Failed Exits": 1,
-      "xG": 0.24,
+      "xG": 0.0,
       "shift_oz": 10,
       "shift_nz": 7,
       "shift_dz": 14,
@@ -4707,7 +4754,8 @@
       "Transition Workload": 8,
       "Transition Passes": 3,
       "Transition Carries": 3,
-      "Puck Touches": 39
+      "Puck Touches": 39,
+      "Shots Against": 16
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -4735,7 +4783,7 @@
       "Exits w Poss %": 60.0,
       "Botched Retrievals": 4,
       "Failed Exits": 1,
-      "xG": 0.09,
+      "xG": 0.0,
       "shift_oz": 14,
       "shift_nz": 4,
       "shift_dz": 10,
@@ -4745,7 +4793,8 @@
       "Transition Workload": 16,
       "Transition Passes": 6,
       "Transition Carries": 6,
-      "Puck Touches": 48
+      "Puck Touches": 48,
+      "Shots Against": 14
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -4783,7 +4832,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 7
+      "Puck Touches": 7,
+      "Shots Against": 0
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -4811,7 +4861,7 @@
       "Exits w Poss %": 40.0,
       "Botched Retrievals": 3,
       "Failed Exits": 4,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 3,
       "shift_nz": 2,
       "shift_dz": 13,
@@ -4821,7 +4871,8 @@
       "Transition Workload": 6,
       "Transition Passes": 3,
       "Transition Carries": 0,
-      "Puck Touches": 38
+      "Puck Touches": 38,
+      "Shots Against": 17
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -4849,7 +4900,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.27,
+      "xG": 0.0,
       "shift_oz": 12,
       "shift_nz": 5,
       "shift_dz": 9,
@@ -4859,7 +4910,8 @@
       "Transition Workload": 2,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 20
+      "Puck Touches": 20,
+      "Shots Against": 19
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -4887,7 +4939,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.27,
+      "xG": 0.0,
       "shift_oz": 14,
       "shift_nz": 6,
       "shift_dz": 31,
@@ -4897,7 +4949,8 @@
       "Transition Workload": 5,
       "Transition Passes": 0,
       "Transition Carries": 4,
-      "Puck Touches": 32
+      "Puck Touches": 32,
+      "Shots Against": 29
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -4925,7 +4978,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.75,
+      "xG": 1.0,
       "shift_oz": 10,
       "shift_nz": 4,
       "shift_dz": 16,
@@ -4935,7 +4988,8 @@
       "Transition Workload": 6,
       "Transition Passes": 1,
       "Transition Carries": 3,
-      "Puck Touches": 23
+      "Puck Touches": 23,
+      "Shots Against": 32
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -4963,7 +5017,7 @@
       "Exits w Poss %": 67.0,
       "Botched Retrievals": 3,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 8,
       "shift_nz": 5,
       "shift_dz": 10,
@@ -4973,7 +5027,8 @@
       "Transition Workload": 3,
       "Transition Passes": 2,
       "Transition Carries": 0,
-      "Puck Touches": 16
+      "Puck Touches": 16,
+      "Shots Against": 9
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -5001,7 +5056,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 4,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 2,
       "shift_nz": 3,
       "shift_dz": 14,
@@ -5011,7 +5066,8 @@
       "Transition Workload": 2,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 28
+      "Puck Touches": 28,
+      "Shots Against": 22
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -5039,7 +5095,7 @@
       "Exits w Poss %": 67.0,
       "Botched Retrievals": 8,
       "Failed Exits": 1,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 1,
       "shift_nz": 5,
       "shift_dz": 28,
@@ -5049,7 +5105,8 @@
       "Transition Workload": 7,
       "Transition Passes": 4,
       "Transition Carries": 2,
-      "Puck Touches": 37
+      "Puck Touches": 37,
+      "Shots Against": 18
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -5087,7 +5144,8 @@
       "Transition Workload": 3,
       "Transition Passes": 0,
       "Transition Carries": 2,
-      "Puck Touches": 10
+      "Puck Touches": 10,
+      "Shots Against": 6
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -5115,7 +5173,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 13,
       "shift_nz": 6,
       "shift_dz": 10,
@@ -5125,7 +5183,8 @@
       "Transition Workload": 3,
       "Transition Passes": 2,
       "Transition Carries": 1,
-      "Puck Touches": 17
+      "Puck Touches": 17,
+      "Shots Against": 5
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -5163,7 +5222,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 0
+      "Puck Touches": 0,
+      "Shots Against": 2
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -5191,7 +5251,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 4,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 7,
       "shift_nz": 4,
       "shift_dz": 19,
@@ -5201,7 +5261,8 @@
       "Transition Workload": 1,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 24
+      "Puck Touches": 24,
+      "Shots Against": 15
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -5229,7 +5290,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 4,
       "Failed Exits": 0,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 1,
       "shift_nz": 4,
       "shift_dz": 17,
@@ -5239,7 +5300,8 @@
       "Transition Workload": 1,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 16
+      "Puck Touches": 16,
+      "Shots Against": 21
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -5267,7 +5329,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 7,
       "shift_nz": 2,
       "shift_dz": 8,
@@ -5277,7 +5339,8 @@
       "Transition Workload": 1,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 15
+      "Puck Touches": 15,
+      "Shots Against": 9
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -5315,7 +5378,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 2
+      "Puck Touches": 2,
+      "Shots Against": 2
     },
     {
       "game_id": "Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026",
@@ -5353,7 +5417,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 0
+      "Puck Touches": 0,
+      "Shots Against": 0
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5381,7 +5446,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 21,
       "shift_nz": 11,
       "shift_dz": 9,
@@ -5391,7 +5456,8 @@
       "Transition Workload": 5,
       "Transition Passes": 0,
       "Transition Carries": 4,
-      "Puck Touches": 25
+      "Puck Touches": 25,
+      "Shots Against": 26
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5419,7 +5485,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 3,
       "Failed Exits": 0,
-      "xG": 0.27,
+      "xG": 0.0,
       "shift_oz": 4,
       "shift_nz": 5,
       "shift_dz": 17,
@@ -5429,7 +5495,8 @@
       "Transition Workload": 2,
       "Transition Passes": 1,
       "Transition Carries": 1,
-      "Puck Touches": 35
+      "Puck Touches": 35,
+      "Shots Against": 31
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5457,7 +5524,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.33,
+      "xG": 0.0,
       "shift_oz": 13,
       "shift_nz": 3,
       "shift_dz": 5,
@@ -5467,7 +5534,8 @@
       "Transition Workload": 3,
       "Transition Passes": 1,
       "Transition Carries": 2,
-      "Puck Touches": 23
+      "Puck Touches": 23,
+      "Shots Against": 12
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5495,7 +5563,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 3,
       "Failed Exits": 3,
-      "xG": 0.36,
+      "xG": 0.0,
       "shift_oz": 11,
       "shift_nz": 5,
       "shift_dz": 9,
@@ -5505,7 +5573,8 @@
       "Transition Workload": 11,
       "Transition Passes": 5,
       "Transition Carries": 2,
-      "Puck Touches": 50
+      "Puck Touches": 50,
+      "Shots Against": 13
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5543,7 +5612,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 20
+      "Puck Touches": 20,
+      "Shots Against": 0
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5571,7 +5641,7 @@
       "Exits w Poss %": 75.0,
       "Botched Retrievals": 3,
       "Failed Exits": 1,
-      "xG": 0.18,
+      "xG": 0.0,
       "shift_oz": 7,
       "shift_nz": 8,
       "shift_dz": 16,
@@ -5581,7 +5651,8 @@
       "Transition Workload": 5,
       "Transition Passes": 3,
       "Transition Carries": 1,
-      "Puck Touches": 29
+      "Puck Touches": 29,
+      "Shots Against": 13
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5609,7 +5680,7 @@
       "Exits w Poss %": 40.0,
       "Botched Retrievals": 5,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 5,
       "shift_nz": 3,
       "shift_dz": 27,
@@ -5619,7 +5690,8 @@
       "Transition Workload": 7,
       "Transition Passes": 2,
       "Transition Carries": 2,
-      "Puck Touches": 31
+      "Puck Touches": 31,
+      "Shots Against": 34
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5647,7 +5719,7 @@
       "Exits w Poss %": 67.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.78,
+      "xG": 1.0,
       "shift_oz": 20,
       "shift_nz": 8,
       "shift_dz": 11,
@@ -5657,7 +5729,8 @@
       "Transition Workload": 6,
       "Transition Passes": 3,
       "Transition Carries": 2,
-      "Puck Touches": 23
+      "Puck Touches": 23,
+      "Shots Against": 14
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5685,7 +5758,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 6,
       "shift_nz": 2,
       "shift_dz": 14,
@@ -5695,7 +5768,8 @@
       "Transition Workload": 2,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 16
+      "Puck Touches": 16,
+      "Shots Against": 15
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5723,7 +5797,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 3,
       "Failed Exits": 0,
-      "xG": 0.51,
+      "xG": 1.0,
       "shift_oz": 12,
       "shift_nz": 4,
       "shift_dz": 4,
@@ -5733,7 +5807,8 @@
       "Transition Workload": 6,
       "Transition Passes": 2,
       "Transition Carries": 3,
-      "Puck Touches": 25
+      "Puck Touches": 25,
+      "Shots Against": 0
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5761,7 +5836,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.75,
+      "xG": 1.0,
       "shift_oz": 12,
       "shift_nz": 2,
       "shift_dz": 4,
@@ -5771,7 +5846,8 @@
       "Transition Workload": 7,
       "Transition Passes": 1,
       "Transition Carries": 2,
-      "Puck Touches": 29
+      "Puck Touches": 29,
+      "Shots Against": 22
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5799,7 +5875,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.21,
+      "xG": 0.0,
       "shift_oz": 17,
       "shift_nz": 13,
       "shift_dz": 17,
@@ -5809,7 +5885,8 @@
       "Transition Workload": 10,
       "Transition Passes": 3,
       "Transition Carries": 4,
-      "Puck Touches": 36
+      "Puck Touches": 36,
+      "Shots Against": 38
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5837,7 +5914,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 3,
       "Failed Exits": 0,
-      "xG": 0.24,
+      "xG": 0.0,
       "shift_oz": 11,
       "shift_nz": 4,
       "shift_dz": 7,
@@ -5847,7 +5924,8 @@
       "Transition Workload": 5,
       "Transition Passes": 1,
       "Transition Carries": 2,
-      "Puck Touches": 27
+      "Puck Touches": 27,
+      "Shots Against": 16
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5875,7 +5953,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.33,
+      "xG": 0.0,
       "shift_oz": 11,
       "shift_nz": 5,
       "shift_dz": 13,
@@ -5885,7 +5963,8 @@
       "Transition Workload": 3,
       "Transition Passes": 2,
       "Transition Carries": 1,
-      "Puck Touches": 21
+      "Puck Touches": 21,
+      "Shots Against": 26
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5923,7 +6002,8 @@
       "Transition Workload": 5,
       "Transition Passes": 2,
       "Transition Carries": 1,
-      "Puck Touches": 30
+      "Puck Touches": 30,
+      "Shots Against": 40
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5951,7 +6031,7 @@
       "Exits w Poss %": 67.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.21,
+      "xG": 0.0,
       "shift_oz": 6,
       "shift_nz": 5,
       "shift_dz": 14,
@@ -5961,7 +6041,8 @@
       "Transition Workload": 6,
       "Transition Passes": 5,
       "Transition Carries": 0,
-      "Puck Touches": 26
+      "Puck Touches": 26,
+      "Shots Against": 19
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -5989,7 +6070,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 5,
       "shift_nz": 2,
       "shift_dz": 4,
@@ -5999,7 +6080,8 @@
       "Transition Workload": 1,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 9
+      "Puck Touches": 9,
+      "Shots Against": 19
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -6037,7 +6119,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 8
+      "Puck Touches": 8,
+      "Shots Against": 29
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -6075,7 +6158,8 @@
       "Transition Workload": 5,
       "Transition Passes": 0,
       "Transition Carries": 2,
-      "Puck Touches": 15
+      "Puck Touches": 15,
+      "Shots Against": 31
     },
     {
       "game_id": "Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026",
@@ -6103,7 +6187,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 3,
       "shift_nz": 3,
       "shift_dz": 7,
@@ -6113,7 +6197,8 @@
       "Transition Workload": 3,
       "Transition Passes": 2,
       "Transition Carries": 1,
-      "Puck Touches": 17
+      "Puck Touches": 17,
+      "Shots Against": 14
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6141,7 +6226,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 4,
       "Failed Exits": 1,
-      "xG": 0.93,
+      "xG": 1.0,
       "shift_oz": 34,
       "shift_nz": 10,
       "shift_dz": 15,
@@ -6151,7 +6236,8 @@
       "Transition Workload": 9,
       "Transition Passes": 4,
       "Transition Carries": 5,
-      "Puck Touches": 59
+      "Puck Touches": 59,
+      "Shots Against": 36
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6179,7 +6265,7 @@
       "Exits w Poss %": 67.0,
       "Botched Retrievals": 3,
       "Failed Exits": 1,
-      "xG": 0.15,
+      "xG": 0.0,
       "shift_oz": 22,
       "shift_nz": 1,
       "shift_dz": 8,
@@ -6189,7 +6275,8 @@
       "Transition Workload": 4,
       "Transition Passes": 1,
       "Transition Carries": 2,
-      "Puck Touches": 34
+      "Puck Touches": 34,
+      "Shots Against": 24
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6217,7 +6304,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.33,
+      "xG": 0.0,
       "shift_oz": 4,
       "shift_nz": 5,
       "shift_dz": 14,
@@ -6227,7 +6314,8 @@
       "Transition Workload": 6,
       "Transition Passes": 2,
       "Transition Carries": 4,
-      "Puck Touches": 58
+      "Puck Touches": 58,
+      "Shots Against": 30
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6255,7 +6343,7 @@
       "Exits w Poss %": 75.0,
       "Botched Retrievals": 3,
       "Failed Exits": 3,
-      "xG": 0.48,
+      "xG": 0.0,
       "shift_oz": 6,
       "shift_nz": 5,
       "shift_dz": 19,
@@ -6265,7 +6353,8 @@
       "Transition Workload": 14,
       "Transition Passes": 7,
       "Transition Carries": 4,
-      "Puck Touches": 45
+      "Puck Touches": 45,
+      "Shots Against": 27
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6293,7 +6382,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.69,
+      "xG": 1.0,
       "shift_oz": 9,
       "shift_nz": 6,
       "shift_dz": 14,
@@ -6303,7 +6392,8 @@
       "Transition Workload": 10,
       "Transition Passes": 2,
       "Transition Carries": 6,
-      "Puck Touches": 45
+      "Puck Touches": 45,
+      "Shots Against": 26
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6341,7 +6431,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 8
+      "Puck Touches": 8,
+      "Shots Against": 0
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6369,7 +6460,7 @@
       "Exits w Poss %": 67.0,
       "Botched Retrievals": 0,
       "Failed Exits": 2,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 20,
       "shift_nz": 7,
       "shift_dz": 4,
@@ -6379,7 +6470,8 @@
       "Transition Workload": 6,
       "Transition Passes": 0,
       "Transition Carries": 4,
-      "Puck Touches": 23
+      "Puck Touches": 23,
+      "Shots Against": 12
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6407,7 +6499,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 10,
       "shift_nz": 3,
       "shift_dz": 17,
@@ -6417,7 +6509,8 @@
       "Transition Workload": 4,
       "Transition Passes": 2,
       "Transition Carries": 1,
-      "Puck Touches": 24
+      "Puck Touches": 24,
+      "Shots Against": 29
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6445,7 +6538,7 @@
       "Exits w Poss %": 25.0,
       "Botched Retrievals": 3,
       "Failed Exits": 2,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 17,
       "shift_nz": 2,
       "shift_dz": 15,
@@ -6455,7 +6548,8 @@
       "Transition Workload": 5,
       "Transition Passes": 1,
       "Transition Carries": 1,
-      "Puck Touches": 52
+      "Puck Touches": 52,
+      "Shots Against": 21
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6483,7 +6577,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 3,
       "Failed Exits": 0,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 11,
       "shift_nz": 2,
       "shift_dz": 12,
@@ -6493,7 +6587,8 @@
       "Transition Workload": 3,
       "Transition Passes": 0,
       "Transition Carries": 2,
-      "Puck Touches": 16
+      "Puck Touches": 16,
+      "Shots Against": 18
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6521,7 +6616,7 @@
       "Exits w Poss %": 67.0,
       "Botched Retrievals": 3,
       "Failed Exits": 1,
-      "xG": 0.48,
+      "xG": 0.0,
       "shift_oz": 19,
       "shift_nz": 6,
       "shift_dz": 21,
@@ -6531,7 +6626,8 @@
       "Transition Workload": 8,
       "Transition Passes": 1,
       "Transition Carries": 6,
-      "Puck Touches": 42
+      "Puck Touches": 42,
+      "Shots Against": 18
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6559,7 +6655,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 3,
       "Failed Exits": 0,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 2,
       "shift_nz": 6,
       "shift_dz": 6,
@@ -6569,7 +6665,8 @@
       "Transition Workload": 3,
       "Transition Passes": 2,
       "Transition Carries": 0,
-      "Puck Touches": 30
+      "Puck Touches": 30,
+      "Shots Against": 19
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6607,7 +6704,8 @@
       "Transition Workload": 7,
       "Transition Passes": 3,
       "Transition Carries": 0,
-      "Puck Touches": 25
+      "Puck Touches": 25,
+      "Shots Against": 9
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6635,7 +6733,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 6,
       "shift_nz": 3,
       "shift_dz": 1,
@@ -6645,7 +6743,8 @@
       "Transition Workload": 3,
       "Transition Passes": 3,
       "Transition Carries": 0,
-      "Puck Touches": 13
+      "Puck Touches": 13,
+      "Shots Against": 10
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6673,7 +6772,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 0,
       "Failed Exits": 2,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 16,
       "shift_nz": 10,
       "shift_dz": 7,
@@ -6683,7 +6782,8 @@
       "Transition Workload": 8,
       "Transition Passes": 2,
       "Transition Carries": 3,
-      "Puck Touches": 22
+      "Puck Touches": 22,
+      "Shots Against": 13
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6711,7 +6811,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 1,
-      "xG": 0.24,
+      "xG": 0.0,
       "shift_oz": 16,
       "shift_nz": 5,
       "shift_dz": 1,
@@ -6721,7 +6821,8 @@
       "Transition Workload": 3,
       "Transition Passes": 1,
       "Transition Carries": 1,
-      "Puck Touches": 16
+      "Puck Touches": 16,
+      "Shots Against": 10
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6749,7 +6850,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 2,
       "shift_nz": 2,
       "shift_dz": 1,
@@ -6759,7 +6860,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 9
+      "Puck Touches": 9,
+      "Shots Against": 7
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6797,7 +6899,8 @@
       "Transition Workload": 3,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 11
+      "Puck Touches": 11,
+      "Shots Against": 13
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6825,7 +6928,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.33,
+      "xG": 0.0,
       "shift_oz": 3,
       "shift_nz": 5,
       "shift_dz": 3,
@@ -6835,7 +6938,8 @@
       "Transition Workload": 3,
       "Transition Passes": 0,
       "Transition Carries": 2,
-      "Puck Touches": 8
+      "Puck Touches": 8,
+      "Shots Against": 17
     },
     {
       "game_id": "Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026",
@@ -6873,7 +6977,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 4
+      "Puck Touches": 4,
+      "Shots Against": 16
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -6901,7 +7006,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 1,
-      "xG": 0.18,
+      "xG": 0.0,
       "shift_oz": 20,
       "shift_nz": 13,
       "shift_dz": 10,
@@ -6911,7 +7016,8 @@
       "Transition Workload": 4,
       "Transition Passes": 0,
       "Transition Carries": 3,
-      "Puck Touches": 23
+      "Puck Touches": 23,
+      "Shots Against": 28
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -6939,7 +7045,7 @@
       "Exits w Poss %": 75.0,
       "Botched Retrievals": 3,
       "Failed Exits": 4,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 4,
       "shift_nz": 9,
       "shift_dz": 20,
@@ -6949,7 +7055,8 @@
       "Transition Workload": 4,
       "Transition Passes": 3,
       "Transition Carries": 0,
-      "Puck Touches": 21
+      "Puck Touches": 21,
+      "Shots Against": 31
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -6977,7 +7084,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 2,
       "Failed Exits": 1,
-      "xG": 0.75,
+      "xG": 1.0,
       "shift_oz": 12,
       "shift_nz": 2,
       "shift_dz": 9,
@@ -6987,7 +7094,8 @@
       "Transition Workload": 5,
       "Transition Passes": 0,
       "Transition Carries": 2,
-      "Puck Touches": 34
+      "Puck Touches": 34,
+      "Shots Against": 0
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7015,7 +7123,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 3,
       "Failed Exits": 0,
-      "xG": 0.21,
+      "xG": 0.0,
       "shift_oz": 14,
       "shift_nz": 4,
       "shift_dz": 11,
@@ -7025,7 +7133,8 @@
       "Transition Workload": 7,
       "Transition Passes": 4,
       "Transition Carries": 1,
-      "Puck Touches": 28
+      "Puck Touches": 28,
+      "Shots Against": 22
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7053,7 +7162,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 5,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 4,
       "shift_nz": 2,
       "shift_dz": 12,
@@ -7063,7 +7172,8 @@
       "Transition Workload": 4,
       "Transition Passes": 2,
       "Transition Carries": 0,
-      "Puck Touches": 19
+      "Puck Touches": 19,
+      "Shots Against": 15
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7101,7 +7211,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 17
+      "Puck Touches": 17,
+      "Shots Against": 0
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7129,7 +7240,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 22,
       "shift_nz": 10,
       "shift_dz": 20,
@@ -7139,7 +7250,8 @@
       "Transition Workload": 12,
       "Transition Passes": 4,
       "Transition Carries": 5,
-      "Puck Touches": 46
+      "Puck Touches": 46,
+      "Shots Against": 26
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7167,7 +7279,7 @@
       "Exits w Poss %": 38.0,
       "Botched Retrievals": 2,
       "Failed Exits": 4,
-      "xG": 0.27,
+      "xG": 0.0,
       "shift_oz": 6,
       "shift_nz": 4,
       "shift_dz": 16,
@@ -7177,7 +7289,8 @@
       "Transition Workload": 11,
       "Transition Passes": 5,
       "Transition Carries": 1,
-      "Puck Touches": 51
+      "Puck Touches": 51,
+      "Shots Against": 29
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7205,7 +7318,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 1,
       "Failed Exits": 2,
-      "xG": 0.63,
+      "xG": 1.0,
       "shift_oz": 10,
       "shift_nz": 4,
       "shift_dz": 7,
@@ -7215,7 +7328,8 @@
       "Transition Workload": 9,
       "Transition Passes": 5,
       "Transition Carries": 4,
-      "Puck Touches": 37
+      "Puck Touches": 37,
+      "Shots Against": 20
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7243,7 +7357,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.66,
+      "xG": 1.0,
       "shift_oz": 14,
       "shift_nz": 6,
       "shift_dz": 10,
@@ -7253,7 +7367,8 @@
       "Transition Workload": 4,
       "Transition Passes": 0,
       "Transition Carries": 2,
-      "Puck Touches": 39
+      "Puck Touches": 39,
+      "Shots Against": 24
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7281,7 +7396,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 4,
       "Failed Exits": 0,
-      "xG": 0.21,
+      "xG": 0.0,
       "shift_oz": 5,
       "shift_nz": 10,
       "shift_dz": 29,
@@ -7291,7 +7406,8 @@
       "Transition Workload": 9,
       "Transition Passes": 3,
       "Transition Carries": 3,
-      "Puck Touches": 68
+      "Puck Touches": 68,
+      "Shots Against": 23
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7329,7 +7445,8 @@
       "Transition Workload": 1,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 5
+      "Puck Touches": 5,
+      "Shots Against": 16
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7357,7 +7474,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 2,
       "Failed Exits": 1,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 21,
       "shift_nz": 7,
       "shift_dz": 11,
@@ -7367,7 +7484,8 @@
       "Transition Workload": 4,
       "Transition Passes": 0,
       "Transition Carries": 3,
-      "Puck Touches": 16
+      "Puck Touches": 16,
+      "Shots Against": 19
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7395,7 +7513,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 3,
       "Failed Exits": 3,
-      "xG": 0.09,
+      "xG": 0.0,
       "shift_oz": 4,
       "shift_nz": 11,
       "shift_dz": 15,
@@ -7405,7 +7523,8 @@
       "Transition Workload": 6,
       "Transition Passes": 2,
       "Transition Carries": 2,
-      "Puck Touches": 32
+      "Puck Touches": 32,
+      "Shots Against": 22
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7433,7 +7552,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.33,
+      "xG": 0.0,
       "shift_oz": 14,
       "shift_nz": 3,
       "shift_dz": 8,
@@ -7443,7 +7562,8 @@
       "Transition Workload": 2,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 19
+      "Puck Touches": 19,
+      "Shots Against": 16
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7471,7 +7591,7 @@
       "Exits w Poss %": 67.0,
       "Botched Retrievals": 4,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 4,
       "shift_nz": 4,
       "shift_dz": 13,
@@ -7481,7 +7601,8 @@
       "Transition Workload": 3,
       "Transition Passes": 1,
       "Transition Carries": 1,
-      "Puck Touches": 26
+      "Puck Touches": 26,
+      "Shots Against": 14
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7519,7 +7640,8 @@
       "Transition Workload": 1,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 5
+      "Puck Touches": 5,
+      "Shots Against": 9
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7547,7 +7669,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.09,
+      "xG": 0.0,
       "shift_oz": 11,
       "shift_nz": 8,
       "shift_dz": 4,
@@ -7557,7 +7679,8 @@
       "Transition Workload": 4,
       "Transition Passes": 2,
       "Transition Carries": 0,
-      "Puck Touches": 18
+      "Puck Touches": 18,
+      "Shots Against": 12
     },
     {
       "game_id": "Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026",
@@ -7585,7 +7708,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 4,
       "shift_nz": 6,
       "shift_dz": 5,
@@ -7595,7 +7718,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 10
+      "Puck Touches": 10,
+      "Shots Against": 9
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -7623,7 +7747,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 2,
       "Failed Exits": 1,
-      "xG": 0.78,
+      "xG": 1.0,
       "shift_oz": 21,
       "shift_nz": 10,
       "shift_dz": 19,
@@ -7633,7 +7757,8 @@
       "Transition Workload": 6,
       "Transition Passes": 1,
       "Transition Carries": 4,
-      "Puck Touches": 34
+      "Puck Touches": 34,
+      "Shots Against": 30
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -7661,7 +7786,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 3,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 0,
       "shift_nz": 6,
       "shift_dz": 18,
@@ -7671,7 +7796,8 @@
       "Transition Workload": 3,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 20
+      "Puck Touches": 20,
+      "Shots Against": 16
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -7699,7 +7825,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 4,
       "Failed Exits": 0,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 11,
       "shift_nz": 5,
       "shift_dz": 18,
@@ -7709,7 +7835,8 @@
       "Transition Workload": 7,
       "Transition Passes": 4,
       "Transition Carries": 2,
-      "Puck Touches": 41
+      "Puck Touches": 41,
+      "Shots Against": 24
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -7737,7 +7864,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 11,
       "shift_nz": 10,
       "shift_dz": 8,
@@ -7747,7 +7874,8 @@
       "Transition Workload": 4,
       "Transition Passes": 1,
       "Transition Carries": 1,
-      "Puck Touches": 16
+      "Puck Touches": 16,
+      "Shots Against": 22
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -7775,7 +7903,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 2,
       "Failed Exits": 3,
-      "xG": 1.5,
+      "xG": 2.0,
       "shift_oz": 7,
       "shift_nz": 6,
       "shift_dz": 18,
@@ -7785,7 +7913,8 @@
       "Transition Workload": 9,
       "Transition Passes": 3,
       "Transition Carries": 1,
-      "Puck Touches": 45
+      "Puck Touches": 45,
+      "Shots Against": 0
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -7823,7 +7952,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 8
+      "Puck Touches": 8,
+      "Shots Against": 0
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -7851,7 +7981,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 2,
       "Failed Exits": 2,
-      "xG": 0.6,
+      "xG": 1.0,
       "shift_oz": 23,
       "shift_nz": 10,
       "shift_dz": 9,
@@ -7861,7 +7991,8 @@
       "Transition Workload": 9,
       "Transition Passes": 2,
       "Transition Carries": 3,
-      "Puck Touches": 37
+      "Puck Touches": 37,
+      "Shots Against": 17
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -7889,7 +8020,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 3,
       "Failed Exits": 2,
-      "xG": 0.21,
+      "xG": 0.0,
       "shift_oz": 6,
       "shift_nz": 3,
       "shift_dz": 16,
@@ -7899,7 +8030,8 @@
       "Transition Workload": 8,
       "Transition Passes": 0,
       "Transition Carries": 2,
-      "Puck Touches": 37
+      "Puck Touches": 37,
+      "Shots Against": 23
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -7927,7 +8059,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 3,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 8,
       "shift_nz": 10,
       "shift_dz": 29,
@@ -7937,7 +8069,8 @@
       "Transition Workload": 6,
       "Transition Passes": 1,
       "Transition Carries": 3,
-      "Puck Touches": 29
+      "Puck Touches": 29,
+      "Shots Against": 14
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -7965,7 +8098,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.78,
+      "xG": 1.0,
       "shift_oz": 16,
       "shift_nz": 4,
       "shift_dz": 6,
@@ -7975,7 +8108,8 @@
       "Transition Workload": 7,
       "Transition Passes": 0,
       "Transition Carries": 4,
-      "Puck Touches": 31
+      "Puck Touches": 31,
+      "Shots Against": 19
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -8003,7 +8137,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.21,
+      "xG": 0.0,
       "shift_oz": 6,
       "shift_nz": 6,
       "shift_dz": 7,
@@ -8013,7 +8147,8 @@
       "Transition Workload": 7,
       "Transition Passes": 1,
       "Transition Carries": 2,
-      "Puck Touches": 20
+      "Puck Touches": 20,
+      "Shots Against": 14
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -8041,7 +8176,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 7,
       "shift_nz": 0,
       "shift_dz": 6,
@@ -8051,7 +8186,8 @@
       "Transition Workload": 2,
       "Transition Passes": 0,
       "Transition Carries": 2,
-      "Puck Touches": 6
+      "Puck Touches": 6,
+      "Shots Against": 2
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -8079,7 +8215,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 3,
       "Failed Exits": 1,
-      "xG": 0.45,
+      "xG": 0.0,
       "shift_oz": 20,
       "shift_nz": 12,
       "shift_dz": 19,
@@ -8089,7 +8225,8 @@
       "Transition Workload": 4,
       "Transition Passes": 2,
       "Transition Carries": 2,
-      "Puck Touches": 28
+      "Puck Touches": 28,
+      "Shots Against": 22
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -8117,7 +8254,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 3,
       "Failed Exits": 0,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 4,
       "shift_nz": 1,
       "shift_dz": 17,
@@ -8127,7 +8264,8 @@
       "Transition Workload": 2,
       "Transition Passes": 0,
       "Transition Carries": 1,
-      "Puck Touches": 21
+      "Puck Touches": 21,
+      "Shots Against": 11
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -8165,7 +8303,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 8
+      "Puck Touches": 8,
+      "Shots Against": 8
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -8193,7 +8332,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 0,
       "Failed Exits": 1,
-      "xG": 0.24,
+      "xG": 0.0,
       "shift_oz": 9,
       "shift_nz": 5,
       "shift_dz": 2,
@@ -8203,7 +8342,8 @@
       "Transition Workload": 3,
       "Transition Passes": 1,
       "Transition Carries": 2,
-      "Puck Touches": 11
+      "Puck Touches": 11,
+      "Shots Against": 7
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -8231,7 +8371,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.24,
+      "xG": 0.0,
       "shift_oz": 2,
       "shift_nz": 5,
       "shift_dz": 3,
@@ -8241,7 +8381,8 @@
       "Transition Workload": 1,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 7
+      "Puck Touches": 7,
+      "Shots Against": 4
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -8279,7 +8420,8 @@
       "Transition Workload": 1,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 6
+      "Puck Touches": 6,
+      "Shots Against": 3
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -8317,7 +8459,8 @@
       "Transition Workload": 1,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 3
+      "Puck Touches": 3,
+      "Shots Against": 2
     },
     {
       "game_id": "Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026",
@@ -8355,7 +8498,8 @@
       "Transition Workload": 1,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 6
+      "Puck Touches": 6,
+      "Shots Against": 7
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8383,7 +8527,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 3,
       "Failed Exits": 1,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 16,
       "shift_nz": 11,
       "shift_dz": 12,
@@ -8393,7 +8537,8 @@
       "Transition Workload": 6,
       "Transition Passes": 1,
       "Transition Carries": 5,
-      "Puck Touches": 31
+      "Puck Touches": 31,
+      "Shots Against": 9
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8421,7 +8566,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 0,
       "Failed Exits": 1,
-      "xG": 0.24,
+      "xG": 0.0,
       "shift_oz": 14,
       "shift_nz": 7,
       "shift_dz": 6,
@@ -8431,7 +8576,8 @@
       "Transition Workload": 7,
       "Transition Passes": 2,
       "Transition Carries": 4,
-      "Puck Touches": 22
+      "Puck Touches": 22,
+      "Shots Against": 18
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8459,7 +8605,7 @@
       "Exits w Poss %": 25.0,
       "Botched Retrievals": 6,
       "Failed Exits": 2,
-      "xG": 0.24,
+      "xG": 0.0,
       "shift_oz": 3,
       "shift_nz": 6,
       "shift_dz": 11,
@@ -8469,7 +8615,8 @@
       "Transition Workload": 5,
       "Transition Passes": 2,
       "Transition Carries": 0,
-      "Puck Touches": 37
+      "Puck Touches": 37,
+      "Shots Against": 24
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8497,7 +8644,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 0,
       "Failed Exits": 1,
-      "xG": 0.84,
+      "xG": 1.0,
       "shift_oz": 16,
       "shift_nz": 3,
       "shift_dz": 5,
@@ -8507,7 +8654,8 @@
       "Transition Workload": 4,
       "Transition Passes": 1,
       "Transition Carries": 3,
-      "Puck Touches": 26
+      "Puck Touches": 26,
+      "Shots Against": 14
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8535,7 +8683,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 3,
       "Failed Exits": 1,
-      "xG": 0.09,
+      "xG": 0.0,
       "shift_oz": 7,
       "shift_nz": 5,
       "shift_dz": 6,
@@ -8545,7 +8693,8 @@
       "Transition Workload": 1,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 31
+      "Puck Touches": 31,
+      "Shots Against": 8
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8583,7 +8732,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 24
+      "Puck Touches": 24,
+      "Shots Against": 0
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8611,7 +8761,7 @@
       "Exits w Poss %": 25.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.96,
+      "xG": 1.0,
       "shift_oz": 14,
       "shift_nz": 8,
       "shift_dz": 5,
@@ -8621,7 +8771,8 @@
       "Transition Workload": 11,
       "Transition Passes": 2,
       "Transition Carries": 6,
-      "Puck Touches": 39
+      "Puck Touches": 39,
+      "Shots Against": 11
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8649,7 +8800,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.54,
+      "xG": 1.0,
       "shift_oz": 21,
       "shift_nz": 5,
       "shift_dz": 7,
@@ -8659,7 +8810,8 @@
       "Transition Workload": 8,
       "Transition Passes": 1,
       "Transition Carries": 6,
-      "Puck Touches": 55
+      "Puck Touches": 55,
+      "Shots Against": 14
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8687,7 +8839,7 @@
       "Exits w Poss %": 75.0,
       "Botched Retrievals": 4,
       "Failed Exits": 1,
-      "xG": 0.81,
+      "xG": 1.0,
       "shift_oz": 10,
       "shift_nz": 9,
       "shift_dz": 18,
@@ -8697,7 +8849,8 @@
       "Transition Workload": 10,
       "Transition Passes": 7,
       "Transition Carries": 1,
-      "Puck Touches": 77
+      "Puck Touches": 77,
+      "Shots Against": 24
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8725,7 +8878,7 @@
       "Exits w Poss %": 38.0,
       "Botched Retrievals": 4,
       "Failed Exits": 2,
-      "xG": 0.75,
+      "xG": 1.0,
       "shift_oz": 24,
       "shift_nz": 6,
       "shift_dz": 25,
@@ -8735,7 +8888,8 @@
       "Transition Workload": 12,
       "Transition Passes": 4,
       "Transition Carries": 3,
-      "Puck Touches": 57
+      "Puck Touches": 57,
+      "Shots Against": 26
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8763,7 +8917,7 @@
       "Exits w Poss %": 25.0,
       "Botched Retrievals": 5,
       "Failed Exits": 0,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 7,
       "shift_nz": 14,
       "shift_dz": 23,
@@ -8773,7 +8927,8 @@
       "Transition Workload": 8,
       "Transition Passes": 4,
       "Transition Carries": 1,
-      "Puck Touches": 55
+      "Puck Touches": 55,
+      "Shots Against": 19
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8801,7 +8956,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 1.05,
+      "xG": 1.0,
       "shift_oz": 16,
       "shift_nz": 3,
       "shift_dz": 3,
@@ -8811,7 +8966,8 @@
       "Transition Workload": 1,
       "Transition Passes": 0,
       "Transition Carries": 1,
-      "Puck Touches": 24
+      "Puck Touches": 24,
+      "Shots Against": 9
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8839,7 +8995,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.3,
+      "xG": 0.0,
       "shift_oz": 24,
       "shift_nz": 5,
       "shift_dz": 9,
@@ -8849,7 +9005,8 @@
       "Transition Workload": 11,
       "Transition Passes": 2,
       "Transition Carries": 8,
-      "Puck Touches": 39
+      "Puck Touches": 39,
+      "Shots Against": 6
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8877,7 +9034,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.78,
+      "xG": 1.0,
       "shift_oz": 11,
       "shift_nz": 3,
       "shift_dz": 9,
@@ -8887,7 +9044,8 @@
       "Transition Workload": 6,
       "Transition Passes": 4,
       "Transition Carries": 0,
-      "Puck Touches": 46
+      "Puck Touches": 46,
+      "Shots Against": 0
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8915,7 +9073,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 5,
       "Failed Exits": 2,
-      "xG": 0.09,
+      "xG": 0.0,
       "shift_oz": 3,
       "shift_nz": 3,
       "shift_dz": 20,
@@ -8925,7 +9083,8 @@
       "Transition Workload": 5,
       "Transition Passes": 2,
       "Transition Carries": 1,
-      "Puck Touches": 40
+      "Puck Touches": 40,
+      "Shots Against": 19
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -8953,7 +9112,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 3,
       "Failed Exits": 1,
-      "xG": 0.18,
+      "xG": 0.0,
       "shift_oz": 2,
       "shift_nz": 7,
       "shift_dz": 10,
@@ -8963,7 +9122,8 @@
       "Transition Workload": 2,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 20
+      "Puck Touches": 20,
+      "Shots Against": 8
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -9001,7 +9161,8 @@
       "Transition Workload": 2,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 10
+      "Puck Touches": 10,
+      "Shots Against": 7
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -9039,7 +9200,8 @@
       "Transition Workload": 1,
       "Transition Passes": 0,
       "Transition Carries": 1,
-      "Puck Touches": 8
+      "Puck Touches": 8,
+      "Shots Against": 10
     },
     {
       "game_id": "Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026",
@@ -9067,7 +9229,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 0,
       "Failed Exits": 1,
-      "xG": 0.24,
+      "xG": 0.0,
       "shift_oz": 7,
       "shift_nz": 3,
       "shift_dz": 2,
@@ -9077,7 +9239,8 @@
       "Transition Workload": 1,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 7
+      "Puck Touches": 7,
+      "Shots Against": 9
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9105,7 +9268,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 2,
       "Failed Exits": 2,
-      "xG": 0.18,
+      "xG": 0.0,
       "shift_oz": 23,
       "shift_nz": 15,
       "shift_dz": 13,
@@ -9115,7 +9278,8 @@
       "Transition Workload": 14,
       "Transition Passes": 4,
       "Transition Carries": 7,
-      "Puck Touches": 50
+      "Puck Touches": 50,
+      "Shots Against": 25
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9143,7 +9307,7 @@
       "Exits w Poss %": 40.0,
       "Botched Retrievals": 0,
       "Failed Exits": 2,
-      "xG": 0.84,
+      "xG": 1.0,
       "shift_oz": 14,
       "shift_nz": 3,
       "shift_dz": 4,
@@ -9153,7 +9317,8 @@
       "Transition Workload": 10,
       "Transition Passes": 2,
       "Transition Carries": 5,
-      "Puck Touches": 41
+      "Puck Touches": 41,
+      "Shots Against": 10
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9181,7 +9346,7 @@
       "Exits w Poss %": 67.0,
       "Botched Retrievals": 5,
       "Failed Exits": 1,
-      "xG": 0.24,
+      "xG": 0.0,
       "shift_oz": 4,
       "shift_nz": 5,
       "shift_dz": 11,
@@ -9191,7 +9356,8 @@
       "Transition Workload": 10,
       "Transition Passes": 2,
       "Transition Carries": 5,
-      "Puck Touches": 39
+      "Puck Touches": 39,
+      "Shots Against": 13
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9219,7 +9385,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 5,
       "Failed Exits": 0,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 7,
       "shift_nz": 4,
       "shift_dz": 22,
@@ -9229,7 +9395,8 @@
       "Transition Workload": 6,
       "Transition Passes": 3,
       "Transition Carries": 3,
-      "Puck Touches": 50
+      "Puck Touches": 50,
+      "Shots Against": 15
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9257,7 +9424,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.81,
+      "xG": 1.0,
       "shift_oz": 13,
       "shift_nz": 4,
       "shift_dz": 6,
@@ -9267,7 +9434,8 @@
       "Transition Workload": 8,
       "Transition Passes": 3,
       "Transition Carries": 4,
-      "Puck Touches": 37
+      "Puck Touches": 37,
+      "Shots Against": 9
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9305,7 +9473,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 19
+      "Puck Touches": 19,
+      "Shots Against": 0
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9333,7 +9502,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.09,
+      "xG": 0.0,
       "shift_oz": 12,
       "shift_nz": 7,
       "shift_dz": 9,
@@ -9343,7 +9512,8 @@
       "Transition Workload": 4,
       "Transition Passes": 2,
       "Transition Carries": 0,
-      "Puck Touches": 21
+      "Puck Touches": 21,
+      "Shots Against": 14
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9371,7 +9541,7 @@
       "Exits w Poss %": 57.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.39,
+      "xG": 0.0,
       "shift_oz": 19,
       "shift_nz": 7,
       "shift_dz": 11,
@@ -9381,7 +9551,8 @@
       "Transition Workload": 17,
       "Transition Passes": 6,
       "Transition Carries": 8,
-      "Puck Touches": 42
+      "Puck Touches": 42,
+      "Shots Against": 16
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9419,7 +9590,8 @@
       "Transition Workload": 8,
       "Transition Passes": 4,
       "Transition Carries": 1,
-      "Puck Touches": 30
+      "Puck Touches": 30,
+      "Shots Against": 17
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9447,7 +9619,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 2,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 3,
       "shift_nz": 1,
       "shift_dz": 14,
@@ -9457,7 +9629,8 @@
       "Transition Workload": 1,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 15
+      "Puck Touches": 15,
+      "Shots Against": 16
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9485,7 +9658,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.81,
+      "xG": 1.0,
       "shift_oz": 12,
       "shift_nz": 1,
       "shift_dz": 7,
@@ -9495,7 +9668,8 @@
       "Transition Workload": 5,
       "Transition Passes": 0,
       "Transition Carries": 4,
-      "Puck Touches": 25
+      "Puck Touches": 25,
+      "Shots Against": 0
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9523,7 +9697,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.45,
+      "xG": 0.0,
       "shift_oz": 12,
       "shift_nz": 2,
       "shift_dz": 8,
@@ -9533,7 +9707,8 @@
       "Transition Workload": 10,
       "Transition Passes": 0,
       "Transition Carries": 7,
-      "Puck Touches": 26
+      "Puck Touches": 26,
+      "Shots Against": 17
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9561,7 +9736,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.45,
+      "xG": 0.0,
       "shift_oz": 14,
       "shift_nz": 1,
       "shift_dz": 3,
@@ -9571,7 +9746,8 @@
       "Transition Workload": 9,
       "Transition Passes": 1,
       "Transition Carries": 3,
-      "Puck Touches": 25
+      "Puck Touches": 25,
+      "Shots Against": 8
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9599,7 +9775,7 @@
       "Exits w Poss %": 60.0,
       "Botched Retrievals": 8,
       "Failed Exits": 1,
-      "xG": 0.09,
+      "xG": 0.0,
       "shift_oz": 3,
       "shift_nz": 4,
       "shift_dz": 15,
@@ -9609,7 +9785,8 @@
       "Transition Workload": 5,
       "Transition Passes": 2,
       "Transition Carries": 1,
-      "Puck Touches": 32
+      "Puck Touches": 32,
+      "Shots Against": 16
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9637,7 +9814,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 5,
       "Failed Exits": 0,
-      "xG": 0.15,
+      "xG": 0.0,
       "shift_oz": 8,
       "shift_nz": 5,
       "shift_dz": 17,
@@ -9647,7 +9824,8 @@
       "Transition Workload": 2,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 31
+      "Puck Touches": 31,
+      "Shots Against": 13
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9675,7 +9853,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 1,
       "Failed Exits": 3,
-      "xG": 0.15,
+      "xG": 0.0,
       "shift_oz": 6,
       "shift_nz": 1,
       "shift_dz": 7,
@@ -9685,7 +9863,8 @@
       "Transition Workload": 5,
       "Transition Passes": 1,
       "Transition Carries": 1,
-      "Puck Touches": 18
+      "Puck Touches": 18,
+      "Shots Against": 9
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9723,7 +9902,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 3
+      "Puck Touches": 3,
+      "Shots Against": 10
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9751,7 +9931,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 2,
       "shift_nz": 2,
       "shift_dz": 0,
@@ -9761,7 +9941,8 @@
       "Transition Workload": 1,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 3
+      "Puck Touches": 3,
+      "Shots Against": 4
     },
     {
       "game_id": "Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026",
@@ -9799,7 +9980,8 @@
       "Transition Workload": 4,
       "Transition Passes": 0,
       "Transition Carries": 2,
-      "Puck Touches": 6
+      "Puck Touches": 6,
+      "Shots Against": 13
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -9827,7 +10009,7 @@
       "Exits w Poss %": 75.0,
       "Botched Retrievals": 4,
       "Failed Exits": 0,
-      "xG": 0.57,
+      "xG": 1.0,
       "shift_oz": 34,
       "shift_nz": 14,
       "shift_dz": 13,
@@ -9837,7 +10019,8 @@
       "Transition Workload": 10,
       "Transition Passes": 5,
       "Transition Carries": 3,
-      "Puck Touches": 55
+      "Puck Touches": 55,
+      "Shots Against": 25
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -9865,7 +10048,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 1,
       "Failed Exits": 2,
-      "xG": 0.42,
+      "xG": 0.0,
       "shift_oz": 7,
       "shift_nz": 9,
       "shift_dz": 11,
@@ -9875,7 +10058,8 @@
       "Transition Workload": 9,
       "Transition Passes": 2,
       "Transition Carries": 2,
-      "Puck Touches": 48
+      "Puck Touches": 48,
+      "Shots Against": 24
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -9913,7 +10097,8 @@
       "Transition Workload": 10,
       "Transition Passes": 4,
       "Transition Carries": 2,
-      "Puck Touches": 34
+      "Puck Touches": 34,
+      "Shots Against": 0
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -9951,7 +10136,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 19
+      "Puck Touches": 19,
+      "Shots Against": 0
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -9979,7 +10165,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.75,
+      "xG": 1.0,
       "shift_oz": 11,
       "shift_nz": 5,
       "shift_dz": 9,
@@ -9989,7 +10175,8 @@
       "Transition Workload": 2,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 14
+      "Puck Touches": 14,
+      "Shots Against": 27
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -10017,7 +10204,7 @@
       "Exits w Poss %": 17.0,
       "Botched Retrievals": 3,
       "Failed Exits": 0,
-      "xG": 0.3,
+      "xG": 0.0,
       "shift_oz": 8,
       "shift_nz": 10,
       "shift_dz": 19,
@@ -10027,7 +10214,8 @@
       "Transition Workload": 7,
       "Transition Passes": 1,
       "Transition Carries": 1,
-      "Puck Touches": 45
+      "Puck Touches": 45,
+      "Shots Against": 24
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -10055,7 +10243,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.42,
+      "xG": 0.0,
       "shift_oz": 25,
       "shift_nz": 12,
       "shift_dz": 11,
@@ -10065,7 +10253,8 @@
       "Transition Workload": 8,
       "Transition Passes": 2,
       "Transition Carries": 5,
-      "Puck Touches": 37
+      "Puck Touches": 37,
+      "Shots Against": 23
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -10093,7 +10282,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 3,
       "Failed Exits": 1,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 7,
       "shift_nz": 1,
       "shift_dz": 11,
@@ -10103,7 +10292,8 @@
       "Transition Workload": 3,
       "Transition Passes": 1,
       "Transition Carries": 1,
-      "Puck Touches": 26
+      "Puck Touches": 26,
+      "Shots Against": 19
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -10131,7 +10321,7 @@
       "Exits w Poss %": 67.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.57,
+      "xG": 1.0,
       "shift_oz": 19,
       "shift_nz": 10,
       "shift_dz": 4,
@@ -10141,7 +10331,8 @@
       "Transition Workload": 6,
       "Transition Passes": 4,
       "Transition Carries": 1,
-      "Puck Touches": 36
+      "Puck Touches": 36,
+      "Shots Against": 21
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -10169,7 +10360,7 @@
       "Exits w Poss %": 62.0,
       "Botched Retrievals": 3,
       "Failed Exits": 2,
-      "xG": 0.45,
+      "xG": 0.0,
       "shift_oz": 6,
       "shift_nz": 5,
       "shift_dz": 10,
@@ -10179,7 +10370,8 @@
       "Transition Workload": 9,
       "Transition Passes": 4,
       "Transition Carries": 1,
-      "Puck Touches": 62
+      "Puck Touches": 62,
+      "Shots Against": 15
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -10207,7 +10399,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 2,
       "Failed Exits": 1,
-      "xG": 0.3,
+      "xG": 0.0,
       "shift_oz": 23,
       "shift_nz": 4,
       "shift_dz": 10,
@@ -10217,7 +10409,8 @@
       "Transition Workload": 4,
       "Transition Passes": 3,
       "Transition Carries": 1,
-      "Puck Touches": 26
+      "Puck Touches": 26,
+      "Shots Against": 16
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -10245,7 +10438,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 6,
       "Failed Exits": 3,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 3,
       "shift_nz": 4,
       "shift_dz": 20,
@@ -10255,7 +10448,8 @@
       "Transition Workload": 5,
       "Transition Passes": 0,
       "Transition Carries": 2,
-      "Puck Touches": 35
+      "Puck Touches": 35,
+      "Shots Against": 15
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -10283,7 +10477,7 @@
       "Exits w Poss %": 25.0,
       "Botched Retrievals": 3,
       "Failed Exits": 2,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 7,
       "shift_nz": 3,
       "shift_dz": 13,
@@ -10293,7 +10487,8 @@
       "Transition Workload": 6,
       "Transition Passes": 1,
       "Transition Carries": 2,
-      "Puck Touches": 29
+      "Puck Touches": 29,
+      "Shots Against": 7
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -10331,7 +10526,8 @@
       "Transition Workload": 3,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 15
+      "Puck Touches": 15,
+      "Shots Against": 9
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -10359,7 +10555,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.39,
+      "xG": 0.0,
       "shift_oz": 17,
       "shift_nz": 10,
       "shift_dz": 8,
@@ -10369,7 +10565,8 @@
       "Transition Workload": 6,
       "Transition Passes": 1,
       "Transition Carries": 4,
-      "Puck Touches": 26
+      "Puck Touches": 26,
+      "Shots Against": 15
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -10397,7 +10594,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 8,
       "shift_nz": 6,
       "shift_dz": 5,
@@ -10407,7 +10604,8 @@
       "Transition Workload": 1,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 21
+      "Puck Touches": 21,
+      "Shots Against": 7
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -10435,7 +10633,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 0,
       "Failed Exits": 1,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 5,
       "shift_nz": 2,
       "shift_dz": 2,
@@ -10445,7 +10643,8 @@
       "Transition Workload": 1,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 6
+      "Puck Touches": 6,
+      "Shots Against": 6
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -10483,7 +10682,8 @@
       "Transition Workload": 6,
       "Transition Passes": 5,
       "Transition Carries": 0,
-      "Puck Touches": 16
+      "Puck Touches": 16,
+      "Shots Against": 4
     },
     {
       "game_id": "Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026",
@@ -10511,7 +10711,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 5,
       "shift_nz": 1,
       "shift_dz": 2,
@@ -10521,7 +10721,8 @@
       "Transition Workload": 2,
       "Transition Passes": 1,
       "Transition Carries": 1,
-      "Puck Touches": 9
+      "Puck Touches": 9,
+      "Shots Against": 3
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -10549,7 +10750,7 @@
       "Exits w Poss %": 40.0,
       "Botched Retrievals": 4,
       "Failed Exits": 2,
-      "xG": 0.57,
+      "xG": 1.0,
       "shift_oz": 17,
       "shift_nz": 13,
       "shift_dz": 19,
@@ -10559,7 +10760,8 @@
       "Transition Workload": 12,
       "Transition Passes": 7,
       "Transition Carries": 2,
-      "Puck Touches": 53
+      "Puck Touches": 53,
+      "Shots Against": 29
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -10587,7 +10789,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 3,
       "Failed Exits": 0,
-      "xG": 0.33,
+      "xG": 0.0,
       "shift_oz": 3,
       "shift_nz": 5,
       "shift_dz": 8,
@@ -10597,7 +10799,8 @@
       "Transition Workload": 7,
       "Transition Passes": 3,
       "Transition Carries": 2,
-      "Puck Touches": 48
+      "Puck Touches": 48,
+      "Shots Against": 29
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -10625,7 +10828,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 1,
-      "xG": 0.63,
+      "xG": 1.0,
       "shift_oz": 11,
       "shift_nz": 6,
       "shift_dz": 6,
@@ -10635,7 +10838,8 @@
       "Transition Workload": 4,
       "Transition Passes": 2,
       "Transition Carries": 0,
-      "Puck Touches": 30
+      "Puck Touches": 30,
+      "Shots Against": 0
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -10663,7 +10867,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.45,
+      "xG": 0.0,
       "shift_oz": 13,
       "shift_nz": 9,
       "shift_dz": 4,
@@ -10673,7 +10877,8 @@
       "Transition Workload": 8,
       "Transition Passes": 3,
       "Transition Carries": 3,
-      "Puck Touches": 36
+      "Puck Touches": 36,
+      "Shots Against": 24
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -10711,7 +10916,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 14
+      "Puck Touches": 14,
+      "Shots Against": 0
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -10739,7 +10945,7 @@
       "Exits w Poss %": 38.0,
       "Botched Retrievals": 10,
       "Failed Exits": 3,
-      "xG": 0.33,
+      "xG": 0.0,
       "shift_oz": 2,
       "shift_nz": 8,
       "shift_dz": 21,
@@ -10749,7 +10955,8 @@
       "Transition Workload": 12,
       "Transition Passes": 3,
       "Transition Carries": 3,
-      "Puck Touches": 69
+      "Puck Touches": 69,
+      "Shots Against": 9
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -10777,7 +10984,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 3,
       "Failed Exits": 0,
-      "xG": 1.23,
+      "xG": 1.0,
       "shift_oz": 21,
       "shift_nz": 10,
       "shift_dz": 10,
@@ -10787,7 +10994,8 @@
       "Transition Workload": 5,
       "Transition Passes": 1,
       "Transition Carries": 3,
-      "Puck Touches": 29
+      "Puck Touches": 29,
+      "Shots Against": 18
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -10815,7 +11023,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 2,
       "Failed Exits": 1,
-      "xG": 0.27,
+      "xG": 0.0,
       "shift_oz": 13,
       "shift_nz": 8,
       "shift_dz": 10,
@@ -10825,7 +11033,8 @@
       "Transition Workload": 6,
       "Transition Passes": 1,
       "Transition Carries": 4,
-      "Puck Touches": 34
+      "Puck Touches": 34,
+      "Shots Against": 7
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -10853,7 +11062,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 2,
       "Failed Exits": 2,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 2,
       "shift_nz": 11,
       "shift_dz": 8,
@@ -10863,7 +11072,8 @@
       "Transition Workload": 3,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 16
+      "Puck Touches": 16,
+      "Shots Against": 15
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -10891,7 +11101,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 1,
       "Failed Exits": 2,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 10,
       "shift_nz": 2,
       "shift_dz": 11,
@@ -10901,7 +11111,8 @@
       "Transition Workload": 7,
       "Transition Passes": 0,
       "Transition Carries": 1,
-      "Puck Touches": 48
+      "Puck Touches": 48,
+      "Shots Against": 16
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -10929,7 +11140,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.84,
+      "xG": 1.0,
       "shift_oz": 14,
       "shift_nz": 5,
       "shift_dz": 3,
@@ -10939,7 +11150,8 @@
       "Transition Workload": 5,
       "Transition Passes": 1,
       "Transition Carries": 4,
-      "Puck Touches": 29
+      "Puck Touches": 29,
+      "Shots Against": 6
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -10967,7 +11179,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 2,
       "Failed Exits": 1,
-      "xG": 0.27,
+      "xG": 0.0,
       "shift_oz": 15,
       "shift_nz": 4,
       "shift_dz": 9,
@@ -10977,7 +11189,8 @@
       "Transition Workload": 3,
       "Transition Passes": 2,
       "Transition Carries": 0,
-      "Puck Touches": 15
+      "Puck Touches": 15,
+      "Shots Against": 17
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -11005,7 +11218,7 @@
       "Exits w Poss %": 67.0,
       "Botched Retrievals": 5,
       "Failed Exits": 0,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 7,
       "shift_nz": 4,
       "shift_dz": 20,
@@ -11015,7 +11228,8 @@
       "Transition Workload": 3,
       "Transition Passes": 2,
       "Transition Carries": 0,
-      "Puck Touches": 30
+      "Puck Touches": 30,
+      "Shots Against": 29
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -11043,7 +11257,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 1,
       "shift_nz": 2,
       "shift_dz": 15,
@@ -11053,7 +11267,8 @@
       "Transition Workload": 3,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 13
+      "Puck Touches": 13,
+      "Shots Against": 17
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -11081,7 +11296,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 10,
       "shift_nz": 12,
       "shift_dz": 10,
@@ -11091,7 +11306,8 @@
       "Transition Workload": 3,
       "Transition Passes": 3,
       "Transition Carries": 0,
-      "Puck Touches": 15
+      "Puck Touches": 15,
+      "Shots Against": 19
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -11119,7 +11335,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 2,
       "Failed Exits": 1,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 11,
       "shift_nz": 3,
       "shift_dz": 5,
@@ -11129,7 +11345,8 @@
       "Transition Workload": 3,
       "Transition Passes": 1,
       "Transition Carries": 2,
-      "Puck Touches": 12
+      "Puck Touches": 12,
+      "Shots Against": 15
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -11167,7 +11384,8 @@
       "Transition Workload": 2,
       "Transition Passes": 0,
       "Transition Carries": 1,
-      "Puck Touches": 5
+      "Puck Touches": 5,
+      "Shots Against": 7
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -11195,7 +11413,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.21,
+      "xG": 0.0,
       "shift_oz": 5,
       "shift_nz": 0,
       "shift_dz": 0,
@@ -11205,7 +11423,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 5
+      "Puck Touches": 5,
+      "Shots Against": 2
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -11233,7 +11452,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 3,
       "shift_nz": 2,
       "shift_dz": 1,
@@ -11243,7 +11462,8 @@
       "Transition Workload": 1,
       "Transition Passes": 0,
       "Transition Carries": 1,
-      "Puck Touches": 6
+      "Puck Touches": 6,
+      "Shots Against": 7
     },
     {
       "game_id": "Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026",
@@ -11271,7 +11491,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 0,
       "shift_nz": 0,
       "shift_dz": 1,
@@ -11281,7 +11501,8 @@
       "Transition Workload": 1,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 6
+      "Puck Touches": 6,
+      "Shots Against": 1
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11309,7 +11530,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 3,
       "Failed Exits": 0,
-      "xG": 0.3,
+      "xG": 0.0,
       "shift_oz": 15,
       "shift_nz": 12,
       "shift_dz": 16,
@@ -11319,7 +11540,8 @@
       "Transition Workload": 7,
       "Transition Passes": 1,
       "Transition Carries": 3,
-      "Puck Touches": 23
+      "Puck Touches": 23,
+      "Shots Against": 22
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11347,7 +11569,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.27,
+      "xG": 0.0,
       "shift_oz": 22,
       "shift_nz": 0,
       "shift_dz": 5,
@@ -11357,7 +11579,8 @@
       "Transition Workload": 1,
       "Transition Passes": 0,
       "Transition Carries": 1,
-      "Puck Touches": 16
+      "Puck Touches": 16,
+      "Shots Against": 19
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11385,7 +11608,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.33,
+      "xG": 0.0,
       "shift_oz": 15,
       "shift_nz": 4,
       "shift_dz": 5,
@@ -11395,7 +11618,8 @@
       "Transition Workload": 4,
       "Transition Passes": 1,
       "Transition Carries": 1,
-      "Puck Touches": 16
+      "Puck Touches": 16,
+      "Shots Against": 24
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11423,7 +11647,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 5,
       "Failed Exits": 0,
-      "xG": 0.36,
+      "xG": 0.0,
       "shift_oz": 6,
       "shift_nz": 2,
       "shift_dz": 25,
@@ -11433,7 +11657,8 @@
       "Transition Workload": 4,
       "Transition Passes": 4,
       "Transition Carries": 0,
-      "Puck Touches": 33
+      "Puck Touches": 33,
+      "Shots Against": 38
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11461,7 +11686,7 @@
       "Exits w Poss %": 25.0,
       "Botched Retrievals": 3,
       "Failed Exits": 1,
-      "xG": 0.15,
+      "xG": 0.0,
       "shift_oz": 2,
       "shift_nz": 4,
       "shift_dz": 15,
@@ -11471,7 +11696,8 @@
       "Transition Workload": 5,
       "Transition Passes": 2,
       "Transition Carries": 0,
-      "Puck Touches": 32
+      "Puck Touches": 32,
+      "Shots Against": 20
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11509,7 +11735,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 9
+      "Puck Touches": 9,
+      "Shots Against": 0
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11537,7 +11764,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 1.14,
+      "xG": 1.0,
       "shift_oz": 20,
       "shift_nz": 7,
       "shift_dz": 5,
@@ -11547,7 +11774,8 @@
       "Transition Workload": 7,
       "Transition Passes": 2,
       "Transition Carries": 5,
-      "Puck Touches": 38
+      "Puck Touches": 38,
+      "Shots Against": 21
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11575,7 +11803,7 @@
       "Exits w Poss %": 62.0,
       "Botched Retrievals": 2,
       "Failed Exits": 1,
-      "xG": 0.24,
+      "xG": 0.0,
       "shift_oz": 19,
       "shift_nz": 13,
       "shift_dz": 13,
@@ -11585,7 +11813,8 @@
       "Transition Workload": 13,
       "Transition Passes": 9,
       "Transition Carries": 1,
-      "Puck Touches": 47
+      "Puck Touches": 47,
+      "Shots Against": 35
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11613,7 +11842,7 @@
       "Exits w Poss %": 67.0,
       "Botched Retrievals": 2,
       "Failed Exits": 1,
-      "xG": 0.84,
+      "xG": 1.0,
       "shift_oz": 24,
       "shift_nz": 10,
       "shift_dz": 7,
@@ -11623,7 +11852,8 @@
       "Transition Workload": 7,
       "Transition Passes": 3,
       "Transition Carries": 3,
-      "Puck Touches": 44
+      "Puck Touches": 44,
+      "Shots Against": 24
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11651,7 +11881,7 @@
       "Exits w Poss %": 17.0,
       "Botched Retrievals": 5,
       "Failed Exits": 2,
-      "xG": 0.21,
+      "xG": 0.0,
       "shift_oz": 6,
       "shift_nz": 10,
       "shift_dz": 16,
@@ -11661,7 +11891,8 @@
       "Transition Workload": 8,
       "Transition Passes": 2,
       "Transition Carries": 1,
-      "Puck Touches": 67
+      "Puck Touches": 67,
+      "Shots Against": 22
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11689,7 +11920,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 5,
       "Failed Exits": 0,
-      "xG": 0.21,
+      "xG": 0.0,
       "shift_oz": 10,
       "shift_nz": 2,
       "shift_dz": 16,
@@ -11699,7 +11930,8 @@
       "Transition Workload": 7,
       "Transition Passes": 2,
       "Transition Carries": 3,
-      "Puck Touches": 54
+      "Puck Touches": 54,
+      "Shots Against": 8
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11727,7 +11959,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 3,
       "Failed Exits": 4,
-      "xG": 0.33,
+      "xG": 0.0,
       "shift_oz": 19,
       "shift_nz": 9,
       "shift_dz": 19,
@@ -11737,7 +11969,8 @@
       "Transition Workload": 10,
       "Transition Passes": 4,
       "Transition Carries": 1,
-      "Puck Touches": 35
+      "Puck Touches": 35,
+      "Shots Against": 26
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11765,7 +11998,7 @@
       "Exits w Poss %": 75.0,
       "Botched Retrievals": 0,
       "Failed Exits": 2,
-      "xG": 0.48,
+      "xG": 0.0,
       "shift_oz": 16,
       "shift_nz": 9,
       "shift_dz": 5,
@@ -11775,7 +12008,8 @@
       "Transition Workload": 11,
       "Transition Passes": 4,
       "Transition Carries": 4,
-      "Puck Touches": 32
+      "Puck Touches": 32,
+      "Shots Against": 0
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11803,7 +12037,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.84,
+      "xG": 1.0,
       "shift_oz": 17,
       "shift_nz": 9,
       "shift_dz": 1,
@@ -11813,7 +12047,8 @@
       "Transition Workload": 3,
       "Transition Passes": 1,
       "Transition Carries": 1,
-      "Puck Touches": 31
+      "Puck Touches": 31,
+      "Shots Against": 15
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11841,7 +12076,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 7,
       "Failed Exits": 0,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 4,
       "shift_nz": 12,
       "shift_dz": 26,
@@ -11851,7 +12086,8 @@
       "Transition Workload": 5,
       "Transition Passes": 3,
       "Transition Carries": 0,
-      "Puck Touches": 36
+      "Puck Touches": 36,
+      "Shots Against": 26
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11879,7 +12115,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 6,
       "Failed Exits": 1,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 6,
       "shift_nz": 6,
       "shift_dz": 17,
@@ -11889,7 +12125,8 @@
       "Transition Workload": 4,
       "Transition Passes": 2,
       "Transition Carries": 0,
-      "Puck Touches": 30
+      "Puck Touches": 30,
+      "Shots Against": 20
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11917,7 +12154,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.21,
+      "xG": 0.0,
       "shift_oz": 4,
       "shift_nz": 4,
       "shift_dz": 7,
@@ -11927,7 +12164,8 @@
       "Transition Workload": 3,
       "Transition Passes": 0,
       "Transition Carries": 1,
-      "Puck Touches": 12
+      "Puck Touches": 12,
+      "Shots Against": 7
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -11965,7 +12203,8 @@
       "Transition Workload": 1,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 8
+      "Puck Touches": 8,
+      "Shots Against": 3
     },
     {
       "game_id": "Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026",
@@ -12003,7 +12242,8 @@
       "Transition Workload": 3,
       "Transition Passes": 2,
       "Transition Carries": 1,
-      "Puck Touches": 6
+      "Puck Touches": 6,
+      "Shots Against": 5
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12031,7 +12271,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.45,
+      "xG": 0.0,
       "shift_oz": 22,
       "shift_nz": 11,
       "shift_dz": 15,
@@ -12041,7 +12281,8 @@
       "Transition Workload": 8,
       "Transition Passes": 2,
       "Transition Carries": 6,
-      "Puck Touches": 40
+      "Puck Touches": 40,
+      "Shots Against": 20
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12069,7 +12310,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 1,
-      "xG": 0.36,
+      "xG": 0.0,
       "shift_oz": 15,
       "shift_nz": 6,
       "shift_dz": 7,
@@ -12079,7 +12320,8 @@
       "Transition Workload": 2,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 18
+      "Puck Touches": 18,
+      "Shots Against": 22
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12107,7 +12349,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 4,
       "Failed Exits": 1,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 4,
       "shift_nz": 5,
       "shift_dz": 15,
@@ -12117,7 +12359,8 @@
       "Transition Workload": 2,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 26
+      "Puck Touches": 26,
+      "Shots Against": 11
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12145,7 +12388,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.18,
+      "xG": 0.0,
       "shift_oz": 13,
       "shift_nz": 4,
       "shift_dz": 13,
@@ -12155,7 +12398,8 @@
       "Transition Workload": 5,
       "Transition Passes": 2,
       "Transition Carries": 1,
-      "Puck Touches": 26
+      "Puck Touches": 26,
+      "Shots Against": 22
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12183,7 +12427,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 4,
       "Failed Exits": 1,
-      "xG": 0.21,
+      "xG": 0.0,
       "shift_oz": 5,
       "shift_nz": 5,
       "shift_dz": 19,
@@ -12193,7 +12437,8 @@
       "Transition Workload": 5,
       "Transition Passes": 2,
       "Transition Carries": 2,
-      "Puck Touches": 47
+      "Puck Touches": 47,
+      "Shots Against": 27
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12231,7 +12476,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 25
+      "Puck Touches": 25,
+      "Shots Against": 0
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12259,7 +12505,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 4,
       "Failed Exits": 1,
-      "xG": 0.09,
+      "xG": 0.0,
       "shift_oz": 3,
       "shift_nz": 5,
       "shift_dz": 12,
@@ -12269,7 +12515,8 @@
       "Transition Workload": 7,
       "Transition Passes": 5,
       "Transition Carries": 0,
-      "Puck Touches": 27
+      "Puck Touches": 27,
+      "Shots Against": 19
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12297,7 +12544,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.57,
+      "xG": 1.0,
       "shift_oz": 18,
       "shift_nz": 5,
       "shift_dz": 9,
@@ -12307,7 +12554,8 @@
       "Transition Workload": 6,
       "Transition Passes": 3,
       "Transition Carries": 1,
-      "Puck Touches": 39
+      "Puck Touches": 39,
+      "Shots Against": 0
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12335,7 +12583,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.78,
+      "xG": 1.0,
       "shift_oz": 20,
       "shift_nz": 10,
       "shift_dz": 12,
@@ -12345,7 +12593,8 @@
       "Transition Workload": 3,
       "Transition Passes": 1,
       "Transition Carries": 2,
-      "Puck Touches": 34
+      "Puck Touches": 34,
+      "Shots Against": 27
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12373,7 +12622,7 @@
       "Exits w Poss %": 17.0,
       "Botched Retrievals": 2,
       "Failed Exits": 4,
-      "xG": 0.39,
+      "xG": 0.0,
       "shift_oz": 15,
       "shift_nz": 8,
       "shift_dz": 13,
@@ -12383,7 +12632,8 @@
       "Transition Workload": 11,
       "Transition Passes": 1,
       "Transition Carries": 4,
-      "Puck Touches": 28
+      "Puck Touches": 28,
+      "Shots Against": 15
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12411,7 +12661,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 6,
       "Failed Exits": 1,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 5,
       "shift_nz": 11,
       "shift_dz": 19,
@@ -12421,7 +12671,8 @@
       "Transition Workload": 5,
       "Transition Passes": 2,
       "Transition Carries": 1,
-      "Puck Touches": 55
+      "Puck Touches": 55,
+      "Shots Against": 18
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12449,7 +12700,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.12,
+      "xG": 0.0,
       "shift_oz": 12,
       "shift_nz": 8,
       "shift_dz": 6,
@@ -12459,7 +12710,8 @@
       "Transition Workload": 4,
       "Transition Passes": 0,
       "Transition Carries": 2,
-      "Puck Touches": 13
+      "Puck Touches": 13,
+      "Shots Against": 13
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12487,7 +12739,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 4,
       "Failed Exits": 1,
-      "xG": 0.03,
+      "xG": 0.0,
       "shift_oz": 5,
       "shift_nz": 3,
       "shift_dz": 13,
@@ -12497,7 +12749,8 @@
       "Transition Workload": 4,
       "Transition Passes": 2,
       "Transition Carries": 0,
-      "Puck Touches": 33
+      "Puck Touches": 33,
+      "Shots Against": 20
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12525,7 +12778,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.18,
+      "xG": 0.0,
       "shift_oz": 8,
       "shift_nz": 7,
       "shift_dz": 2,
@@ -12535,7 +12788,8 @@
       "Transition Workload": 4,
       "Transition Passes": 0,
       "Transition Carries": 3,
-      "Puck Touches": 17
+      "Puck Touches": 17,
+      "Shots Against": 11
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12573,7 +12827,8 @@
       "Transition Workload": 2,
       "Transition Passes": 1,
       "Transition Carries": 1,
-      "Puck Touches": 11
+      "Puck Touches": 11,
+      "Shots Against": 14
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12601,7 +12856,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 3,
       "Failed Exits": 1,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 1,
       "shift_nz": 3,
       "shift_dz": 15,
@@ -12611,7 +12866,8 @@
       "Transition Workload": 4,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 24
+      "Puck Touches": 24,
+      "Shots Against": 13
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12649,7 +12905,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 7
+      "Puck Touches": 7,
+      "Shots Against": 9
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12687,7 +12944,8 @@
       "Transition Workload": 3,
       "Transition Passes": 0,
       "Transition Carries": 2,
-      "Puck Touches": 12
+      "Puck Touches": 12,
+      "Shots Against": 10
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12715,7 +12973,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 8,
       "shift_nz": 3,
       "shift_dz": 2,
@@ -12725,7 +12983,8 @@
       "Transition Workload": 2,
       "Transition Passes": 0,
       "Transition Carries": 1,
-      "Puck Touches": 9
+      "Puck Touches": 9,
+      "Shots Against": 8
     },
     {
       "game_id": "Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026",
@@ -12763,7 +13022,8 @@
       "Transition Workload": 2,
       "Transition Passes": 1,
       "Transition Carries": 1,
-      "Puck Touches": 12
+      "Puck Touches": 12,
+      "Shots Against": 6
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -12791,7 +13051,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 1.08,
+      "xG": 1.0,
       "shift_oz": 18,
       "shift_nz": 14,
       "shift_dz": 10,
@@ -12801,7 +13061,8 @@
       "Transition Workload": 5,
       "Transition Passes": 3,
       "Transition Carries": 2,
-      "Puck Touches": 48
+      "Puck Touches": 48,
+      "Shots Against": 15
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -12829,7 +13090,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 7,
       "Failed Exits": 1,
-      "xG": 0.24,
+      "xG": 0.0,
       "shift_oz": 4,
       "shift_nz": 12,
       "shift_dz": 24,
@@ -12839,7 +13100,8 @@
       "Transition Workload": 6,
       "Transition Passes": 3,
       "Transition Carries": 1,
-      "Puck Touches": 58
+      "Puck Touches": 58,
+      "Shots Against": 27
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -12867,7 +13129,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 0,
       "Failed Exits": 0,
-      "xG": 1.14,
+      "xG": 1.0,
       "shift_oz": 13,
       "shift_nz": 8,
       "shift_dz": 5,
@@ -12877,7 +13139,8 @@
       "Transition Workload": 4,
       "Transition Passes": 0,
       "Transition Carries": 3,
-      "Puck Touches": 33
+      "Puck Touches": 33,
+      "Shots Against": 11
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -12905,7 +13168,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 2,
       "Failed Exits": 1,
-      "xG": 0.48,
+      "xG": 0.0,
       "shift_oz": 18,
       "shift_nz": 13,
       "shift_dz": 11,
@@ -12915,7 +13178,8 @@
       "Transition Workload": 3,
       "Transition Passes": 2,
       "Transition Carries": 0,
-      "Puck Touches": 36
+      "Puck Touches": 36,
+      "Shots Against": 13
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -12953,7 +13217,8 @@
       "Transition Workload": 0,
       "Transition Passes": 0,
       "Transition Carries": 0,
-      "Puck Touches": 11
+      "Puck Touches": 11,
+      "Shots Against": 0
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -12981,7 +13246,7 @@
       "Exits w Poss %": 43.0,
       "Botched Retrievals": 7,
       "Failed Exits": 1,
-      "xG": 0.18,
+      "xG": 0.0,
       "shift_oz": 12,
       "shift_nz": 6,
       "shift_dz": 23,
@@ -12991,7 +13256,8 @@
       "Transition Workload": 15,
       "Transition Passes": 5,
       "Transition Carries": 5,
-      "Puck Touches": 76
+      "Puck Touches": 76,
+      "Shots Against": 14
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -13019,7 +13285,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 0.18,
+      "xG": 0.0,
       "shift_oz": 20,
       "shift_nz": 11,
       "shift_dz": 12,
@@ -13029,7 +13295,8 @@
       "Transition Workload": 7,
       "Transition Passes": 0,
       "Transition Carries": 4,
-      "Puck Touches": 25
+      "Puck Touches": 25,
+      "Shots Against": 17
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -13057,7 +13324,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 2,
       "Failed Exits": 0,
-      "xG": 0.15,
+      "xG": 0.0,
       "shift_oz": 16,
       "shift_nz": 2,
       "shift_dz": 10,
@@ -13067,7 +13334,8 @@
       "Transition Workload": 5,
       "Transition Passes": 1,
       "Transition Carries": 1,
-      "Puck Touches": 26
+      "Puck Touches": 26,
+      "Shots Against": 0
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -13095,7 +13363,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 8,
       "Failed Exits": 3,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 5,
       "shift_nz": 3,
       "shift_dz": 24,
@@ -13105,7 +13373,8 @@
       "Transition Workload": 11,
       "Transition Passes": 7,
       "Transition Carries": 0,
-      "Puck Touches": 56
+      "Puck Touches": 56,
+      "Shots Against": 17
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -13133,7 +13402,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 1,
       "Failed Exits": 0,
-      "xG": 1.02,
+      "xG": 1.0,
       "shift_oz": 18,
       "shift_nz": 12,
       "shift_dz": 6,
@@ -13143,7 +13412,8 @@
       "Transition Workload": 6,
       "Transition Passes": 1,
       "Transition Carries": 4,
-      "Puck Touches": 33
+      "Puck Touches": 33,
+      "Shots Against": 18
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -13171,7 +13441,7 @@
       "Exits w Poss %": 100.0,
       "Botched Retrievals": 6,
       "Failed Exits": 1,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 4,
       "shift_nz": 4,
       "shift_dz": 16,
@@ -13181,7 +13451,8 @@
       "Transition Workload": 3,
       "Transition Passes": 1,
       "Transition Carries": 1,
-      "Puck Touches": 31
+      "Puck Touches": 31,
+      "Shots Against": 20
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -13209,7 +13480,7 @@
       "Exits w Poss %": 0.0,
       "Botched Retrievals": 1,
       "Failed Exits": 2,
-      "xG": 1.17,
+      "xG": 1.0,
       "shift_oz": 17,
       "shift_nz": 2,
       "shift_dz": 4,
@@ -13219,7 +13490,8 @@
       "Transition Workload": 8,
       "Transition Passes": 0,
       "Transition Carries": 2,
-      "Puck Touches": 24
+      "Puck Touches": 24,
+      "Shots Against": 24
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -13247,7 +13519,7 @@
       "Exits w Poss %": 67.0,
       "Botched Retrievals": 2,
       "Failed Exits": 2,
-      "xG": 0.84,
+      "xG": 1.0,
       "shift_oz": 13,
       "shift_nz": 9,
       "shift_dz": 17,
@@ -13257,7 +13529,8 @@
       "Transition Workload": 10,
       "Transition Passes": 4,
       "Transition Carries": 4,
-      "Puck Touches": 37
+      "Puck Touches": 37,
+      "Shots Against": 31
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -13285,7 +13558,7 @@
       "Exits w Poss %": 33.0,
       "Botched Retrievals": 6,
       "Failed Exits": 1,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 3,
       "shift_nz": 3,
       "shift_dz": 18,
@@ -13295,7 +13568,8 @@
       "Transition Workload": 4,
       "Transition Passes": 2,
       "Transition Carries": 0,
-      "Puck Touches": 27
+      "Puck Touches": 27,
+      "Shots Against": 21
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -13323,7 +13597,7 @@
       "Exits w Poss %": 60.0,
       "Botched Retrievals": 1,
       "Failed Exits": 1,
-      "xG": 0.39,
+      "xG": 0.0,
       "shift_oz": 8,
       "shift_nz": 3,
       "shift_dz": 10,
@@ -13333,7 +13607,8 @@
       "Transition Workload": 14,
       "Transition Passes": 3,
       "Transition Carries": 9,
-      "Puck Touches": 36
+      "Puck Touches": 36,
+      "Shots Against": 21
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -13361,7 +13636,7 @@
       "Exits w Poss %": 50.0,
       "Botched Retrievals": 4,
       "Failed Exits": 1,
-      "xG": 0.06,
+      "xG": 0.0,
       "shift_oz": 5,
       "shift_nz": 4,
       "shift_dz": 16,
@@ -13371,7 +13646,8 @@
       "Transition Workload": 2,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 23
+      "Puck Touches": 23,
+      "Shots Against": 19
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -13409,7 +13685,8 @@
       "Transition Workload": 3,
       "Transition Passes": 1,
       "Transition Carries": 2,
-      "Puck Touches": 12
+      "Puck Touches": 12,
+      "Shots Against": 6
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -13447,7 +13724,8 @@
       "Transition Workload": 1,
       "Transition Passes": 1,
       "Transition Carries": 0,
-      "Puck Touches": 9
+      "Puck Touches": 9,
+      "Shots Against": 13
     },
     {
       "game_id": "Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026",
@@ -13485,7 +13763,8 @@
       "Transition Workload": 3,
       "Transition Passes": 0,
       "Transition Carries": 2,
-      "Puck Touches": 9
+      "Puck Touches": 9,
+      "Shots Against": 8
     }
   ],
   "viz_shots": [
@@ -30576,68 +30855,68 @@
     }
   ],
   "rink_report": {
-    "goals_for": {
-      "by_zone_x": {
-        "dz": 0,
-        "oz": 25,
-        "nz": 0
-      },
-      "total": 25
-    },
-    "shots_for": {
-      "by_zone_x": {
-        "dz": 0,
-        "oz": 733,
-        "nz": 9
-      },
-      "total": 742,
-      "by_distance": {
-        "20-30": 0,
-        "40+": 742,
-        "0-10": 0,
-        "30-40": 0,
-        "10-20": 0
-      }
-    },
-    "shots_against": {
-      "by_zone_x": {
-        "dz": 3,
-        "oz": 776,
-        "nz": 9
-      },
-      "total": 788,
-      "by_distance": {
-        "20-30": 4,
-        "40+": 737,
-        "0-10": 0,
-        "30-40": 45,
-        "10-20": 2
-      }
-    },
     "entries": {
-      "by_lane_carry": {
-        "left": 299,
-        "center": 251,
-        "right": 0,
-        "unknown": 0
-      },
-      "total": 622,
-      "carry_ins": 550,
       "by_lane_dump": {
         "left": 45,
         "center": 27,
-        "right": 0,
-        "unknown": 0
+        "unknown": 0,
+        "right": 0
       },
+      "carry_ins": 550,
+      "by_lane_carry": {
+        "left": 299,
+        "center": 251,
+        "unknown": 0,
+        "right": 0
+      },
+      "total": 622,
       "dump_ins": 72
     },
     "goals_against": {
       "by_zone_x": {
+        "nz": 0,
         "dz": 2,
-        "oz": 41,
-        "nz": 0
+        "oz": 41
       },
       "total": 43
+    },
+    "shots_for": {
+      "total": 742,
+      "by_zone_x": {
+        "nz": 9,
+        "dz": 0,
+        "oz": 733
+      },
+      "by_distance": {
+        "10-20": 0,
+        "20-30": 0,
+        "40+": 742,
+        "30-40": 0,
+        "0-10": 0
+      }
+    },
+    "goals_for": {
+      "by_zone_x": {
+        "nz": 0,
+        "dz": 0,
+        "oz": 25
+      },
+      "total": 25
+    },
+    "shots_against": {
+      "total": 788,
+      "by_zone_x": {
+        "nz": 9,
+        "dz": 3,
+        "oz": 776
+      },
+      "by_distance": {
+        "10-20": 2,
+        "20-30": 4,
+        "40+": 737,
+        "30-40": 45,
+        "0-10": 0
+      }
     }
   },
   "rink_report_by_game": [
@@ -31579,8 +31858,8 @@
     {
       "period": "Period 1",
       "metric": "Expected Goals (xG)",
-      "team": 1.444615,
-      "opponent": 1.742308,
+      "team": 1.538462,
+      "opponent": 1.769231,
       "metric_is_pct": false
     },
     {
@@ -31719,8 +31998,8 @@
     {
       "period": "Period 2",
       "metric": "Expected Goals (xG)",
-      "team": 1.594615,
-      "opponent": 1.95,
+      "team": 1.461538,
+      "opponent": 1.923077,
       "metric_is_pct": false
     },
     {
@@ -31859,8 +32138,8 @@
     {
       "period": "Period 3",
       "metric": "Expected Goals (xG)",
-      "team": 1.719231,
-      "opponent": 1.809231,
+      "team": 1.769231,
+      "opponent": 1.769231,
       "metric_is_pct": false
     },
     {
@@ -32255,5 +32534,5 @@
     "Expected Goals (xG)"
   ],
   "hub_schema_version": 4,
-  "generated_at": "2026-03-26T20:59:44.892899Z"
+  "generated_at": "2026-03-26T21:07:18.634799Z"
 }

@@ -43,6 +43,7 @@ const HUB_SORT_COLS = [
   'Carry-in %',
   'Exits w Poss %',
   'Shots off Rush',
+  'Shots Against',
   'xG/60 est',
   'Team shot share %',
   'OZ shift %',
@@ -583,6 +584,12 @@ export function PlayerDatabase() {
                       <div className="flex justify-between border-b border-pwhl-border/50 pb-1 gap-2">
                         <span className="text-pwhl-muted shrink">xG/60 est</span>
                         <span className="text-right font-semibold">{hubMetric(selected, 'xG/60 est')}</span>
+                      </div>
+                      <div className="flex justify-between border-b border-pwhl-border/50 pb-1 gap-2">
+                        <span className="text-pwhl-muted shrink">Shots Against (on-ice)</span>
+                        <span className="text-right font-semibold font-mono">
+                          {Number(selected['Shots Against'] ?? 0)}
+                        </span>
                       </div>
                       <div className="flex justify-between border-b border-pwhl-border/50 pb-1 gap-2">
                         <span className="text-pwhl-muted shrink">Team shot share % (iSF proxy)</span>

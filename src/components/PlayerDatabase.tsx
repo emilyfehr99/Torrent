@@ -134,9 +134,15 @@ function filterShotGamesForPlayer(games: VizShotGame[] | undefined, playerNorm: 
     .map((g) => ({
       ...g,
       shots_for: filterShotsByPlayerName(g.shots_for, playerNorm),
-      // For goalies, "Against" are all shots by the opponent. 
-      // For skaters, "Against" is usually on-ice (unsupported) so we'll hide or show team-against.
-      shots_against: isGoalie ? (g.shots_against ?? []) : [],
+      // For goalies, "Against" are all shots by the opponent in that game.
+      // For skaters, "Against" are shots where they were on the ice (on_ice field).
+      shots_against: isGoalie
+        ? (g.shots_against ?? [])
+        : (g.shots_against ?? []).filter((s) => {
+            const onIce = (s as any).on_ice;
+            if (!Array.isArray(onIce)) return false;
+            return onIce.some((p: string) => String(p).trim().toLowerCase() === playerNorm);
+          }),
     }))
     .filter((g) => (g.shots_for?.length ?? 0) + (g.shots_against?.length ?? 0) > 0);
 }
@@ -949,7 +955,7 @@ export function PlayerDatabase() {
 
               {cardTab === 'heat' && selected ? (
                 <div className="text-sm text-pwhl-navy space-y-3">
-                  {posBucket(selected, rosterPos) === 'G' ? (
+                  {false && posBucket(selected, rosterPos) === 'G' ? (
                     <p className="text-xs text-pwhl-muted">Shot location heat is for skaters.</p>
                   ) : playerHeatGames.length === 0 && !playerHeatFallback ? (
                     <p className="text-xs text-pwhl-muted leading-relaxed">

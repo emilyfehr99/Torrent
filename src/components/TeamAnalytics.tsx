@@ -55,11 +55,18 @@ export function TeamAnalytics() {
 
   const barData = useMemo(() => {
     if (!data?.per_game_metrics?.length) return [];
-    return data.per_game_metrics.map((r, i) => ({
-      name: String(r.opponent || `G${i + 1}`).slice(0, 8),
-      entries: Number(r['Zone Entries']) || 0,
-      chances: Number(r['Scoring Chances']) || 0,
-    }));
+    
+    return data.per_game_metrics.map((r, i) => {
+      const opp = String(r.opponent || `G${i + 1}`);
+      const gf = Number(String(r['final_score'] ?? '0–0').split(/[–-]/)[0]) || 0;
+      const xg = Number(r['Expected Goals (xG)'] ?? 0);
+
+      return {
+        name: opp.slice(0, 8),
+        xg: xg,
+        gf: gf,
+      };
+    });
   }, [data]);
 
   if (error) {
@@ -151,7 +158,7 @@ export function TeamAnalytics() {
       <>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm">
-          <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-4">Entries vs scoring chances by opponent</h3>
+          <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-4">Offense vs Results (xG vs Actual)</h3>
           <div className="h-64 w-full">
             {barData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
@@ -169,8 +176,8 @@ export function TeamAnalytics() {
                     }}
                   />
                   <Legend wrapperStyle={{ fontSize: '12px' }} />
-                  <Bar dataKey="entries" name="Zone entries" fill="#1D4F91" radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="chances" name="Scoring chances" fill="#00A3AD" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="xg" name="Expected Goals (xG)" fill="#00A3AD" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="gf" name="Goals Scored" fill="#1D4F91" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             ) : (
@@ -185,8 +192,8 @@ export function TeamAnalytics() {
             <h3 className="font-serif font-bold text-lg text-pwhl-navy">Season averages (selection)</h3>
           </div>
           <ul className="space-y-3 text-sm">
-            {seasonAvgRows.map((m) => (
-              <li key={m} className="flex justify-between border-b border-pwhl-border/60 pb-2">
+            {seasonAvgRows.map((m, i) => (
+              <li key={i} className="flex justify-between border-b border-pwhl-border/60 pb-2">
                 <span className="text-pwhl-muted">{m.metric}</span>
                 <span className="font-mono font-semibold text-pwhl-navy">{m.value}</span>
               </li>
@@ -195,39 +202,9 @@ export function TeamAnalytics() {
         </div>
       </div>
 
-      <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm mb-6 overflow-x-auto">
+      <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm mb-6">
         <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-4">Per-game metrics</h3>
-        <table className="w-full text-sm text-left min-w-[720px]">
-          <thead className="text-[10px] text-pwhl-muted uppercase tracking-wider bg-pwhl-cream border-b border-pwhl-border">
-            <tr>
-              {pgCols.map((c) => (
-                <th key={c} className="px-3 py-2 font-bold whitespace-nowrap">
-                  {c}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-pwhl-border font-mono text-xs">
-            {(data?.per_game_metrics ?? []).map((row, i) => (
-              <tr key={i} className="hover:bg-pwhl-surface-hover">
-                {pgCols.map((c) => (
-                  <td
-                    key={c}
-                    className="px-3 py-2 text-pwhl-navy whitespace-nowrap max-w-[200px] truncate"
-                  >
-                    {c === 'Win' ? (
-                      <div className="flex justify-center">
-                        <WinCell val={row[c]} />
-                      </div>
-                    ) : (
-                      formatPgCell(c, row[c])
-                    )}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <HubDataTable rows={data?.per_game_metrics ?? []} />
       </div>
 
       <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm mb-6">
@@ -236,34 +213,20 @@ export function TeamAnalytics() {
           <h3 className="font-serif font-bold text-lg text-pwhl-navy">Forward lines &amp; D pairings (season)</h3>
         </div>
         <p className="text-xs text-pwhl-muted mb-4 max-w-3xl">
-          From play-by-play order (same roster-based logic as your Line:Pairing scripts). Shown here and under{' '}
-          <strong>Reports library</strong>. Use <strong>Rebuild hub</strong> in the sidebar if counts look wrong.
+          From play-by-play order (same roster-based logic as your Line:Pairing scripts).
         </p>
-        <div className="mb-4">
-          <input
-            type="text"
-            value={unitSearch}
-            onChange={(e) => setUnitSearch(e.target.value)}
-            placeholder="Search player in lines/pairs..."
-            className="w-full max-w-md bg-pwhl-cream border border-pwhl-border rounded-lg px-3 py-2 text-sm"
-          />
-        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div>
-            <h4 className="text-sm font-bold text-pwhl-navy mb-2">Forward trios</h4>
+            <h4 className="text-xs font-black uppercase tracking-widest text-pwhl-muted mb-3">Forward trios</h4>
             <HubDataTable
-              rows={((data?.line_combos_season?.length ? data.line_combos_season : fallbackLines) ?? []).filter((r) =>
-                String(r.unit ?? '').toLowerCase().includes(unitSearch.trim().toLowerCase()),
-              )}
+              rows={data?.line_combos_season?.length ? data.line_combos_season : fallbackLines}
               emptyHint="No line-combo data available."
             />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-pwhl-navy mb-2">Defensive pairs</h4>
+            <h4 className="text-xs font-black uppercase tracking-widest text-pwhl-muted mb-3">Defensive pairs</h4>
             <HubDataTable
-              rows={((data?.pairings_season?.length ? data.pairings_season : fallbackPairs) ?? []).filter((r) =>
-                String(r.unit ?? '').toLowerCase().includes(unitSearch.trim().toLowerCase()),
-              )}
+              rows={data?.pairings_season?.length ? data.pairings_season : fallbackPairs}
               emptyHint="No pairing data available."
             />
           </div>
@@ -272,97 +235,32 @@ export function TeamAnalytics() {
 
       {(data?.defense_season?.length || data?.defense_by_game?.length) ? (
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-        <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm overflow-x-auto">
+        <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm flex flex-col">
           <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-4">Defense · season totals (player)</h3>
-          <table className="w-full text-xs text-left">
-            <thead className="text-[10px] text-pwhl-muted uppercase bg-pwhl-cream border-b border-pwhl-border">
-              <tr>
-                {(data?.defense_season?.[0] ? Object.keys(data.defense_season[0]) : []).map((k) => (
-                  <th key={k} className="px-2 py-2 font-bold whitespace-nowrap">
-                    {k}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-pwhl-border font-mono">
-              {(data?.defense_season ?? []).map((row, i) => (
-                <tr key={i} className="hover:bg-pwhl-surface-hover">
-                  {Object.values(row).map((v, j) => (
-                    <td key={j} className="px-2 py-1.5 text-pwhl-navy whitespace-nowrap">
-                      {v ?? '—'}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <HubDataTable rows={data?.defense_season ?? []} />
         </div>
 
         {data?.defense_by_game?.length ? (
-        <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm">
+        <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm flex flex-col">
           <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-2">Defense · single game</h3>
-            <>
-              <select
-                className="mb-4 w-full bg-pwhl-cream border border-pwhl-border text-sm rounded-lg px-3 py-2 outline-none focus:border-torrent-teal font-medium"
-                value={defIdx}
-                onChange={(e) => setDefIdx(Number(e.target.value))}
-              >
-                {data.defense_by_game.map((g, i) => (
-                  <option key={i} value={i}>
-                    {[g.opponent || 'Opponent', g.date].filter(Boolean).join(' · ')}
-                  </option>
-                ))}
-              </select>
-              <div className="overflow-x-auto max-h-96 overflow-y-auto">
-                <table className="w-full text-xs text-left">
-                  <thead className="text-[10px] text-pwhl-muted uppercase bg-pwhl-cream sticky top-0">
-                    <tr>
-                      {defGame?.table?.[0]
-                        ? Object.keys(defGame.table[0]).map((k) => (
-                            <th key={k} className="px-2 py-2 font-bold whitespace-nowrap">
-                              {k}
-                            </th>
-                          ))
-                        : null}
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-pwhl-border font-mono">
-                    {(defGame?.table ?? []).map((row, i) => (
-                      <tr key={i}>
-                        {Object.values(row).map((v, j) => (
-                          <td key={j} className="px-2 py-1.5 text-pwhl-navy whitespace-nowrap">
-                            {v ?? '—'}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </>
+          <select
+            className="mb-4 w-full bg-pwhl-cream border border-pwhl-border text-sm rounded-lg px-3 py-2 outline-none focus:border-torrent-teal font-medium"
+            value={defIdx}
+            onChange={(e) => setDefIdx(Number(e.target.value))}
+          >
+            {data.defense_by_game.map((g, i) => (
+              <option key={i} value={i}>
+                {[g.opponent || 'Opponent', g.date].filter(Boolean).join(' · ')}
+              </option>
+            ))}
+          </select>
+          <HubDataTable rows={defGame?.table ?? []} />
 
           {data?.win_correlations && data.win_correlations.length > 0 && (
-            <>
-              <h4 className="font-serif font-bold text-pwhl-navy mt-8 mb-2">Metric ↔ win (Pearson)</h4>
-              <div className="overflow-x-auto max-h-64 overflow-y-auto border border-pwhl-border rounded-lg">
-                <table className="w-full text-xs">
-                  <thead className="bg-pwhl-cream text-pwhl-muted uppercase">
-                    <tr>
-                      <th className="text-left px-2 py-2">Metric</th>
-                      <th className="text-right px-2 py-2">r</th>
-                    </tr>
-                  </thead>
-                  <tbody className="font-mono">
-                    {data.win_correlations.map((r, i) => (
-                      <tr key={i} className="border-t border-pwhl-border">
-                        <td className="px-2 py-1">{String(r.Metric)}</td>
-                        <td className="px-2 py-1 text-right">{String(r.Correlation)}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </>
+            <div className="mt-8">
+              <h4 className="font-serif font-bold text-pwhl-navy mb-2">Metric ↔ win (Pearson)</h4>
+              <HubDataTable rows={data.win_correlations} />
+            </div>
           )}
         </div>
         ) : null}

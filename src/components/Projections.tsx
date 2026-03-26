@@ -3,15 +3,6 @@ import { SortableTable, type SortableRow } from './SortableTable';
 import { PWHL_STANDINGS_2526 } from '../data/pwhlStandings2526';
 import { useHubData } from '../context/HubDataContext';
 
-const TRANSITION_KEYS = [
-  'Zone Entries',
-  'Carry-in%',
-  'Possession Exit %',
-  'Forecheck Recoveries',
-  'NZ Turnovers',
-  'Entry Denials',
-] as const;
-
 export function Projections() {
   const { data } = useHubData();
 
@@ -33,15 +24,6 @@ export function Projections() {
       })),
     [],
   );
-
-  const transitionAvgRows: SortableRow[] = useMemo(() => {
-    const av = data?.averages ?? [];
-    const byMetric = new Map(av.map((r) => [String(r.Metric ?? r.metric ?? ''), String(r.Average ?? r.value ?? '—')]));
-    return TRANSITION_KEYS.map((k) => ({
-      metric: k,
-      season_avg: byMetric.get(k) ?? '—',
-    }));
-  }, [data]);
 
   return (
     <div className="animate-in fade-in duration-500">
@@ -95,21 +77,6 @@ export function Projections() {
             { key: 'qualification', label: 'Notes' },
           ]}
         />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm flex flex-col">
-          <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-1">Transition pace (per game, hub average)</h3>
-          <p className="text-xs text-pwhl-muted mb-4">Season averages from your microstats feed — same engine as Team analytics.</p>
-          <SortableTable
-            rows={transitionAvgRows}
-            initialSort={{ key: 'metric', dir: 'asc' }}
-            columns={[
-              { key: 'metric', label: 'Metric' },
-              { key: 'season_avg', label: 'Season avg (display)', align: 'right' },
-            ]}
-          />
-        </div>
       </div>
 
       <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm">

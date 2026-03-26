@@ -68,14 +68,13 @@ export function ShotHeatmap({
   fallbackShotsFor,
 }: {
   games: VizShotGame[];
-  /** Season game count from hub (for legacy flat shots). */
   nGames?: number;
-  /** When API has no viz_shot_games yet: still show “for” map from viz_shots. */
   fallbackShotsFor?: VizShot[];
 }) {
   const gameId = '__season__';
-  const perspective: Perspective = 'for';
   const [mode, setMode] = useState<ViewMode>('both');
+  const [perspective, setPerspective] = useState<Perspective>('for');
+
   const rinkImage = DEFAULT_RINK_IMAGE;
   const shotOpacity = DEFAULT_CALIBRATION.opacity;
   const shotScale = DEFAULT_CALIBRATION.scale;
@@ -111,7 +110,7 @@ export function ShotHeatmap({
   const selectedGames = useMemo(() => {
     if (gameId === '__season__') return effectiveGames;
     return effectiveGames.filter((g) => g.game_id === gameId);
-  }, [effectiveGames, gameId]);
+  }, [effectiveGames]);
 
   const heatDivisor =
     gameId === '__season__' ? seasonDivisor : Math.max(1, selectedGames.length);
@@ -139,13 +138,13 @@ export function ShotHeatmap({
       }
     }
 
-    let maxC = 0;
+    let mC = 0;
     for (let yi = 0; yi < NY; yi++) {
       for (let xi = 0; xi < NX; xi++) {
-        maxC = Math.max(maxC, b[yi][xi]);
+        mC = Math.max(mC, b[yi][xi]);
       }
     }
-    return { bins: b, maxC, pts: scatter };
+    return { bins: b, maxC: mC, pts: scatter };
   }, [selectedGames, perspective, heatDivisor, legacyOnly]);
 
   const cellW = SHOT_W / NX;
@@ -153,28 +152,53 @@ export function ShotHeatmap({
 
   return (
     <div className="space-y-3">
-      <div className="flex items-center gap-2">
-        {(
-          [
-            ['both', 'Heat + plot'],
-            ['heat', 'Heatmap'],
-            ['shots', 'Plot'],
-          ] as const
-        ).map(([k, label]) => (
-          <button
-            key={k}
-            type="button"
-            onClick={() => setMode(k)}
-            className={`text-xs font-semibold px-3 py-1 rounded-full border transition-colors ${
-              mode === k
-                ? 'bg-pwhl-navy text-white border-pwhl-navy'
-                : 'bg-pwhl-cream text-pwhl-muted border-pwhl-border hover:border-torrent-teal'
-            }`}
-          >
-            {label}
-          </button>
-        ))}
+      <div className="flex flex-wrap items-center gap-3 text-xs">
+        <div className="flex items-center gap-1 bg-pwhl-cream p-1 rounded-full border border-pwhl-border">
+          {(
+            [
+              ['for', 'For'],
+              ['against', 'Against'],
+            ] as const
+          ).map(([k, label]) => (
+            <button
+              key={k}
+              type="button"
+              onClick={() => setPerspective(k)}
+              className={`font-semibold px-3 py-0.5 rounded-full transition-colors ${
+                perspective === k
+                  ? 'bg-pwhl-navy text-white shadow-sm'
+                  : 'text-pwhl-muted hover:text-pwhl-navy'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+        <div className="h-4 w-px bg-pwhl-border" />
+        <div className="flex items-center gap-1 border border-pwhl-border rounded-full p-1 bg-white">
+          {(
+            [
+              ['both', 'Heat + plot'],
+              ['heat', 'Heatmap'],
+              ['shots', 'Plot'],
+            ] as const
+          ).map(([k, label]) => (
+            <button
+              key={k}
+              type="button"
+              onClick={() => setMode(k)}
+              className={`font-semibold px-3 py-0.5 rounded-full transition-colors ${
+                mode === k
+                  ? 'bg-pwhl-blue text-white shadow-sm'
+                  : 'text-pwhl-muted hover:text-pwhl-navy'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
       </div>
+
       <div className="relative rounded-xl border border-pwhl-border/60 bg-transparent overflow-hidden mx-auto max-w-full">
         <svg
           viewBox={`0 0 ${VB_W} ${VB_H}`}
@@ -200,9 +224,7 @@ export function ShotHeatmap({
             />
           ) : null}
 
-          <g
-            transform={`translate(${centerX} ${centerY}) rotate(${shotRotationDeg}) scale(${scaleX} ${scaleY})`}
-          >
+          <g transform={`translate(${centerX} ${centerY}) rotate(${shotRotationDeg}) scale(${scaleX} ${scaleY})`}>
             {(mode === 'heat' || mode === 'both') && (
               <g filter="url(#heatBlur)">
                 {bins.map((row, yi) =>
@@ -224,13 +246,13 @@ export function ShotHeatmap({
             )}
 
             {(mode === 'shots' || mode === 'both') &&
-              pts.slice(0, 2800).map((p, i) => {
+              pts.slice(0, 3000).map((p, i) => {
                 const cx = p.x - SHOT_W / 2;
                 const cy = p.y - SHOT_H / 2;
                 const r = mode === 'both' ? 1.8 : 2.4;
                 return (
                   <polygon
-                    key={`s-${i}`}
+                    key={`p-${i}`}
                     points={hexPoints(cx, cy, r)}
                     fill={`rgba(0,163,173,${Math.max(0.2, shotOpacity)})`}
                     stroke="rgba(0,0,0,0.78)"
@@ -240,9 +262,24 @@ export function ShotHeatmap({
                 );
               })}
           </g>
-
         </svg>
       </div>
+
+      {mode !== 'shots' && (
+        <div className="flex items-center justify-center gap-4 mt-2 mb-1">
+          <span className="text-[10px] text-pwhl-muted font-bold uppercase tracking-wider">Density scale</span>
+          <div className="flex items-center gap-0.5 border border-pwhl-border p-0.5 rounded-sm bg-white shadow-sm">
+            <div className="w-6 h-1.5 rounded-sm" style={{ backgroundColor: 'rgba(227, 238, 245, 0.45)' }} />
+            <div className="w-6 h-1.5 rounded-sm" style={{ backgroundColor: 'rgba(0, 163, 173, 0.55)' }} />
+            <div className="w-6 h-1.5 rounded-sm" style={{ backgroundColor: 'rgba(29, 79, 145, 0.7)' }} />
+            <div className="w-6 h-1.5 rounded-sm" style={{ backgroundColor: 'rgba(10, 28, 58, 0.9)' }} />
+          </div>
+          <div className="flex gap-8 text-[10px] text-pwhl-muted font-mono">
+            <span>Low</span>
+            <span className="ml-1">High</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

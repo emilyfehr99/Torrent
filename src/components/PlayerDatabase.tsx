@@ -36,6 +36,7 @@ const HUB_SORT_COLS = [
   'Pos',
   'GP',
   'GameScore',
+  'xG',
   'Chances',
   'Shots',
   'Zone Entries',
@@ -126,13 +127,15 @@ function filterShotsByPlayerName(shots: VizShot[] | undefined, playerNorm: strin
   return shots.filter((s) => String(s.player ?? '').trim().toLowerCase() === playerNorm);
 }
 
-function filterShotGamesForPlayer(games: VizShotGame[] | undefined, playerNorm: string): VizShotGame[] {
+function filterShotGamesForPlayer(games: VizShotGame[] | undefined, playerNorm: string, isGoalie: boolean): VizShotGame[] {
   if (!games?.length) return [];
   return games
     .map((g) => ({
       ...g,
       shots_for: filterShotsByPlayerName(g.shots_for, playerNorm),
-      shots_against: filterShotsByPlayerName(g.shots_against, playerNorm),
+      // For goalies, "Against" are all shots by the opponent. 
+      // For skaters, "Against" is usually on-ice (unsupported) so we'll hide or show team-against.
+      shots_against: isGoalie ? (g.shots_against ?? []) : [],
     }))
     .filter((g) => (g.shots_for?.length ?? 0) + (g.shots_against?.length ?? 0) > 0);
 }
@@ -338,10 +341,11 @@ export function PlayerDatabase() {
     const pn = String(selected.Player ?? '')
       .trim()
       .toLowerCase();
-    const fromGames = filterShotGamesForPlayer(data?.viz_shot_games, pn);
+    const isG = posBucket(selected, rosterPos) === 'G';
+    const fromGames = filterShotGamesForPlayer(data?.viz_shot_games, pn, isG);
     if (fromGames.length > 0) return fromGames;
     return [];
-  }, [selected, data?.viz_shot_games]);
+  }, [selected, data?.viz_shot_games, rosterPos]);
 
   const playerHeatFallback = useMemo(() => {
     if (!selected || playerHeatGames.length > 0) return undefined;
@@ -440,9 +444,6 @@ export function PlayerDatabase() {
             <option value="G">Goalies</option>
           </select>
         </div>
-        <p className="text-[11px] text-pwhl-muted max-w-md">
-          Multi-season rows require stacking exports in the warehouse. League xG/Corsi/GSAx columns show N/A until feeds are joined.
-        </p>
       </div>
 
       {!activeSeason.length && !loading ? (
@@ -461,9 +462,6 @@ export function PlayerDatabase() {
 
       <div className="flex flex-col lg:flex-row gap-6 flex-1 min-h-0">
         <div className="lg:w-2/3 bg-pwhl-surface border border-pwhl-border rounded-xl shadow-sm flex flex-col overflow-hidden min-h-[320px]">
-          <div className="px-4 py-2 border-b border-pwhl-border bg-pwhl-cream/80 text-[11px] text-pwhl-muted">
-            Sortable columns — xG, Corsi, goalie metrics show <span className="font-mono">N/A</span> until league API is connected.
-          </div>
           <div className="overflow-x-auto flex-1 p-2">
             {sortableRows.length ? (
               <SortableTable

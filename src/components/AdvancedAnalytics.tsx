@@ -9,35 +9,20 @@ import { TEAM_LOGO_PATH } from '../lib/branding';
 import { formatPctCell } from '../lib/hubUtils';
 import type { HubRow, PeriodRecapRow, SequenceReport } from '../types/hub';
 
-function periodRowsForTable(rows: PeriodRecapRow[]): HubRow[] {
-  const byMetric: Record<string, HubRow> = {};
+function groupedPeriodRows(rows: PeriodRecapRow[], teamName: string): Array<{ period: string; rows: HubRow[] }> {
   const periods = Array.from(new Set(rows.map((r) => r.period))).sort();
-
-  rows.forEach((r) => {
-    if (!byMetric[r.metric]) {
-      byMetric[r.metric] = { Metric: r.metric };
-    }
-    const tVal = r.metric_is_pct ? formatPctCell(r.team) : (r.team ?? '—');
-    const oVal = r.metric_is_pct ? formatPctCell(r.opponent) : (r.opponent ?? '—');
-    byMetric[r.metric][`P${r.period} Team`] = tVal;
-    byMetric[r.metric][`P${r.period} Opp`] = oVal;
-  });
-
-  const results = Object.values(byMetric);
-  if (results.length === 0) return [];
-
-  const orderedKeys = ['Metric'];
-  periods.forEach((p) => {
-    orderedKeys.push(`P${p} Team`);
-    orderedKeys.push(`P${p} Opp`);
-  });
-
-  return results.map((row) => {
-    const orderedRow: HubRow = {};
-    orderedKeys.forEach((k) => {
-      orderedRow[k] = row[k] ?? '—';
-    });
-    return orderedRow;
+  
+  return periods.map(p => {
+    const pRows = rows.filter(r => r.period === p).map(r => ({
+      Metric: r.metric,
+      [teamName]: r.metric_is_pct 
+        ? formatPctCell(r.team, 1) 
+        : (r.team != null ? r.team.toFixed(0) : '—'),
+      Opponent: r.metric_is_pct 
+        ? formatPctCell(r.opponent, 1) 
+        : (r.opponent != null ? r.opponent.toFixed(0) : '—'),
+    }));
+    return { period: p, rows: pRows };
   });
 }
 
@@ -159,7 +144,38 @@ export function AdvancedAnalytics() {
               Core microstats averaged across loaded games, sliced by <code className="bg-pwhl-cream px-1 rounded">half</code> (periods 1–3). Percent metrics shown as
               whole-number percents.
             </p>
-            <HubDataTable rows={periodRowsForTable(period)} emptyHint="No period rows." />
+            <div className="overflow-x-auto border border-pwhl-border max-h-[32rem] overflow-y-auto rounded-lg shadow-sm">
+              <table className="w-full text-left font-serif text-sm">
+                <tbody className="bg-white">
+                  {groupedPeriodRows(period, data?.team_name ?? 'Team').map((group, groupIdx) => (
+                    <React.Fragment key={group.period}>
+                      {/* Period row group header with branding */}
+                      <tr>
+                        <td 
+                          className="px-4 py-2 font-bold text-torrent-teal border-y border-pwhl-border bg-pwhl-surface/50 font-serif text-base"
+                        >
+                          {group.period}
+                        </td>
+                        <td className="px-4 py-2 border-y border-pwhl-border bg-pwhl-surface/50 text-center">
+                          <img src={TEAM_LOGO_PATH} alt="Torrent" className="h-6 w-auto inline-block" />
+                        </td>
+                        <td className="px-4 py-2 border-y border-pwhl-border bg-pwhl-surface/50 text-center">
+                          <img src="/pwhl_logo.jpg" alt="PWHL" className="h-6 w-auto inline-block" />
+                        </td>
+                      </tr>
+                      {/* Metric rows for this period */}
+                      {group.rows.map((row, i) => (
+                        <tr key={i} className="hover:bg-pwhl-surface-hover border-b border-pwhl-border last:border-b-0 text-pwhl-navy">
+                          <td className="px-4 py-2 font-medium">{row.Metric}</td>
+                          <td className="px-4 py-2 text-center font-mono">{row[data?.team_name ?? 'Team']}</td>
+                          <td className="px-4 py-2 text-center font-mono">{row['Opponent']}</td>
+                        </tr>
+                      ))}
+                    </React.Fragment>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         ) : null}
 

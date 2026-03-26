@@ -100,23 +100,23 @@ function zoneLine(label: string, z: Record<string, number>): string {
   const dz = z.dz ?? 0;
   const nz = z.nz ?? 0;
   const oz = z.oz ?? 0;
-  const t = dz + nz + oz;
-  return `  ${label}: DZ ${dz} (${pct(dz, t)}) · NZ ${nz} (${pct(nz, t)}) · OZ ${oz} (${pct(oz, t)})`;
+  const t = Math.max(1, dz + nz + oz);
+  return `  ${label}: DZ ${dz} (${pct(dz, t)}) / NZ ${nz} (${pct(nz, t)}) / OZ ${oz} (${pct(oz, t)})`;
 }
 
 function distLine(label: string, dmap: Record<string, number>, total: number): string {
   const order = ['0-10', '10-20', '20-30', '30-40', '40+'] as const;
-  const parts = order.map((k) => `${k}: ${dmap[k] ?? 0} (${pct(dmap[k] ?? 0, total)})`);
-  return `  ${label} (tracker units from goal): ${parts.join(' · ')}`;
+  const t = Math.max(1, total);
+  const parts = order.map((k) => `${k}: ${pct(dmap[k] ?? 0, t)}`);
+  return `  ${label} (dist %): ${parts.join(' · ')}`;
 }
 
 function laneLine(label: string, l: Record<string, number>): string {
   const left = l.left ?? 0;
   const center = l.center ?? 0;
   const right = l.right ?? 0;
-  const u = l.unknown ?? 0;
-  const t = left + center + right + u;
-  return `  ${label}: left ${left} (${pct(left, t)}) · center ${center} (${pct(center, t)}) · right ${right} (${pct(right, t)})${u ? ` · unknown ${u}` : ''}`;
+  const t = Math.max(1, left + center + right);
+  return `  ${label}: L ${pct(left, t)} / C ${pct(center, t)} / R ${pct(right, t)}`;
 }
 
 const RINK_HEADER = [

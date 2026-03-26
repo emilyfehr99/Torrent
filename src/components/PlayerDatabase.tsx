@@ -34,6 +34,8 @@ function fmtCell(k: string, v: unknown): string {
 const HUB_SORT_COLS = [
   'Player',
   'Pos',
+  'Offense',
+  'Defense',
   'GP',
   'GameScore',
   'xG',
@@ -126,6 +128,34 @@ function estimateQotTeammateGs(
 function filterShotsByPlayerName(shots: VizShot[] | undefined, playerNorm: string): VizShot[] {
   if (!shots?.length) return [];
   return shots.filter((s) => String(s.player ?? '').trim().toLowerCase() === playerNorm);
+}
+
+function calculatePlayerScores(row: HubRow): { offense: number; defense: number } {
+  // Simple weighted score (0-100) based on key microstats.
+  // These aren't perfect benchmarks but provide a relative "Torrent Index".
+  const gp = Math.max(1, Number(row['GP'] ?? 1));
+  const n = (k: string) => Number(row[k] ?? 0) / gp;
+
+  // Offense: Entries, Chances, Assists, Recoveries
+  const offRaw =
+    n('Forecheck Recoveries') * 1.5 +
+    n('Zone Entries') * 1.0 +
+    n('Carries w/ Chances') * 2.0 +
+    n('Primary Shot Assists') * 2.5 +
+    n('Chance Assists') * 2.5;
+  const offScore = Math.min(100, Math.round(offRaw * 15)); // Scaling factor
+
+  // Defense: Retrievals, Exits, Denials, (minus) Botched/Failed
+  const defRaw =
+    n('DZ Retrievals') * 1.5 +
+    n('Retrievals w Exit') * 2.0 +
+    n('Zone Exits') * 1.0 +
+    n('Exits w Possession') * 1.5 -
+    n('Botched Retrievals') * 2.0 -
+    n('Failed Exits') * 1.5;
+  const defScore = Math.max(0, Math.min(100, Math.round(defRaw * 18 + 50))); // Offset and scale
+
+  return { offense: offScore, defense: defScore };
 }
 
 function filterShotGamesForPlayer(games: VizShotGame[] | undefined, playerNorm: string, isGoalie: boolean): VizShotGame[] {
@@ -248,10 +278,8 @@ export function PlayerDatabase() {
 
   const sortableRows: SortableRow[] = useMemo(() => {
     return filtered.map((row) => {
-      const o: SortableRow = {};
-      for (const { key } of sortableCols) {
-        o[key] = row[key] ?? '—';
-      }
+      const { offense, defense } = calculatePlayerScores(row);
+      const o: SortableRow = { ...row, Offense: offense, Defense: defense };
       return o;
     });
   }, [filtered, sortableCols]);
@@ -540,21 +568,29 @@ export function PlayerDatabase() {
 
               {cardTab === 'overview' ? (
                 <>
-                  <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="grid grid-cols-3 gap-3 mb-6">
                     <div className="bg-pwhl-cream rounded-lg p-3 border border-pwhl-border text-center">
-                      <div className="text-[10px] text-pwhl-muted uppercase tracking-wider font-bold mb-1">
-                        Tracking GameScore
+                      <div className="text-[9px] text-pwhl-muted uppercase tracking-wider font-bold mb-1">
+                        Offense
                       </div>
-                      <div className="text-2xl font-mono font-bold text-pwhl-blue">
-                        {fmtCell('GameScore', selected.GameScore)}
+                      <div className="text-xl font-mono font-bold text-torrent-teal">
+                        {calculatePlayerScores(selected).offense}
                       </div>
                     </div>
                     <div className="bg-pwhl-cream rounded-lg p-3 border border-pwhl-border text-center">
-                      <div className="text-[10px] text-pwhl-muted uppercase tracking-wider font-bold mb-1">
-                        Slot chances
+                      <div className="text-[9px] text-pwhl-muted uppercase tracking-wider font-bold mb-1">
+                        Defense
                       </div>
-                      <div className="text-2xl font-mono font-bold text-pwhl-navy">
-                        {fmtCell('Chances', selected.Chances)}
+                      <div className="text-xl font-mono font-bold text-pwhl-blue">
+                        {calculatePlayerScores(selected).defense}
+                      </div>
+                    </div>
+                    <div className="bg-pwhl-cream rounded-lg p-3 border border-pwhl-border text-center">
+                      <div className="text-[9px] text-pwhl-muted uppercase tracking-wider font-bold mb-1">
+                        Trk GS
+                      </div>
+                      <div className="text-xl font-mono font-bold text-pwhl-navy">
+                        {fmtCell('GameScore', selected.GameScore)}
                       </div>
                     </div>
                   </div>

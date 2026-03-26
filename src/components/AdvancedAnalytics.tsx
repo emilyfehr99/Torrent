@@ -49,12 +49,12 @@ function SeqBlock({
           </tr>
         </thead>
         <tbody className="divide-y divide-pwhl-border text-pwhl-navy">
-          {rows.map((r, i) => (
+          {rows.slice(0, 3).map((r, i) => (
             <tr key={i} className="hover:bg-pwhl-surface-hover">
               <td className="px-2 py-1.5 max-w-[min(100vw,42rem)] whitespace-normal break-words">
                 {keySeq === 'sequence' ? r.sequence : r.preceding_action}
               </td>
-              <td className="px-2 py-1.5 text-right">{r.count ?? '—'}</td>
+              <td className="px-2 py-1.5 text-right font-mono">{r.count ?? '—'}</td>
             </tr>
           ))}
         </tbody>

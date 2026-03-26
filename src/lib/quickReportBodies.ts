@@ -26,11 +26,9 @@ function formatTable(headers: string[], rows: any[][]): string {
 function buildTorontoBlueprint(data: HubPayload | undefined): string {
   const team = data?.team_name ?? 'Seattle Torrent';
   const out: string[] = [];
-  out.push('OPPONENT SCOUTING BLUEPRINT: TORONTO SCEPTRES');
-  out.push('=' .repeat(45));
-  out.push(`Team: ${team} · Hub Source Data`);
-  out.push('');
-  out.push('Aggregated rink metrics for games where the opponent is Toronto.');
+  out.push('OPPONENT SCOUTING BLUEPRINT: TORONTO');
+  out.push('=' .repeat(36));
+  out.push(`Team: ${team} · Tracked vs Toronto`);
   out.push('');
   
   const rink = rinkForScope(data?.rink_report, data?.rink_report_by_game, { opponent: 'Toronto' });
@@ -69,9 +67,14 @@ function buildTransitionDefense(data: HubPayload | undefined): string {
     out.push('');
   }
   
-  if (data?.defense_season?.length) {
+  const defSource = data?.defense_season?.length ? data.defense_season : (data?.player_season ?? []);
+  if (defSource.length) {
     out.push('--- TOP DEFENSIVE CONTRIBUTORS ---');
-    const rows = data.defense_season.slice(0, 15).map(r => [r.Player, r.Pos, r['DZ Retrievals'], r['Retrievals w Exit']]);
+    const rows = defSource
+      .filter(r => Number(r['DZ Retrievals']) > 0)
+      .sort((a, b) => Number(b['DZ Retrievals']) - Number(a['DZ Retrievals']))
+      .slice(0, 8)
+      .map(r => [r.Player, r.Pos, r['DZ Retrievals'], r['Retrievals w Exit']]);
     out.push(formatTable(['Player', 'Pos', 'DZ Retr', 'Retr w/ Exit'], rows));
     out.push('');
   }
@@ -103,7 +106,7 @@ function buildMidseason(data: HubPayload | undefined): string {
   
   if (data?.sequence_report?.goal_sequences_len3?.length) {
     out.push('--- TOP GOAL SEQUENCES (LEN-3) ---');
-    const rows = data.sequence_report.goal_sequences_len3.slice(0, 10).map(s => [s.sequence, s.count]);
+    const rows = data.sequence_report.goal_sequences_len3.slice(0, 3).map(s => [s.sequence, s.count]);
     out.push(formatTable(['Sequence Chain', 'Count'], rows));
   }
   
@@ -169,13 +172,13 @@ export function buildAdvancedAnalyticsPdfBody(data: HubPayload | undefined): str
     const add = (label: string, rows: { sequence?: string; preceding_action?: string; count?: number }[] | undefined) => {
       lines.push(`  ${label}:`);
       if (!rows?.length) lines.push('    (empty)');
-      else rows.slice(0, 12).forEach((x) => lines.push(`    ${x.sequence ?? x.preceding_action ?? ''} · ${x.count ?? 0}`));
+      else rows.slice(0, 3).forEach((x) => lines.push(`    ${x.sequence ?? x.preceding_action ?? ''} · ${x.count ?? 0}`));
     };
-    add('Len-2', sr.goal_sequences_len2);
-    add('Len-3', sr.goal_sequences_len3);
-    add('Len-3 (team)', sr.goal_sequences_len3_for_team);
-    add('Preceding (all)', sr.preceding_goal_all);
-    add('Preceding (team)', sr.preceding_goal_for_team);
+    add('3-Action Chains', sr.goal_sequences_len3);
+    add('3-Action Chains (team)', sr.goal_sequences_len3_for_team);
+    add('2-Action Chains', sr.goal_sequences_len2);
+    add('Preceding Actions (all)', sr.preceding_goal_all);
+    add('Preceding Actions (team)', sr.preceding_goal_for_team);
   }
   return lines.join('\n');
 }

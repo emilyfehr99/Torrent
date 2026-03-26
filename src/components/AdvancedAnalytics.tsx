@@ -10,12 +10,35 @@ import { formatPctCell } from '../lib/hubUtils';
 import type { HubRow, PeriodRecapRow, SequenceReport } from '../types/hub';
 
 function periodRowsForTable(rows: PeriodRecapRow[]): HubRow[] {
-  return rows.map((r) => ({
-    period: r.period,
-    metric: r.metric,
-    team: r.metric_is_pct ? formatPctCell(r.team) : r.team ?? '—',
-    opponent: r.metric_is_pct ? formatPctCell(r.opponent) : r.opponent ?? '—',
-  }));
+  const byMetric: Record<string, HubRow> = {};
+  const periods = Array.from(new Set(rows.map((r) => r.period))).sort();
+
+  rows.forEach((r) => {
+    if (!byMetric[r.metric]) {
+      byMetric[r.metric] = { Metric: r.metric };
+    }
+    const tVal = r.metric_is_pct ? formatPctCell(r.team) : (r.team ?? '—');
+    const oVal = r.metric_is_pct ? formatPctCell(r.opponent) : (r.opponent ?? '—');
+    byMetric[r.metric][`P${r.period} Team`] = tVal;
+    byMetric[r.metric][`P${r.period} Opp`] = oVal;
+  });
+
+  const results = Object.values(byMetric);
+  if (results.length === 0) return [];
+
+  const orderedKeys = ['Metric'];
+  periods.forEach((p) => {
+    orderedKeys.push(`P${p} Team`);
+    orderedKeys.push(`P${p} Opp`);
+  });
+
+  return results.map((row) => {
+    const orderedRow: HubRow = {};
+    orderedKeys.forEach((k) => {
+      orderedRow[k] = row[k] ?? '—';
+    });
+    return orderedRow;
+  });
 }
 
 function SeqBlock({

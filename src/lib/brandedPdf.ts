@@ -33,7 +33,8 @@ export async function buildBrandedPdf(opts: {
   subtitle?: string;
   body: string;
   filename: string;
-}): Promise<void> {
+  output?: 'save' | 'bloburl';
+}): Promise<string | void> {
   const doc = new jsPDF({ unit: 'mm', format: 'letter' });
   const pageW = doc.internal.pageSize.getWidth();
   const pageH = doc.internal.pageSize.getHeight();
@@ -122,5 +123,8 @@ export async function buildBrandedPdf(opts: {
   }
   footer();
 
+  if (opts.output === 'bloburl') {
+    return doc.output('bloburl').toString();
+  }
   doc.save(opts.filename);
 }

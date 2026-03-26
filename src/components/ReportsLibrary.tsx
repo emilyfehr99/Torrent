@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Activity, Download, FileText, Loader2, Map, RefreshCw, Users } from 'lucide-react';
+import { Activity, Download, Eye, FileText, Loader2, Map, RefreshCw, Users } from 'lucide-react';
 import { useHubData } from '../context/HubDataContext';
 import { buildBrandedPdf } from '../lib/brandedPdf';
 import { buildQuickReportBody, type QuickReportVariant } from '../lib/quickReportBodies';
@@ -52,11 +52,14 @@ export function ReportsLibrary() {
   const lines = data?.line_combos_season ?? [];
   const pairs = data?.pairings_season ?? [];
 
-  const runQuickReport = async (variant: QuickReportVariant) => {
+  const runQuickReport = async (variant: QuickReportVariant, output: 'save' | 'bloburl' = 'save') => {
     setQuickBusy(variant);
     try {
       const { title, subtitle, body, filename } = buildQuickReportBody(variant, data);
-      await buildBrandedPdf({ title, subtitle, body, filename });
+      const url = await buildBrandedPdf({ title, subtitle, body, filename, output });
+      if (output === 'bloburl' && url) {
+        window.open(url, '_blank');
+      }
     } catch (e) {
       console.error(e);
     } finally {
@@ -158,15 +161,26 @@ export function ReportsLibrary() {
                     </div>
                   </div>
                 </div>
-                <button
-                  type="button"
-                  disabled={busy || loading}
-                  onClick={() => void runQuickReport(report.id)}
-                  className="mt-auto w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-torrent-navy text-torrent-cream text-sm font-semibold hover:opacity-95 disabled:opacity-45 transition-opacity"
-                >
-                  {busy ? <Loader2 size={16} className="animate-spin" /> : <Download size={16} />}
-                  {busy ? 'Building…' : 'Download PDF'}
-                </button>
+                <div className="mt-auto grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    disabled={busy || loading}
+                    onClick={() => void runQuickReport(report.id, 'save')}
+                    className="flex items-center justify-center gap-2 py-2 rounded-lg bg-torrent-navy text-torrent-cream text-[11px] font-bold hover:opacity-90 disabled:opacity-45 transition-opacity"
+                  >
+                    {busy ? <Loader2 size={12} className="animate-spin" /> : <Download size={12} />}
+                    Download
+                  </button>
+                  <button
+                    type="button"
+                    disabled={busy || loading}
+                    onClick={() => void runQuickReport(report.id, 'bloburl')}
+                    className="flex items-center justify-center gap-2 py-2 rounded-lg bg-pwhl-surface border border-pwhl-border text-pwhl-navy text-[11px] font-bold hover:bg-pwhl-surface-hover disabled:opacity-45 transition-opacity"
+                  >
+                    {busy ? <Loader2 size={12} className="animate-spin" /> : <Eye size={12} />}
+                    Preview
+                  </button>
+                </div>
               </div>
             );
           })}

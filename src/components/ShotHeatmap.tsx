@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from 'react';
+import { Download, Loader2, Eye } from 'lucide-react';
 import type { VizShot, VizShotGame } from '../types/hub';
+import { buildBrandedPdf } from '../lib/brandedPdf';
 
 export type ShotPoint = { x?: number | null; y?: number | null; player?: string | null };
 
@@ -73,10 +75,21 @@ export function ShotHeatmap({
   fallbackShotsFor?: VizShot[];
   initialPerspective?: Perspective;
 }) {
-  const gameId = '__season__';
   const [mode, setMode] = useState<ViewMode>('both');
   const [perspective, setPerspective] = useState<Perspective>(initialPerspective);
+  const [selectedPlayer, setSelectedPlayer] = useState<string>('all');
 
+  const allPlayers = useMemo(() => {
+    const pSet = new Set<string>();
+    for (const g of games) {
+      g.shots_for?.forEach((s) => s.player && pSet.add(s.player));
+      g.shots_against?.forEach((s) => s.player && pSet.add(s.player));
+    }
+    fallbackShotsFor?.forEach((s) => s.player && pSet.add(s.player));
+    return Array.from(pSet).sort();
+  }, [games, fallbackShotsFor]);
+
+  const gameId = '__season__';
   const rinkImage = DEFAULT_RINK_IMAGE;
   const shotOpacity = DEFAULT_CALIBRATION.opacity;
   const shotScale = DEFAULT_CALIBRATION.scale;
@@ -123,7 +136,11 @@ export function ShotHeatmap({
 
     for (const g of selectedGames) {
       const list = legacyOnly ? (g.shots_for ?? []) : shotsForGame(g, perspective);
-      for (const s of list) {
+      const filtered = selectedPlayer === 'all' 
+        ? list 
+        : list.filter(s => s.player === selectedPlayer);
+
+      for (const s of filtered) {
         const xy = toFiniteXY(s);
         if (!xy) continue;
         const p = toShotImageXY(xy.x, xy.y);
@@ -147,57 +164,73 @@ export function ShotHeatmap({
       }
     }
     return { bins: b, maxC: mC, pts: scatter };
-  }, [selectedGames, perspective, heatDivisor, legacyOnly]);
+  }, [selectedGames, perspective, heatDivisor, legacyOnly, selectedPlayer]);
 
   const cellW = SHOT_W / NX;
   const cellH = SHOT_H / NY;
 
   return (
-    <div className="space-y-3">
-      <div className="flex flex-wrap items-center gap-3 text-xs">
-        <div className="flex items-center gap-1 bg-pwhl-cream p-1 rounded-full border border-pwhl-border">
-          {(
-            [
-              ['for', 'For'],
-              ['against', 'Against'],
-            ] as const
-          ).map(([k, label]) => (
-            <button
-              key={k}
-              type="button"
-              onClick={() => setPerspective(k)}
-              className={`font-semibold px-3 py-0.5 rounded-full transition-colors ${
-                perspective === k
-                  ? 'bg-pwhl-navy text-white shadow-sm'
-                  : 'text-pwhl-muted hover:text-pwhl-navy'
-              }`}
-            >
-              {label}
-            </button>
-          ))}
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-wrap items-center gap-3 text-xs">
+          <div className="flex items-center gap-1 bg-pwhl-cream p-1 rounded-full border border-pwhl-border shadow-inner">
+            {(
+              [
+                ['for', 'For'],
+                ['against', 'Against'],
+              ] as const
+            ).map(([k, label]) => (
+              <button
+                key={k}
+                type="button"
+                onClick={() => setPerspective(k)}
+                className={`font-semibold px-4 py-1 rounded-full transition-all ${
+                  perspective === k
+                    ? 'bg-pwhl-navy text-white shadow-md'
+                    : 'text-pwhl-muted hover:text-pwhl-navy'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-1 border border-pwhl-border rounded-full p-1 bg-white shadow-inner">
+            {(
+              [
+                ['both', 'Both'],
+                ['heat', 'Heat'],
+                ['shots', 'Plot'],
+              ] as const
+            ).map(([k, label]) => (
+              <button
+                key={k}
+                type="button"
+                onClick={() => setMode(k)}
+                className={`font-semibold px-3 py-1 rounded-full transition-all ${
+                  mode === k
+                    ? 'bg-pwhl-blue text-white shadow-sm'
+                    : 'text-pwhl-muted hover:text-pwhl-navy'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         </div>
-        <div className="h-4 w-px bg-pwhl-border" />
-        <div className="flex items-center gap-1 border border-pwhl-border rounded-full p-1 bg-white">
-          {(
-            [
-              ['both', 'Heat + plot'],
-              ['heat', 'Heatmap'],
-              ['shots', 'Plot'],
-            ] as const
-          ).map(([k, label]) => (
-            <button
-              key={k}
-              type="button"
-              onClick={() => setMode(k)}
-              className={`font-semibold px-3 py-0.5 rounded-full transition-colors ${
-                mode === k
-                  ? 'bg-pwhl-blue text-white shadow-sm'
-                  : 'text-pwhl-muted hover:text-pwhl-navy'
-              }`}
-            >
-              {label}
-            </button>
-          ))}
+
+        <div className="flex items-center gap-2">
+          <label className="text-[10px] font-bold uppercase tracking-wider text-pwhl-muted">Filter</label>
+          <select
+            value={selectedPlayer}
+            onChange={(e) => setSelectedPlayer(e.target.value)}
+            className="text-xs bg-pwhl-cream border border-pwhl-border rounded-lg px-3 py-1.5 focus:border-torrent-teal outline-none font-medium min-w-[140px]"
+          >
+            <option value="all">All players</option>
+            {allPlayers.map(p => (
+              <option key={p} value={p}>{p}</option>
+            ))}
+          </select>
         </div>
       </div>
 
@@ -267,8 +300,8 @@ export function ShotHeatmap({
         </svg>
       </div>
 
-      {mode !== 'shots' && (
-        <div className="flex items-center justify-center gap-4 mt-2 mb-1">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-2">
+        <div className="flex items-center gap-4">
           <span className="text-[10px] text-pwhl-muted font-bold uppercase tracking-wider">Density scale</span>
           <div className="flex items-center gap-0.5 border border-pwhl-border p-0.5 rounded-sm bg-white shadow-sm">
             <div className="w-6 h-1.5 rounded-sm" style={{ backgroundColor: 'rgba(227, 238, 245, 0.45)' }} />
@@ -276,12 +309,57 @@ export function ShotHeatmap({
             <div className="w-6 h-1.5 rounded-sm" style={{ backgroundColor: 'rgba(29, 79, 145, 0.7)' }} />
             <div className="w-6 h-1.5 rounded-sm" style={{ backgroundColor: 'rgba(10, 28, 58, 0.9)' }} />
           </div>
-          <div className="flex gap-8 text-[10px] text-pwhl-muted font-mono">
-            <span>Low</span>
-            <span className="ml-1">High</span>
-          </div>
         </div>
-      )}
+
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => handleExport('save')}
+            className="flex items-center gap-2 px-3 py-1.5 bg-pwhl-navy text-white text-[11px] font-bold rounded-lg hover:opacity-90 shadow-sm transition-all"
+          >
+            <Download size={14} />
+            Export Data PDF
+          </button>
+          <button
+            type="button"
+            onClick={() => handleExport('bloburl')}
+            className="flex items-center gap-2 px-3 py-1.5 bg-pwhl-surface border border-pwhl-border text-pwhl-navy text-[11px] font-bold rounded-lg hover:bg-pwhl-surface-hover shadow-sm transition-all"
+          >
+            <Eye size={14} />
+            Preview
+          </button>
+        </div>
+      </div>
     </div>
   );
+
+  async function handleExport(output: 'save' | 'bloburl') {
+    const title = `Shot Analysis: ${selectedPlayer === 'all' ? 'Team' : selectedPlayer}`;
+    const subtitle = `Perspective: ${perspective === 'for' ? 'Offensive' : 'Defensive (Against)'}`;
+    
+    // Simple summary for the PDF
+    const summary = [
+      `PLAYER: ${selectedPlayer === 'all' ? 'ENTIRE TEAM' : selectedPlayer}`,
+      `REPORT: ${perspective === 'for' ? 'Shots Generated (Offensive)' : 'Shots Faced (On-Ice/Goalie)'}`,
+      `DATE: ${new Date().toLocaleDateString()}`,
+      '',
+      '--- METRICS ---',
+      `Volume: ${pts.length} shots recorded`,
+      `Density Cluster x: [${(cellW * NX / 2).toFixed(0)}] units`,
+      `Density Cluster y: [${(cellH * NY / 2).toFixed(0)}] units`,
+      '',
+      '--- POSITIONING SUMMARY ---',
+      selectedPlayer === 'all' 
+        ? 'Team-wide shot distribution across all active periods.'
+        : `Primary shooting/defensive zones scoped to ${selectedPlayer}'s on-ice presence.`,
+      '',
+      'This report summarizes the spatial data visualized in the Seattle Torrent Analytics Hub.',
+    ].join('\n');
+
+    const filename = `Torrent_ShotReport_${selectedPlayer.replace(/\s+/g, '_')}.pdf`;
+    const url = await buildBrandedPdf({ title, subtitle, body: summary, filename, output });
+    if (output === 'bloburl' && url) {
+      window.open(url, '_blank');
+    }
+  }
 }

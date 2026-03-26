@@ -1,79 +1,50 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import { Check, Shield, Users, X, Building2 } from 'lucide-react';
+import { Shield, Users, Check, X } from 'lucide-react';
 import { PWHL_STANDINGS_2526 } from '../data/pwhlStandings2526';
 import { projectedPoints30, mockSosScore } from '../lib/leagueKpis';
 import { useHubData } from '../context/HubDataContext';
-import { averageDisplay, formatPctCell } from '../lib/hubUtils';
+import { averageDisplay, formatPctCell, numericFromAverage } from '../lib/hubUtils';
 import { HubDataTable } from './HubDataTable';
-
-function formatPgCell(col: string, val: unknown): string {
-  if (val == null || val === '') return '—';
-  if (col.includes('%')) return formatPctCell(val);
-  const n = Number(val);
-  if (Number.isFinite(n) && !['opponent', 'date', 'final_score'].includes(col)) {
-    if (Math.abs(n - Math.round(n)) < 1e-9) return String(Math.round(n));
-  }
-  return String(val);
-}
-
-function WinCell({ val }: { val: unknown }) {
-  if (val === '' || val === null || val === undefined) {
-    return <span className="text-pwhl-muted">—</span>;
-  }
-  const w = Number(val);
-  if (Number.isFinite(w)) {
-    if (w >= 1) {
-      return <Check className="inline text-emerald-600" size={18} strokeWidth={2.5} aria-label="Win" />;
-    }
-    if (w <= 0) {
-      return <X className="inline text-red-600/80" size={18} strokeWidth={2.5} aria-label="Loss" />;
-    }
-  }
-  return <span>{String(val)}</span>;
-}
 
 export function TeamAnalytics() {
   const { data, loading, error } = useHubData();
   const [defIdx, setDefIdx] = useState(0);
-  const [unitSearch, setUnitSearch] = useState('');
   const hubTeam = data?.team_name ?? 'Seattle Torrent';
   const standingRow = PWHL_STANDINGS_2526.find((r) => r.team === hubTeam);
 
-  const pgCols = useMemo(() => {
-    const rows = data?.per_game_metrics ?? [];
-    if (!rows.length) return [] as string[];
-    const preferred = ['date', 'opponent', 'result', 'Goals For', 'Goals Against'];
-    const union = new Set<string>();
-    for (const r of rows) Object.keys(r).forEach((k) => union.add(k));
-    const hideTeamOnly = new Set(['NZ shift %', 'DZ shift %', 'OZ shift %']);
-    const rest = [...union]
-      .filter((k) => !preferred.includes(k) && !hideTeamOnly.has(k))
-      .sort((a, b) => a.localeCompare(b));
-    return [...preferred.filter((k) => union.has(k)), ...rest];
-  }, [data?.per_game_metrics]);
-
-  const barData = useMemo(() => {
-    if (!data?.per_game_metrics?.length) return [];
-    
-    return data.per_game_metrics.map((r, i) => {
-      const opp = String(r.opponent || `G${i + 1}`);
-      const gf = Number(String(r['final_score'] ?? '0–0').split(/[–-]/)[0]) || 0;
-      const xg = Number(r['Expected Goals (xG)'] ?? 0);
-
-      return {
-        name: opp.slice(0, 8),
-        xg: xg,
-        gf: gf,
-      };
-    });
-  }, [data]);
-
-  if (error) {
-    return <p className="text-pwhl-accent text-sm">{error}</p>;
-  }
-
   const av = data?.averages ?? [];
+
+  const efficiencyScores = useMemo(() => {
+    if (!av.length) return { offense: 0, defense: 0 };
+    
+    const getVal = (m: string) => numericFromAverage(av, m) ?? 0;
+
+    // Offense Component (0-100 relative to baseline expectations)
+    const gf = getVal('Goals For');
+    const xg = getVal('Expected Goals (xG)');
+    const chances = getVal('Chances');
+    const carryIn = getVal('Carry-in %');
+    
+    // Weighted formula
+    const offRaw = (gf * 10) + (xg * 8) + (chances * 0.5) + (carryIn * 0.4);
+    const offense = Math.min(100, Math.max(0, (offRaw / 1.1))); 
+
+    // Defense Component (0-100, higher is better defense)
+    const ga = getVal('Goals Against');
+    const xga = getVal('Expected Goals Against');
+    const sa = getVal('Shots Against (on-ice)');
+    const dzRet = getVal('DZ Retrieval %');
+
+    // Inverse metrics: lower is better for defense score
+    const gaScore = Math.max(0, 40 - (ga * 10));
+    const xgaScore = Math.max(0, 40 - (xga * 10));
+    const saScore = Math.max(0, 20 - (sa * 0.2));
+    const defRaw = gaScore + xgaScore + saScore + (dzRet * 0.15); 
+    const defense = Math.min(100, Math.max(0, defRaw));
+
+    return { offense: Math.round(offense), defense: Math.round(defense) };
+  }, [av]);
+
   const seasonAvgRows = useMemo(() => {
     const hideTeamOnly = new Set(['NZ shift %', 'DZ shift %', 'OZ shift %']);
     return av
@@ -83,6 +54,7 @@ export function TeamAnalytics() {
       }))
       .filter((r) => r.metric && !hideTeamOnly.has(r.metric));
   }, [av]);
+
   const fallbackLines = useMemo(() => {
     const players = [...(data?.player_season ?? [])]
       .sort((a, b) => Number(b['Game Score'] ?? 0) - Number(a['Game Score'] ?? 0))
@@ -94,6 +66,7 @@ export function TeamAnalytics() {
     }
     return out;
   }, [data?.player_season]);
+
   const fallbackPairs = useMemo(() => {
     const players = [...(data?.player_season ?? [])]
       .sort((a, b) => Number(b['Game Score'] ?? 0) - Number(a['Game Score'] ?? 0))
@@ -105,6 +78,11 @@ export function TeamAnalytics() {
     }
     return out;
   }, [data?.player_season]);
+
+  if (error) {
+    return <p className="text-pwhl-accent text-sm">{error}</p>;
+  }
+
   const defGame = data?.defense_by_game?.[defIdx];
 
   return (
@@ -119,10 +97,40 @@ export function TeamAnalytics() {
         <div>
           <h2 className="text-3xl font-serif font-bold text-pwhl-navy">Team analytics</h2>
           <p className="text-pwhl-muted text-sm mt-1">
-            Team-only view from Seattle hub exports.
+            Team performance index and season averages.
           </p>
         </div>
         {loading && <span className="text-xs font-mono text-pwhl-muted">Updating…</span>}
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 mt-2">
+        <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm flex items-center gap-6">
+          <div className="w-20 h-20 rounded-full border-4 border-torrent-teal/20 flex items-center justify-center relative">
+            <svg className="absolute inset-0 -rotate-90" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" strokeWidth="8" className="text-pwhl-cream" />
+              <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" strokeWidth="8" strokeDasharray="289" strokeDashoffset={289 * (1 - efficiencyScores.offense / 100)} className="text-torrent-teal transition-all duration-1000" />
+            </svg>
+            <span className="text-2xl font-serif font-bold text-pwhl-navy">{efficiencyScores.offense}</span>
+          </div>
+          <div>
+            <h3 className="font-serif font-bold text-lg text-pwhl-navy">Offense Score</h3>
+            <p className="text-[11px] text-pwhl-muted max-w-[14rem]">Weighted index of GF, xG, scoring chances, and carry-in efficiency.</p>
+          </div>
+        </div>
+
+        <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm flex items-center gap-6 text-right sm:text-left">
+          <div className="w-20 h-20 rounded-full border-4 border-pwhl-blue/20 flex items-center justify-center relative order-last sm:order-first">
+            <svg className="absolute inset-x-0 inset-y-0 -rotate-90" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" strokeWidth="8" className="text-pwhl-cream" />
+              <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" strokeWidth="8" strokeDasharray="289" strokeDashoffset={289 * (1 - efficiencyScores.defense / 100)} className="text-pwhl-blue transition-all duration-1000" />
+            </svg>
+            <span className="text-2xl font-serif font-bold text-pwhl-navy">{efficiencyScores.defense}</span>
+          </div>
+          <div>
+            <h3 className="font-serif font-bold text-lg text-pwhl-navy">Defense Score</h3>
+            <p className="text-[11px] text-pwhl-muted max-w-[14rem]">Weighted index of GA, xGA, shots against (on-ice), and DZ retrievals.</p>
+          </div>
+        </div>
       </div>
 
       <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-5 shadow-sm mb-8 flex flex-col lg:flex-row lg:items-end gap-4">
@@ -131,7 +139,6 @@ export function TeamAnalytics() {
           <div className="w-full max-w-md bg-pwhl-cream border border-pwhl-border text-sm rounded-lg px-3 py-2 font-semibold text-pwhl-navy">
             {hubTeam}
           </div>
-          <p className="text-[11px] text-pwhl-muted mt-2">Only Seattle data is loaded in this build.</p>
         </div>
         {standingRow ? (
           <div className="flex flex-wrap gap-4 text-sm font-mono text-pwhl-navy">
@@ -141,8 +148,7 @@ export function TeamAnalytics() {
             </div>
             <div className="rounded-lg border border-pwhl-border bg-pwhl-cream px-3 py-2">
               <span className="text-[10px] text-pwhl-muted uppercase block">GD</span>
-              {standingRow.gd > 0 ? '+' : ''}
-              {standingRow.gd}
+              {standingRow.gd > 0 ? '+' : ''}{standingRow.gd}
             </div>
             <div className="rounded-lg border border-pwhl-border bg-pwhl-cream px-3 py-2">
               <span className="text-[10px] text-pwhl-muted uppercase block">Proj. 30 GP</span>
@@ -155,37 +161,8 @@ export function TeamAnalytics() {
           </div>
         ) : null}
       </div>
-      <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm">
-          <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-4">Offense vs Results (xG vs Actual)</h3>
-          <div className="h-64 w-full">
-            {barData.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={barData} margin={{ top: 20, right: 10, left: -20, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#D8D2C4" vertical={false} />
-                  <XAxis dataKey="name" stroke="#5C6B89" fontSize={11} tickLine={false} axisLine={false} />
-                  <YAxis stroke="#5C6B89" fontSize={12} tickLine={false} axisLine={false} />
-                  <Tooltip
-                    cursor={{ fill: '#F4F1EA' }}
-                    contentStyle={{
-                      backgroundColor: '#FFFFFF',
-                      borderColor: '#D8D2C4',
-                      borderRadius: '8px',
-                      color: '#0A1C3A',
-                    }}
-                  />
-                  <Legend wrapperStyle={{ fontSize: '12px' }} />
-                  <Bar dataKey="xg" name="Expected Goals (xG)" fill="#00A3AD" radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="gf" name="Goals Scored" fill="#1D4F91" radius={[4, 4, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
-            ) : (
-              <div className="flex h-full items-center justify-center text-pwhl-muted text-sm">No games loaded.</div>
-            )}
-          </div>
-        </div>
 
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <Shield className="text-torrent-teal" size={22} />
@@ -200,11 +177,11 @@ export function TeamAnalytics() {
             ))}
           </ul>
         </div>
-      </div>
 
-      <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm mb-6">
-        <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-4">Per-game metrics</h3>
-        <HubDataTable rows={data?.per_game_metrics ?? []} />
+        <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm mb-6">
+          <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-4">Per-game metrics</h3>
+          <HubDataTable rows={data?.per_game_metrics ?? []} />
+        </div>
       </div>
 
       <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm mb-6">
@@ -212,10 +189,7 @@ export function TeamAnalytics() {
           <Users className="text-torrent-teal" size={22} />
           <h3 className="font-serif font-bold text-lg text-pwhl-navy">Forward lines &amp; D pairings (season)</h3>
         </div>
-        <p className="text-xs text-pwhl-muted mb-4 max-w-3xl">
-          From play-by-play order (same roster-based logic as your Line:Pairing scripts).
-        </p>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4">
           <div>
             <h4 className="text-xs font-black uppercase tracking-widest text-pwhl-muted mb-3">Forward trios</h4>
             <HubDataTable
@@ -255,18 +229,10 @@ export function TeamAnalytics() {
             ))}
           </select>
           <HubDataTable rows={defGame?.table ?? []} />
-
-          {data?.win_correlations && data.win_correlations.length > 0 && (
-            <div className="mt-8">
-              <h4 className="font-serif font-bold text-pwhl-navy mb-2">Metric ↔ win (Pearson)</h4>
-              <HubDataTable rows={data.win_correlations} />
-            </div>
-          )}
         </div>
         ) : null}
       </div>
       ) : null}
-      </>
     </div>
   );
 }

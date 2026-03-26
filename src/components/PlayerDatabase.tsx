@@ -965,9 +965,11 @@ export function PlayerDatabase() {
                     </p>
                   ) : (
                     <ShotHeatmap
+                      key={selected.Player}
                       games={playerHeatGames}
                       nGames={data?.n_games ?? 0}
                       fallbackShotsFor={playerHeatFallback}
+                      initialPerspective={posBucket(selected, rosterPos) === 'G' ? 'against' : 'for'}
                     />
                   )}
                 </div>

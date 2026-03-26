@@ -66,14 +66,16 @@ export function ShotHeatmap({
   games,
   nGames = 0,
   fallbackShotsFor,
+  initialPerspective = 'for',
 }: {
   games: VizShotGame[];
   nGames?: number;
   fallbackShotsFor?: VizShot[];
+  initialPerspective?: Perspective;
 }) {
   const gameId = '__season__';
   const [mode, setMode] = useState<ViewMode>('both');
-  const [perspective, setPerspective] = useState<Perspective>('for');
+  const [perspective, setPerspective] = useState<Perspective>(initialPerspective);
 
   const rinkImage = DEFAULT_RINK_IMAGE;
   const shotOpacity = DEFAULT_CALIBRATION.opacity;

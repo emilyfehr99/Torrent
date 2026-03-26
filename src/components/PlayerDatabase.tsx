@@ -381,8 +381,7 @@ export function PlayerDatabase() {
         <div>
           <h2 className="text-3xl font-serif font-bold text-pwhl-navy">Player database</h2>
           <p className="text-pwhl-muted text-sm mt-1 max-w-2xl">
-            {data?.team_name ?? 'Team'} · Tracking Game Score (per 60 available as rate columns when in CSV) + transition layer.{' '}
-            <span className="text-pwhl-blue">Glossary → Game Score</span> (open <strong>Methodology</strong> in the sidebar — section &quot;Game Score (tracking)&quot;)
+            Season-to-date microstats tracking and player comparisons.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -965,7 +964,6 @@ export function PlayerDatabase() {
                     </p>
                   ) : (
                     <ShotHeatmap
-                      key={selected.Player}
                       games={playerHeatGames}
                       nGames={data?.n_games ?? 0}
                       fallbackShotsFor={playerHeatFallback}

@@ -12,67 +12,70 @@ function slug(s: string): string {
   return s.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_-]/g, '');
 }
 
-function formatRowsCompact(rows: HubRow[] | undefined, max: number): string {
-  if (!rows?.length) return '  (no rows in hub)';
-  const lines: string[] = [];
-  for (const r of rows.slice(0, max)) {
-    lines.push(
-      '  ' +
-        Object.entries(r)
-          .map(([k, v]) => `${k}: ${v ?? '—'}`)
-          .join(' · '),
-    );
-  }
-  if (rows.length > max) lines.push(`  … ${rows.length - max} more rows`);
-  return lines.join('\n');
+function formatTable(headers: string[], rows: any[][]): string {
+  const colWidths = headers.map((h, i) => Math.max(h.length, ...rows.map(r => String(r[i] ?? '').length)));
+  const pad = (s: string, w: number, right = false) => right ? s.padStart(w) : s.padEnd(w);
+  
+  const hLine = headers.map((h, i) => pad(h, colWidths[i])).join(' | ');
+  const separator = colWidths.map(w => '-'.repeat(w)).join('-|-');
+  const body = rows.map(r => r.map((cell, i) => pad(String(cell ?? '—'), colWidths[i], typeof cell === 'number')).join(' | '));
+  
+  return [hLine, separator, ...body].join('\n');
 }
 
 function buildTorontoBlueprint(data: HubPayload | undefined): string {
   const team = data?.team_name ?? 'Seattle Torrent';
   const out: string[] = [];
-  out.push('OPPONENT FOCUS: TORONTO (SCEPTRES)');
+  out.push('OPPONENT SCOUTING BLUEPRINT: TORONTO SCEPTRES');
+  out.push('=' .repeat(45));
+  out.push(`Team: ${team} · Hub Source Data`);
   out.push('');
-  out.push(
-    `Scenario-style brief for ${team}. Aggregates rink metrics for games where the opponent field matches "Toronto".`,
-  );
+  out.push('Aggregated rink metrics for games where the opponent is Toronto.');
   out.push('');
+  
   const rink = rinkForScope(data?.rink_report, data?.rink_report_by_game, { opponent: 'Toronto' });
-  const scopeNote =
-    'Scope: games vs Toronto (substring match on opponent name in hub per-game metadata).';
+  const scopeNote = 'Scope: All season games vs Toronto.';
+  
+  out.push('--- SHOT & GOAL LOCATIONS ---');
   out.push(formatShotsGoalsBlock(team, rink, scopeNote));
   out.push('');
+  out.push('--- ZONE ENTRY EFFICIENCY ---');
   out.push(formatEntriesBlock(team, rink, scopeNote));
   out.push('');
+  
   const av = formatAveragesSnapshot(data?.averages);
   if (av) {
+    out.push('--- TEAM SEASON AVERAGES (REF) ---');
     out.push(av);
     out.push('');
   }
-  out.push('Use Custom report in Reports library to adjust focus and section scope.');
+  
+  out.push('Strategic Note: Use the Rink Report in for specific date-range filtering.');
   return out.join('\n');
 }
 
 function buildTransitionDefense(data: HubPayload | undefined): string {
   const team = data?.team_name ?? 'Seattle Torrent';
   const out: string[] = [];
-  out.push('TRANSITION & DEFENSIVE TEAM TOTALS');
-  out.push('');
+  out.push('TRANSITION & DEFENSE PROFILE');
+  out.push('=' .repeat(30));
   out.push(`Team: ${team} · Hub games: ${data?.n_games ?? '—'}`);
   out.push('');
-  out.push('Defense / transition — team totals (season)');
-  out.push(formatRowsCompact(data?.defense_team_totals, 40));
-  out.push('');
-  out.push('Defense / transition — season aggregates');
-  out.push(formatRowsCompact(data?.defense_season, 40));
-  out.push('');
-  out.push('Per-game defense tables (first game sample)');
-  const g0 = data?.defense_by_game?.[0];
-  if (g0?.table?.length) {
-    out.push(`Game: ${g0.opponent ?? '—'} · ${g0.date ?? ''}`);
-    out.push(formatRowsCompact(g0.table as HubRow[], 25));
-  } else {
-    out.push('  (no defense per-game rows)');
+  
+  if (data?.defense_team_totals?.length) {
+    out.push('--- TEAM DEFENSE TOTALS (SEASON) ---');
+    const rows = data.defense_team_totals.map(r => [r.Metric, r[team], r.Opponent]);
+    out.push(formatTable(['Metric', team, 'Opponent'], rows));
+    out.push('');
   }
+  
+  if (data?.defense_season?.length) {
+    out.push('--- TOP DEFENSIVE CONTRIBUTORS ---');
+    const rows = data.defense_season.slice(0, 15).map(r => [r.Player, r.Pos, r['DZ Retrievals'], r['Retrievals w Exit']]);
+    out.push(formatTable(['Player', 'Pos', 'DZ Retr', 'Retr w/ Exit'], rows));
+    out.push('');
+  }
+  
   return out.join('\n');
 }
 
@@ -80,30 +83,30 @@ function buildMidseason(data: HubPayload | undefined): string {
   const team = data?.team_name ?? 'Seattle Torrent';
   const rec = data ? `${data.record_wins}–${data.record_losses}` : '—';
   const out: string[] = [];
-  out.push('MID-SEASON TEAM REVIEW');
-  out.push('');
+  out.push('MID-SEASON PERFORMANCE REVIEW');
+  out.push('=' .repeat(32));
   out.push(`Team: ${team}`);
-  out.push(`Games tracked: ${data?.n_games ?? '—'} · Record (from filenames): ${rec}`);
-  out.push(`Generated: ${new Date().toLocaleString()}`);
+  out.push(`Games Tracked: ${data?.n_games ?? '—'} · Record: ${rec}`);
+  out.push(`Report Generated: ${new Date().toLocaleString()}`);
   out.push('');
-  out.push('--- Key averages ---');
+  
+  out.push('--- PERFORMANCE SNAPSHOT ---');
   out.push(formatAveragesSnapshot(data?.averages) || '  (no averages)');
   out.push('');
+  
   if (data?.period_recap_avg?.length) {
-    out.push('--- Period-by-period (sample) ---');
-    for (const r of data.period_recap_avg.slice(0, 12)) {
-      out.push(
-        `  ${r.period} · ${r.metric}: ${team} ${r.team ?? '—'} · Opp ${r.opponent ?? '—'}`,
-      );
-    }
+    out.push('--- PERIOD RECAP (AVERAGES) ---');
+    const rows = data.period_recap_avg.slice(0, 15).map(r => [r.period, r.metric, r.team, r.opponent]);
+    out.push(formatTable(['Period', 'Metric', team, 'Opponent'], rows));
     out.push('');
   }
+  
   if (data?.sequence_report?.goal_sequences_len3?.length) {
-    out.push('--- Top goal sequences (3 actions) ---');
-    for (const s of data.sequence_report.goal_sequences_len3.slice(0, 8)) {
-      out.push(`  ${s.sequence ?? ''} · ${s.count ?? 0}`);
-    }
+    out.push('--- TOP GOAL SEQUENCES (LEN-3) ---');
+    const rows = data.sequence_report.goal_sequences_len3.slice(0, 10).map(s => [s.sequence, s.count]);
+    out.push(formatTable(['Sequence Chain', 'Count'], rows));
   }
+  
   return out.join('\n');
 }
 

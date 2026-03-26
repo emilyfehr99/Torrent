@@ -7,6 +7,7 @@ import { buildBrandedPdf } from '../lib/brandedPdf';
 import { buildAdvancedAnalyticsPdfBody } from '../lib/quickReportBodies';
 import { TEAM_LOGO_PATH } from '../lib/branding';
 import { formatPctCell } from '../lib/hubUtils';
+import { cn } from '../lib/utils';
 import type { HubRow, PeriodRecapRow, SequenceReport } from '../types/hub';
 
 function groupedPeriodRows(rows: PeriodRecapRow[], teamName: string): Array<{ period: string; rows: HubRow[] }> {
@@ -113,6 +114,8 @@ export function AdvancedAnalytics() {
     );
   }
 
+  const [seqTab, setSeqTab] = useState<'len3' | 'len2' | 'preceding'>('len3');
+
   return (
     <BrandedReportShell
       title="Advanced analytics"
@@ -185,35 +188,64 @@ export function AdvancedAnalytics() {
               <GitBranch size={18} className="text-pwhl-blue" />
               <h4 className="font-semibold text-pwhl-navy">What leads to goals (sequences)</h4>
             </div>
-            <p className="text-[11px] text-pwhl-muted mb-3">
-              Chains are built per game, per period, ordered by <code className="bg-pwhl-cream px-1 rounded">start</code>. Counts aggregate the whole season in the hub.
-            </p>
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-              <div>
-                <p className="text-[10px] font-bold uppercase text-pwhl-muted mb-2">Top 3-action chains ending in Goals (all teams)</p>
-                <SeqBlock title="Len-3" rows={seq?.goal_sequences_len3} keySeq="sequence" />
-              </div>
-              <div>
-                <p className="text-[10px] font-bold uppercase text-pwhl-muted mb-2">
-                  Top 3-action chains ending in Goals ({data?.team_name ?? 'team'} only)
-                </p>
-                <SeqBlock title="Len-3 team" rows={seq?.goal_sequences_len3_for_team} keySeq="sequence" />
-              </div>
-              <div>
-                <p className="text-[10px] font-bold uppercase text-pwhl-muted mb-2">Action immediately before Goals (all)</p>
-                <SeqBlock title="Preceding" rows={seq?.preceding_goal_all} keySeq="preceding_action" />
-              </div>
-              <div>
-                <p className="text-[10px] font-bold uppercase text-pwhl-muted mb-2">
-                  Action immediately before Goals ({data?.team_name ?? 'team'})
-                </p>
-                <SeqBlock title="Preceding team" rows={seq?.preceding_goal_for_team} keySeq="preceding_action" />
-              </div>
+            
+            <div className="flex gap-1 bg-pwhl-surface p-1 rounded-lg border border-pwhl-border w-fit mb-4">
+              {[
+                { id: 'len3', label: '3-Action Chains' },
+                { id: 'len2', label: '2-Action Chains' },
+                { id: 'preceding', label: 'Preceding Actions' },
+              ].map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => setSeqTab(t.id as any)}
+                  className={cn(
+                    'px-3 py-1.5 rounded-md text-[10px] font-bold uppercase tracking-tight transition-all',
+                    seqTab === t.id
+                      ? 'bg-torrent-navy text-white shadow-sm'
+                      : 'text-pwhl-muted hover:text-pwhl-navy hover:bg-pwhl-cream'
+                  )}
+                >
+                  {t.label}
+                </button>
+              ))}
             </div>
-            <div>
-              <p className="text-[10px] font-bold uppercase text-pwhl-muted mb-2">Top 2-action chains ending in Goals</p>
-              <SeqBlock title="Len-2" rows={seq?.goal_sequences_len2} keySeq="sequence" />
-            </div>
+
+            {seqTab === 'len3' && (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 animate-in fade-in slide-in-from-top-1">
+                <div>
+                  <p className="text-[10px] font-bold uppercase text-pwhl-muted mb-2">Top 3-action chains (all teams)</p>
+                  <SeqBlock title="Len-3" rows={seq?.goal_sequences_len3} keySeq="sequence" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase text-pwhl-muted mb-2">
+                    Top 3-action chains ({data?.team_name ?? 'team'} only)
+                  </p>
+                  <SeqBlock title="Len-3 team" rows={seq?.goal_sequences_len3_for_team} keySeq="sequence" />
+                </div>
+              </div>
+            )}
+
+            {seqTab === 'len2' && (
+              <div className="animate-in fade-in slide-in-from-top-1">
+                <p className="text-[10px] font-bold uppercase text-pwhl-muted mb-2">Top 2-action chains ending in Goals</p>
+                <SeqBlock title="Len-2" rows={seq?.goal_sequences_len2} keySeq="sequence" />
+              </div>
+            )}
+
+            {seqTab === 'preceding' && (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 animate-in fade-in slide-in-from-top-1">
+                <div>
+                  <p className="text-[10px] font-bold uppercase text-pwhl-muted mb-2">Action immediately before Goals (all)</p>
+                  <SeqBlock title="Preceding" rows={seq?.preceding_goal_all} keySeq="preceding_action" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase text-pwhl-muted mb-2">
+                    Action immediately before Goals ({data?.team_name ?? 'team'})
+                  </p>
+                  <SeqBlock title="Preceding team" rows={seq?.preceding_goal_for_team} keySeq="preceding_action" />
+                </div>
+              </div>
+            )}
           </div>
         ) : null}
       </div>

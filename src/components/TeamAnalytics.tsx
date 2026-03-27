@@ -14,21 +14,6 @@ export function TeamAnalytics() {
 
   const av = data?.averages ?? [];
 
-  const efficiencyScores = useMemo(() => {
-    const players = data?.player_season ?? [];
-    if (!players.length) return { offense: 0, defense: 0 };
-    
-    // Average the pre-calculated player scores for a Team Index
-    const offSum = players.reduce((acc, p) => acc + (Number(p['Offense Score']) || 0), 0);
-    const defSum = players.reduce((acc, p) => acc + (Number(p['Defense Score']) || 0), 0);
-    const count = players.length;
-
-    return { 
-      offense: Math.round(offSum / count), 
-      defense: Math.round(defSum / count) 
-    };
-  }, [data?.player_season]);
-
   const seasonAvgRows = useMemo(() => {
     const hideTeamOnly = new Set(['NZ shift %', 'DZ shift %', 'OZ shift %']);
     return av
@@ -81,40 +66,10 @@ export function TeamAnalytics() {
         <div>
           <h2 className="text-3xl font-serif font-bold text-pwhl-navy">Team analytics</h2>
           <p className="text-pwhl-muted text-sm mt-1">
-            Team performance index and season averages.
+            Season aggregates, line combinations, and defensive metrics.
           </p>
         </div>
         {loading && <span className="text-xs font-mono text-pwhl-muted">Updating…</span>}
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 mt-2">
-        <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm flex items-center gap-6">
-          <div className="w-20 h-20 rounded-full border-4 border-torrent-teal/20 flex items-center justify-center relative">
-            <svg className="absolute inset-0 -rotate-90" viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" strokeWidth="8" className="text-pwhl-cream" />
-              <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" strokeWidth="8" strokeDasharray="289" strokeDashoffset={289 * (1 - efficiencyScores.offense / 100)} className="text-torrent-teal transition-all duration-1000" />
-            </svg>
-            <span className="text-2xl font-serif font-bold text-pwhl-navy">{efficiencyScores.offense}</span>
-          </div>
-          <div>
-            <h3 className="font-serif font-bold text-lg text-pwhl-navy">Offense Score</h3>
-            <p className="text-[11px] text-pwhl-muted max-w-[14rem]">Weighted team average of individual player offensive metrics (Entries, Recoveries, Chances).</p>
-          </div>
-        </div>
-
-        <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm flex items-center gap-6 text-right sm:text-left">
-          <div className="w-20 h-20 rounded-full border-4 border-pwhl-blue/20 flex items-center justify-center relative order-last sm:order-first">
-            <svg className="absolute inset-x-0 inset-y-0 -rotate-90" viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" strokeWidth="8" className="text-pwhl-cream" />
-              <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" strokeWidth="8" strokeDasharray="289" strokeDashoffset={289 * (1 - efficiencyScores.defense / 100)} className="text-pwhl-blue transition-all duration-1000" />
-            </svg>
-            <span className="text-2xl font-serif font-bold text-pwhl-navy">{efficiencyScores.defense}</span>
-          </div>
-          <div>
-            <h3 className="font-serif font-bold text-lg text-pwhl-navy">Defense Score</h3>
-            <p className="text-[11px] text-pwhl-muted max-w-[14rem]">Weighted team average of individual player defensive metrics (Retrievals, Denials, Exits).</p>
-          </div>
-        </div>
       </div>
 
       <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-5 shadow-sm mb-8 flex flex-col lg:flex-row lg:items-end gap-4">

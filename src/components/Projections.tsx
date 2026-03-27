@@ -106,10 +106,10 @@ export function Projections() {
           columns={[
             { key: 'Player', label: 'Player' },
             { key: 'Archetype', label: 'Archetype' },
-            { key: 'Curr GS', label: '24-25 GS', align: 'right' },
-            { key: 'Proj GS', label: '25-26 PROJ', align: 'right' },
-            { key: 'Curr xG/60', label: '24-25 xG/60', align: 'right' },
-            { key: 'Proj xG/60', label: '25-26 PROJ xG', align: 'right' },
+            { key: 'Curr GS', label: '25-26 GS', align: 'right' },
+            { key: 'Proj GS', label: '26-27 PROJ', align: 'right' },
+            { key: 'Curr xG/60', label: '25-26 xG/60', align: 'right' },
+            { key: 'Proj xG/60', label: '26-27 PROJ xG', align: 'right' },
             { key: 'Future Value', label: 'Value Index', align: 'right' }
           ]}
         />

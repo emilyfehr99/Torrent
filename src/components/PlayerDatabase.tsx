@@ -753,7 +753,7 @@ export function PlayerDatabase() {
                       ['Transition workload', 'Transition Workload'],
                       ['Transition passes', 'Transition Passes'],
                       ['Transition carries', 'Transition Carries'],
-                      ['Puck touches', 'Puck Touches'],
+                      ['Possession events — Total Events', 'Possession events'],
                       ['Deployment (OZ shift-start %)', 'OZ shift %', true],
                       ['Deployment (DZ shift-start %)', 'DZ shift %', true],
                       ['Deployment (NZ shift-start %)', 'NZ shift %', true],

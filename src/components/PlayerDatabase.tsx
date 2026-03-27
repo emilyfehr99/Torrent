@@ -130,34 +130,6 @@ function filterShotsByPlayerName(shots: VizShot[] | undefined, playerNorm: strin
   return shots.filter((s) => String(s.player ?? '').trim().toLowerCase() === playerNorm);
 }
 
-function calculatePlayerScores(row: HubRow): { offense: number; defense: number } {
-  // Simple weighted score (0-100) based on key microstats.
-  // These aren't perfect benchmarks but provide a relative "Torrent Index".
-  const gp = Math.max(1, Number(row['GP'] ?? 1));
-  const n = (k: string) => Number(row[k] ?? 0) / gp;
-
-  // Offense: Entries, Chances, Assists, Recoveries
-  const offRaw =
-    n('Forecheck Recoveries') * 1.5 +
-    n('Zone Entries') * 1.0 +
-    n('Carries w/ Chances') * 2.0 +
-    n('Primary Shot Assists') * 2.5 +
-    n('Chance Assists') * 2.5;
-  const offScore = Math.min(100, Math.round(offRaw * 15)); // Scaling factor
-
-  // Defense: Retrievals, Exits, Denials, (minus) Botched/Failed
-  const defRaw =
-    n('DZ Retrievals') * 1.5 +
-    n('Retrievals w Exit') * 2.0 +
-    n('Zone Exits') * 1.0 +
-    n('Exits w Possession') * 1.5 -
-    n('Botched Retrievals') * 2.0 -
-    n('Failed Exits') * 1.5;
-  const defScore = Math.max(0, Math.min(100, Math.round(defRaw * 18 + 50))); // Offset and scale
-
-  return { offense: offScore, defense: defScore };
-}
-
 function filterShotGamesForPlayer(games: VizShotGame[] | undefined, playerNorm: string, isGoalie: boolean): VizShotGame[] {
   if (!games?.length) return [];
   return games
@@ -234,6 +206,44 @@ export function PlayerDatabase() {
 
   const activeSeason = seasonPick === '2526' ? season : [];
 
+  const defenseMap = useMemo(() => {
+    const m = new Map<string, HubRow>();
+    for (const d of data?.defense_season ?? []) {
+      const p = String(d.player ?? d.Player ?? '').trim();
+      if (p) m.set(p, d);
+    }
+    return m;
+  }, [data?.defense_season]);
+
+  const calculatePlayerScores = (row: HubRow): { offense: number; defense: number } => {
+    const gp = Math.max(1, Number(row['GP'] ?? 1));
+    const n = (k: string) => Number(row[k] ?? 0) / gp;
+    const defRow = defenseMap.get(String(row.Player ?? '').trim());
+    const denials = defRow ? Number(defRow.per_game_entry_denials ?? defRow.total_entry_denials ?? 0) : 0;
+
+    // Offense
+    const offRaw =
+      n('Forecheck Recoveries') * 1.5 +
+      n('Zone Entries') * 1.0 +
+      n('Carries w/ Chances') * 2.0 +
+      n('Primary Shot Assists') * 2.5 +
+      n('Chance Assists') * 2.5;
+    const offScore = Math.min(100, Math.round(offRaw * 15));
+
+    // Defense: include Denials
+    const defRaw =
+      n('DZ Retrievals') * 1.5 +
+      n('Retrievals w Exit') * 2.0 +
+      n('Zone Exits') * 1.0 +
+      n('Exits w Possession') * 1.5 +
+      denials * 3.0 -
+      n('Botched Retrievals') * 2.0 -
+      n('Failed Exits') * 1.5;
+    const defScore = Math.max(0, Math.min(100, Math.round(defRaw * 15 + 40)));
+
+    return { offense: offScore, defense: defScore };
+  };
+
   const filtered = useMemo(() => {
     let rows = activeSeason;
     const qq = q.trim().toLowerCase();
@@ -272,7 +282,7 @@ export function PlayerDatabase() {
   const sortableCols = useMemo(() => {
     if (!activeSeason[0]) return [] as { key: string; label: string }[];
     const keys = new Set(Object.keys(activeSeason[0]));
-    const hub = HUB_SORT_COLS.filter((k) => keys.has(k));
+    const hub = HUB_SORT_COLS.filter((k) => k === 'Offense' || k === 'Defense' || keys.has(k));
     return [...hub].map((k) => ({ key: k, label: k }));
   }, [activeSeason]);
 

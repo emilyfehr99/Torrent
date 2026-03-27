@@ -67,7 +67,7 @@ function buildTransitionDefense(data: HubPayload | undefined): string {
     out.push('');
   }
   
-  const defSource = data?.defense_season?.length ? data.defense_season : (data?.player_season ?? []);
+  const defSource = data?.player_season ?? [];
   if (defSource.length) {
     out.push('--- TOP DEFENSIVE CONTRIBUTORS ---');
     const rows = defSource

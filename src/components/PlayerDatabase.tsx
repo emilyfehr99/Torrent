@@ -38,17 +38,34 @@ const HUB_SORT_COLS = [
   'Defense Score',
   'GP',
   'GameScore',
-  'Blueline Activation',
-  'PK Denials',
-  'FC-to-Shot %',
   'xG',
   'Chances',
   'Shots',
   'Zone Entries',
   'Carry-in %',
+  'Carries w/ Chances',
+  'Dump-in Chances',
+  'Failed Entries',
+  'Forecheck Recoveries',
+  'FC-to-Shot %',
+  'Passes to Slot',
+  'Primary Shot Assists',
+  'Chance Assists',
+  'Blueline Activation',
+  'PK Denials',
+  'Entry Denials',
+  'DZ Retrievals',
+  'Retrievals w Exit',
+  'Botched Retrievals',
+  'Zone Exits',
+  'Exits w Possession',
   'Exits w Poss %',
+  'Failed Exits',
   'Shots Against',
   'xG/60 est',
+  'Possession events',
+  'Events',
+  'OZ shift %',
 ];
 
 function transitionCell(row: HubRow, key: string): string {
@@ -805,6 +822,7 @@ export function PlayerDatabase() {
                       ['Blueline Activation Score', 'Blueline Activation', false],
                       ['Penalty Kill Denials', 'PK Denials', false],
                       ['Total Entry Denials', 'Entry Denials', false],
+                      ['FC-to-Shot % (Efficiency)', 'FC-to-Shot %', true],
                     ] as const
                   ).map(([label, key, isPct]) => (
                     <div key={label} className="flex justify-between gap-2 border-b border-pwhl-border/50 py-1.5">
@@ -824,11 +842,28 @@ export function PlayerDatabase() {
                       ['DZ shots', 'DZ Shots'],
                       ['Primary shot assists', 'Primary Shot Assists'],
                       ['Chance assists', 'Chance Assists'],
+                      ['Passes to Slot', 'Passes to Slot'],
                     ] as const
                   ).map(([label, key]) => (
                     <div key={label} className="flex justify-between gap-2 border-b border-pwhl-border/50 py-1.5">
                       <span className="text-pwhl-muted shrink font-sans text-[11px]">{label}</span>
                       <span className="font-semibold text-right tabular-nums">{rowVal(key)}</span>
+                    </div>
+                  ))}
+
+                  <TransitionSectionTitle>Workload & context</TransitionSectionTitle>
+                  {(
+                    [
+                      ['Possession events', 'Possession events'],
+                      ['Total Events', 'Events'],
+                      ['OZ shift %', 'OZ shift %', true],
+                    ] as const
+                  ).map(([label, key, isPct]) => (
+                    <div key={label} className="flex justify-between gap-2 border-b border-pwhl-border/50 py-1.5">
+                      <span className="text-pwhl-muted shrink font-sans text-[11px]">{label}</span>
+                      <span className="font-semibold text-right tabular-nums">
+                        {rowVal(key, Boolean(isPct))}
+                      </span>
                     </div>
                   ))}
                       </>

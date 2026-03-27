@@ -97,10 +97,10 @@ export function Projections() {
             Player: p.Player,
             Archetype: p.Archetype,
             'Curr GS': p.GameScore,
-            'Proj GS': p.get('Proj GameScore', p.GameScore),
-            'Curr xG/60': p.get('xG/60 est', 0),
-            'Proj xG/60': p.get('Proj xG/60', 0),
-            'Future Value': p.get('Proj Value', 0)
+            'Proj GS': p['Proj GameScore'] ?? p.GameScore,
+            'Curr xG/60': p['xG/60 est'] || 0,
+            'Proj xG/60': p['Proj xG/60'] || 0,
+            'Future Value': p['Proj Value'] || 0
           }))}
           initialSort={{ key: 'Future Value', dir: 'desc' }}
           columns={[

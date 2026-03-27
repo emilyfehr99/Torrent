@@ -34,21 +34,21 @@ function fmtCell(k: string, v: unknown): string {
 const HUB_SORT_COLS = [
   'Player',
   'Pos',
-  'Offense',
-  'Defense',
+  'Offense Score',
+  'Defense Score',
   'GP',
   'GameScore',
+  'Blueline Activation',
+  'PK Denials',
+  'FC-to-Shot %',
   'xG',
   'Chances',
   'Shots',
   'Zone Entries',
   'Carry-in %',
   'Exits w Poss %',
-  'Shots off Rush',
   'Shots Against',
   'xG/60 est',
-  'Team shot share %',
-  'OZ shift %',
 ];
 
 function transitionCell(row: HubRow, key: string): string {
@@ -216,12 +216,20 @@ export function PlayerDatabase() {
   }, [data?.defense_season]);
 
   const calculatePlayerScores = (row: HubRow): { offense: number; defense: number } => {
+    // Priority 1: Use backend pre-calculated scores (if existing)
+    if (row['Offense Score'] != null) {
+      return { 
+        offense: Math.round(Number(row['Offense Score'])), 
+        defense: Math.round(Number(row['Defense Score'] ?? 0)) 
+      };
+    }
+    
+    // Fallback: Use manual weighting (legacy/sync check)
     const gp = Math.max(1, Number(row['GP'] ?? 1));
     const n = (k: string) => Number(row[k] ?? 0) / gp;
     const defRow = defenseMap.get(String(row.Player ?? '').trim());
     const denials = defRow ? Number(defRow.per_game_entry_denials ?? defRow.total_entry_denials ?? 0) : 0;
 
-    // Offense
     const offRaw =
       n('Forecheck Recoveries') * 1.5 +
       n('Zone Entries') * 1.0 +
@@ -230,7 +238,6 @@ export function PlayerDatabase() {
       n('Chance Assists') * 2.5;
     const offScore = Math.min(100, Math.round(offRaw * 15));
 
-    // Defense: include Denials
     const defRaw =
       n('DZ Retrievals') * 1.5 +
       n('Retrievals w Exit') * 2.0 +
@@ -282,14 +289,14 @@ export function PlayerDatabase() {
   const sortableCols = useMemo(() => {
     if (!activeSeason[0]) return [] as { key: string; label: string }[];
     const keys = new Set(Object.keys(activeSeason[0]));
-    const hub = HUB_SORT_COLS.filter((k) => k === 'Offense' || k === 'Defense' || keys.has(k));
+    const hub = HUB_SORT_COLS.filter((k) => k === 'Offense Score' || k === 'Defense Score' || keys.has(k));
     return [...hub].map((k) => ({ key: k, label: k }));
   }, [activeSeason]);
 
   const sortableRows: SortableRow[] = useMemo(() => {
     return filtered.map((row) => {
       const { offense, defense } = calculatePlayerScores(row);
-      const o: SortableRow = { ...row, Offense: offense, Defense: defense };
+      const o: SortableRow = { ...row, 'Offense Score': offense, 'Defense Score': defense };
       return o;
     });
   }, [filtered, sortableCols]);
@@ -777,6 +784,7 @@ export function PlayerDatabase() {
                       ['Entries → shot (total)', '__ENT_SHOT__'],
                       ['Failed entries', 'Failed Entries'],
                       ['Forecheck recoveries', 'Forecheck Recoveries'],
+                      ['FC-to-Shot % (Efficiency)', 'FC-to-Shot %', true],
                     ] as const
                   ).map(([label, key, isPct]) => (
                     <div key={label} className="flex justify-between gap-2 border-b border-pwhl-border/50 py-1.5">
@@ -787,6 +795,22 @@ export function PlayerDatabase() {
                           : isPct
                             ? rowVal(key, true)
                             : rowVal(key)}
+                      </span>
+                    </div>
+                  ))}
+
+                  <TransitionSectionTitle>Tactical & Specialty</TransitionSectionTitle>
+                  {(
+                    [
+                      ['Blueline Activation Score', 'Blueline Activation', false],
+                      ['Penalty Kill Denials', 'PK Denials', false],
+                      ['Total Entry Denials', 'Entry Denials', false],
+                    ] as const
+                  ).map(([label, key, isPct]) => (
+                    <div key={label} className="flex justify-between gap-2 border-b border-pwhl-border/50 py-1.5">
+                      <span className="text-pwhl-muted shrink font-sans text-[11px]">{label}</span>
+                      <span className="font-semibold text-right tabular-nums">
+                        {rowVal(key, Boolean(isPct))}
                       </span>
                     </div>
                   ))}

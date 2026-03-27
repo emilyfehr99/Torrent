@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { SortableTable, type SortableRow } from './SortableTable';
 import { PWHL_STANDINGS_2526 } from '../data/pwhlStandings2526';
 import { useHubData } from '../context/HubDataContext';
+import { Info, RefreshCw, Target } from 'lucide-react';
 
 export function Projections() {
   const { data } = useHubData();
@@ -79,22 +80,61 @@ export function Projections() {
         />
       </div>
 
+      <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm mb-6">
+        <div className="flex justify-between items-center mb-4">
+          <div>
+            <h3 className="font-serif font-bold text-lg text-pwhl-navy">Player Next-Season Forecasts (2026–27)</h3>
+            <p className="text-xs text-pwhl-muted mt-1">Based on regressed Game Score + xG (standard 0.3 factor)</p>
+          </div>
+          <div className="flex items-center gap-2 text-[10px] font-bold text-pwhl-blue bg-pwhl-blue/5 px-2 py-1 rounded border border-pwhl-blue/20">
+            <Info size={12} />
+            REGRESSION MODELS ACTIVE
+          </div>
+        </div>
+        
+        <SortableTable
+          rows={(data?.player_season || []).slice(0, 15).map((p: any) => ({
+            Player: p.Player,
+            Archetype: p.Archetype,
+            'Curr GS': p.GameScore,
+            'Proj GS': p.get('Proj GameScore', p.GameScore),
+            'Curr xG/60': p.get('xG/60 est', 0),
+            'Proj xG/60': p.get('Proj xG/60', 0),
+            'Future Value': p.get('Proj Value', 0)
+          }))}
+          initialSort={{ key: 'Future Value', dir: 'desc' }}
+          columns={[
+            { key: 'Player', label: 'Player' },
+            { key: 'Archetype', label: 'Archetype' },
+            { key: 'Curr GS', label: '24-25 GS', align: 'right' },
+            { key: 'Proj GS', label: '25-26 PROJ', align: 'right' },
+            { key: 'Curr xG/60', label: '24-25 xG/60', align: 'right' },
+            { key: 'Proj xG/60', label: '25-26 PROJ xG', align: 'right' },
+            { key: 'Future Value', label: 'Value Index', align: 'right' }
+          ]}
+        />
+      </div>
+
       <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm">
-        <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-4">Roster scenarios (illustrative)</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-4">Model Methodology</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="p-4 bg-pwhl-cream rounded-lg border border-pwhl-border">
-            <div className="flex justify-between items-center mb-2">
-              <h4 className="font-semibold text-sm text-pwhl-navy">Scenario A: Aggressive UFA</h4>
-              <span className="text-xs font-mono bg-pwhl-success/10 text-pwhl-success px-2 py-1 rounded font-bold">+4.2 xG/60</span>
-            </div>
-            <p className="text-xs text-pwhl-muted">Sign top transition defensemen; trade futures for established scoring.</p>
+            <h4 className="font-semibold text-sm text-pwhl-navy mb-2 flex items-center gap-2">
+              <RefreshCw size={14} className="text-pwhl-blue" />
+              Regression Logic
+            </h4>
+            <p className="text-xs text-pwhl-muted leading-relaxed">
+              We apply a 30% regression towards the league mean for both Game Score and xG/60. This removes noise from shooting benders or luck-skewed samples, providing a more reliable foundation for off-season roster planning.
+            </p>
           </div>
           <div className="p-4 bg-pwhl-cream rounded-lg border border-pwhl-border">
-            <div className="flex justify-between items-center mb-2">
-              <h4 className="font-semibold text-sm text-pwhl-navy">Scenario B: Draft & develop</h4>
-              <span className="text-xs font-mono bg-pwhl-blue/10 text-pwhl-blue px-2 py-1 rounded font-bold">+1.5 xG/60</span>
-            </div>
-            <p className="text-xs text-pwhl-muted">Retain core, use picks, add depth on value contracts.</p>
+            <h4 className="font-semibold text-sm text-pwhl-navy mb-2 flex items-center gap-2">
+              <Target size={14} className="text-torrent-teal" />
+              Archetype Sensitivity
+            </h4>
+            <p className="text-xs text-pwhl-muted leading-relaxed">
+              The "Future Value Index" incorporates the regressed scoring power alongside the player's core Archetype traits (e.g., Shutdown D metrics provide defensive floor, Snipers provide offensive ceiling).
+            </p>
           </div>
         </div>
       </div>

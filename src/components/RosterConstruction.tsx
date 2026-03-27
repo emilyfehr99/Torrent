@@ -3,6 +3,7 @@ import { BookOpen, Filter, UserCircle } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { useHubData } from '../context/HubDataContext';
 import { HubDataTable } from './HubDataTable';
+import LineupOptimizer from './LineupOptimizer';
 
 const freeAgents = [
   { id: 1, name: 'S. Nurse', pos: 'F', currentTeam: 'TOR', projGS: 3.8, valueIndex: 88, value: 'High', age: 29 },
@@ -230,25 +231,7 @@ export function RosterConstruction({
               </div>
             </>
           ) : (
-            <>
-              <div className="p-6 border-b border-pwhl-border bg-pwhl-surface">
-                <h3 className="font-serif font-bold text-lg text-pwhl-navy">Lineup optimizer</h3>
-                <p className="text-xs text-pwhl-muted mt-1 max-w-3xl">
-                  Forward trios and defensive pairs ranked from play-by-play order (same logic as Line:Pairing
-                  Efficiency). Higher segment shot and goal shares indicate stronger chemistry in this sample.
-                </p>
-              </div>
-              <div className="p-6 grid grid-cols-1 xl:grid-cols-2 gap-6 flex-1 overflow-y-auto">
-                <div>
-                  <h4 className="text-sm font-bold text-pwhl-navy mb-2">Forward trios (season)</h4>
-                  <HubDataTable rows={lines.length ? lines : fallbackLines} emptyHint="No line combos available." />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-pwhl-navy mb-2">Defensive pairs (season)</h4>
-                  <HubDataTable rows={pairs.length ? pairs : fallbackPairs} emptyHint="No D pairs available." />
-                </div>
-              </div>
-            </>
+            <LineupOptimizer />
           )}
         </div>
       </div>

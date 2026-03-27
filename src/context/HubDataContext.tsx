@@ -43,6 +43,7 @@ export function HubDataProvider({ children }: { children: React.ReactNode }) {
             !('pairings_season' in payload) ||
             !('viz_shots' in payload) ||
             !('viz_shot_games' in payload) ||
+            !('viz_lane_efficiency' in payload) ||
             !('rink_report' in payload) ||
             !('period_recap_avg' in payload))
         ) {

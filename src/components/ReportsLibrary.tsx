@@ -8,6 +8,7 @@ import { PassingNetwork } from './PassingNetwork';
 import { ShotHeatmap } from './ShotHeatmap';
 import { CustomReportBuilder } from './CustomReportBuilder';
 import { AdvancedAnalytics } from './AdvancedAnalytics';
+import { LaneEfficiencyViz } from './LaneEfficiencyViz';
 import { projectPwhleEliteToPwhl } from '../lib/pwhlProspectProjection';
 
 const QUICK_REPORTS: {
@@ -245,6 +246,34 @@ export function ReportsLibrary() {
             </div>
           )}
         </div>
+
+        {/* Tactical Lane Efficiency Visualizations */}
+        {data?.viz_lane_efficiency?.lanes && (
+          <>
+            <div className="xl:col-span-1">
+              <LaneEfficiencyViz 
+                data={data.viz_lane_efficiency.lanes} 
+                type="entry" 
+                title="Entry Success by Lane" 
+              />
+              <p className="mt-3 text-[11px] text-pwhl-muted leading-relaxed px-1 font-sans italic">
+                Efficiency = % of entries leading to a Shot on Goal within 10 events. 
+                Lanes derived from 3-way split of rink width (pos_y).
+              </p>
+            </div>
+            <div className="xl:col-span-1">
+              <LaneEfficiencyViz 
+                data={data.viz_lane_efficiency.lanes} 
+                type="breakout" 
+                title="Breakout Success by Lane" 
+              />
+              <p className="mt-3 text-[11px] text-pwhl-muted leading-relaxed px-1 font-sans italic">
+                Efficiency = % of breakouts leading to an Entry within 10 events.
+                Top/Middle/Bottom segmented by tracking coordinate thresholds.
+              </p>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

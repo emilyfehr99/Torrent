@@ -75,6 +75,20 @@ export interface SequenceReport {
   preceding_goal_for_team?: PrecedingActionRow[];
 }
 
+export interface LaneEfficiencyRow {
+  Lane: string;
+  Total_Entries: number;
+  Entries_w_Shot: number;
+  Entry_Efficiency: number;
+  Total_Breakouts: number;
+  Breakouts_w_Entry: number;
+  Breakout_Efficiency: number;
+}
+
+export interface LaneEfficiencyReport {
+  lanes: LaneEfficiencyRow[];
+}
+
 export interface DefenseGamePayload {
   opponent: string;
   date?: string;
@@ -110,6 +124,8 @@ export interface HubPayload {
   period_recap_avg?: PeriodRecapRow[];
   /** N-grams / preceding actions — What leads to.R logic */
   sequence_report?: SequenceReport;
+  /** Tactical entry/breakout success rates by rink lane */
+  viz_lane_efficiency?: LaneEfficiencyReport;
   metric_names: string[];
   /** Bump when new hub fields are added; client can refetch if stale */
   hub_schema_version?: number;

@@ -1,18 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Shield, Users, Check, X } from 'lucide-react';
-import { cn } from '../lib/utils';
 import { PWHL_STANDINGS_2526 } from '../data/pwhlStandings2526';
 import { projectedPoints30, mockSosScore } from '../lib/leagueKpis';
 import { useHubData } from '../context/HubDataContext';
 import { averageDisplay, formatPctCell, numericFromAverage } from '../lib/hubUtils';
 import { HubDataTable } from './HubDataTable';
-
-function fmtCell(k: string, v: unknown): string {
-  if (v == null || v === '') return '—';
-  if (k.includes('%')) return formatPctCell(v);
-  if (typeof v === 'number') return Number.isInteger(v) ? String(v) : String(Number(v.toFixed(1)));
-  return String(v);
-}
 
 export function TeamAnalytics() {
   const { data, loading, error } = useHubData();
@@ -173,43 +165,6 @@ export function TeamAnalytics() {
         <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm mb-6">
           <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-4">Per-game metrics</h3>
           <HubDataTable rows={data?.per_game_metrics ?? []} />
-        </div>
-      </div>
-
-      <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm mb-6">
-        <div className="flex items-center gap-2 mb-4">
-          <Shield className="text-torrent-teal" size={22} />
-          <h3 className="font-serif font-bold text-xl text-pwhl-navy">Elite Tactical leaderboards</h3>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-          {[
-            { label: 'Offense Leaders', key: 'Offense Score', color: 'text-torrent-teal' },
-            { label: 'Defense Leaders', key: 'Defense Score', color: 'text-pwhl-blue' },
-            { label: 'PK Denial Specialists', key: 'PK Denials', color: 'text-pwhl-accent' },
-            { label: 'Blueline Activation', key: 'Blueline Activation', color: 'text-pwhl-navy' },
-          ].map((lb) => {
-            const sorted = [...(data?.player_season ?? [])]
-              .sort((a, b) => Number(b[lb.key] ?? 0) - Number(a[lb.key] ?? 0))
-              .slice(0, 5);
-            return (
-              <div key={lb.label} className="bg-pwhl-cream/50 border border-pwhl-border rounded-lg p-4">
-                <h4 className="text-[10px] font-black uppercase tracking-widest text-pwhl-muted mb-3 border-b border-pwhl-border pb-1">
-                  {lb.label}
-                </h4>
-                <ul className="space-y-2">
-                  {sorted.map((p, i) => (
-                    <li key={i} className="flex justify-between items-center text-xs">
-                      <span className="font-medium text-pwhl-navy truncate pr-2">{p.Player}</span>
-                      <span className={cn("font-mono font-bold shrink-0", lb.color)}>
-                        {fmtCell(lb.key, p[lb.key])}
-                      </span>
-                    </li>
-                  ))}
-                  {!sorted.length && <li className="text-[10px] text-pwhl-muted italic">No data</li>}
-                </ul>
-              </div>
-            );
-          })}
         </div>
       </div>
 

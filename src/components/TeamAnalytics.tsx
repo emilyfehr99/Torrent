@@ -23,35 +23,19 @@ export function TeamAnalytics() {
   const av = data?.averages ?? [];
 
   const efficiencyScores = useMemo(() => {
-    if (!av.length) return { offense: 0, defense: 0 };
+    const players = data?.player_season ?? [];
+    if (!players.length) return { offense: 0, defense: 0 };
     
-    const getVal = (m: string) => numericFromAverage(av, m) ?? 0;
+    // Average the pre-calculated player scores for a Team Index
+    const offSum = players.reduce((acc, p) => acc + (Number(p['Offense Score']) || 0), 0);
+    const defSum = players.reduce((acc, p) => acc + (Number(p['Defense Score']) || 0), 0);
+    const count = players.length;
 
-    // Offense Component (0-100 relative to baseline expectations)
-    const gf = getVal('Goals For');
-    const xg = getVal('Expected Goals (xG)');
-    const chances = getVal('Chances');
-    const carryIn = getVal('Carry-in %');
-    
-    // Weighted formula
-    const offRaw = (gf * 10) + (xg * 8) + (chances * 0.5) + (carryIn * 0.4);
-    const offense = Math.min(100, Math.max(0, (offRaw / 1.1))); 
-
-    // Defense Component (0-100, higher is better defense)
-    const ga = getVal('Goals Against');
-    const xga = getVal('Expected Goals Against');
-    const sa = getVal('Shots Against (on-ice)');
-    const dzRet = getVal('DZ Retrieval %');
-
-    // Inverse metrics: lower is better for defense score
-    const gaScore = Math.max(0, 40 - (ga * 10));
-    const xgaScore = Math.max(0, 40 - (xga * 10));
-    const saScore = Math.max(0, 20 - (sa * 0.2));
-    const defRaw = gaScore + xgaScore + saScore + (dzRet * 0.15); 
-    const defense = Math.min(100, Math.max(0, defRaw));
-
-    return { offense: Math.round(offense), defense: Math.round(defense) };
-  }, [av]);
+    return { 
+      offense: Math.round(offSum / count), 
+      defense: Math.round(defSum / count) 
+    };
+  }, [data?.player_season]);
 
   const seasonAvgRows = useMemo(() => {
     const hideTeamOnly = new Set(['NZ shift %', 'DZ shift %', 'OZ shift %']);
@@ -122,7 +106,7 @@ export function TeamAnalytics() {
           </div>
           <div>
             <h3 className="font-serif font-bold text-lg text-pwhl-navy">Offense Score</h3>
-            <p className="text-[11px] text-pwhl-muted max-w-[14rem]">Weighted index of GF, xG, scoring chances, and carry-in efficiency.</p>
+            <p className="text-[11px] text-pwhl-muted max-w-[14rem]">Weighted team average of individual player offensive metrics (Entries, Recoveries, Chances).</p>
           </div>
         </div>
 
@@ -136,7 +120,7 @@ export function TeamAnalytics() {
           </div>
           <div>
             <h3 className="font-serif font-bold text-lg text-pwhl-navy">Defense Score</h3>
-            <p className="text-[11px] text-pwhl-muted max-w-[14rem]">Weighted index of GA, xGA, shots against (on-ice), and DZ retrievals.</p>
+            <p className="text-[11px] text-pwhl-muted max-w-[14rem]">Weighted team average of individual player defensive metrics (Retrievals, Denials, Exits).</p>
           </div>
         </div>
       </div>

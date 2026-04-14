@@ -87,13 +87,13 @@ export function ScoutingProfile({ playerName, profile }: Props) {
                   >
                     <div className="min-w-0 text-[11px] font-semibold text-pwhl-navy truncate">{m.name}</div>
                     <div className="min-w-0">
-                      <div className="relative h-4 rounded-full bg-pwhl-cream border border-pwhl-border overflow-hidden">
+                      <div className="relative h-5 rounded-full bg-pwhl-cream border border-pwhl-border overflow-hidden">
                         <div
-                          className={`h-4 ${t.bar}`}
+                          className={`h-full ${t.bar}`}
                           style={{ width: `${Math.max(0, Math.min(100, m.value))}%` }}
                         />
                         <div className="absolute inset-0 z-10 flex items-center justify-end pr-2 pointer-events-none">
-                          <span className="rounded bg-white/85 px-1 py-0.5 text-[10px] leading-none font-mono font-bold tabular-nums text-pwhl-navy">
+                          <span className="rounded-sm bg-white/85 px-1 text-[10px] leading-none font-mono font-bold tabular-nums text-pwhl-navy">
                             {m.value.toFixed(1)}
                           </span>
                         </div>

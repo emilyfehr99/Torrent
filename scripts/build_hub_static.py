@@ -180,7 +180,9 @@ def build_per_game_metrics(game: Dict[str, Any]) -> Dict[str, Any]:
     entries = float(actions_for.get("Entries", 0))
     carry_ins = float(actions_for.get("Entries via stickhandling", 0))
     breakouts = float(actions_for.get("Breakouts", 0))
-    poss_exits = float(actions_for.get("Breakouts via pass", 0) + actions_for.get("Breakouts via stickhandling", 0))
+    poss_exits = float(
+        actions_for.get("Breakouts via pass", 0) + actions_for.get("Breakouts via stickhandling", 0)
+    )
 
     shots = float(actions_for.get("Shots", 0))
     sog = float(actions_for.get("Shots on goal", 0))
@@ -189,7 +191,19 @@ def build_per_game_metrics(game: Dict[str, Any]) -> Dict[str, Any]:
     dz_retrievals = float(actions_for.get("Puck recoveries in DZ", 0))
     oz_fc_rec = float(actions_for.get("Puck recoveries in OZ", 0))
 
+    opp_team = (game["opponent"] or "").strip()
     shots_against = float(actions_against.get("Shots", 0))
+    sog_against = float(actions_against.get("Shots on goal", 0))
+    goals_against = float(actions_against.get("Goals", 0))
+    entries_against = float(actions_against.get("Entries", 0))
+    carry_ins_against = float(actions_against.get("Entries via stickhandling", 0))
+    breakouts_against = float(actions_against.get("Breakouts", 0))
+    poss_exits_against = float(
+        actions_against.get("Breakouts via pass", 0) + actions_against.get("Breakouts via stickhandling", 0)
+    )
+    slot_passes_against = float(actions_against.get("Passes to the slot", 0))
+    oz_fc_rec_against = float(actions_against.get("Puck recoveries in OZ", 0))
+    nz_turnovers_against = float(actions_against.get("Puck losses in NZ", 0))
 
     events.sort(key=lambda x: (x[0], x[1]))
 
@@ -219,7 +233,6 @@ def build_per_game_metrics(game: Dict[str, Any]) -> Dict[str, Any]:
     # - Rush: shots shortly after entries
     # - Forecheck/Cycle: shots shortly after OZ recoveries
     # - NZ turnovers against: opponent shots shortly after our NZ losses
-    opp_team = (game["opponent"] or "").strip()
     sog_off_rush = count_shots_after(TEAM_NAME, "Entries", TEAM_NAME, "Shots on goal", 10.0)
     sog_off_fc = count_shots_after(TEAM_NAME, "Puck recoveries in OZ", TEAM_NAME, "Shots on goal", 10.0)
     soga_off_nz_to = count_shots_after(TEAM_NAME, "Puck losses in NZ", opp_team, "Shots on goal", 10.0) if opp_team else 0
@@ -243,6 +256,11 @@ def build_per_game_metrics(game: Dict[str, Any]) -> Dict[str, Any]:
     dump_ins = float(actions_for.get("Dump ins", 0))
     dump_in_chances = min(dump_ins, max(0.0, scoring_chances - carries_w_chances))
 
+    # Opponent-side proxy metrics (same formulas, applied to opponent tracked actions)
+    opp_scoring_chances = slot_passes_against + 0.25 * sog_against + 1.5 * goals_against
+    opp_entry_scoring_chance_pct = pct(opp_scoring_chances, entries_against)
+    opp_expected_xg = 0.015 * shots_against + 0.035 * sog_against + 0.25 * goals_against
+
     out: Dict[str, Any] = {
         "date": game["date"],
         "opponent": game["opponent"],
@@ -263,6 +281,18 @@ def build_per_game_metrics(game: Dict[str, Any]) -> Dict[str, Any]:
         "DZ Shots": float(dz_shots),
         "NZ Shots": float(nz_shots),
         "Shots Against": shots_against,
+        "Opp Shots": shots_against,
+        "Opp Shots on goal": sog_against,
+        "Opp Goals": goals_against,
+        "Opp Zone Entries": entries_against,
+        "Opp Carry-ins": carry_ins_against,
+        "Opp Carry-in%": pct(carry_ins_against, entries_against),
+        "Opp Possession Exits": breakouts_against,
+        "Opp Possession Exit %": pct(poss_exits_against, breakouts_against),
+        "Opp Forecheck Recoveries": oz_fc_rec_against,
+        "Opp NZ Turnovers": nz_turnovers_against,
+        "Opp Scoring Chances": round(opp_scoring_chances, 2),
+        "Opp Entry Scoring Chance %": opp_entry_scoring_chance_pct,
         # Proxies (computed from tracked actions)
         "Scoring Chances": round(scoring_chances, 2),
         "Carries w/ Chances": round(carries_w_chances, 2),
@@ -280,6 +310,7 @@ def build_per_game_metrics(game: Dict[str, Any]) -> Dict[str, Any]:
         "Shots off Rush": float(shots_off_rush),
         "Shots off Forecheck": float(shots_off_fc),
         "Expected Goals (xG)": round(expected_xg, 2),
+        "Opp Expected Goals (xG)": round(opp_expected_xg, 2),
         "Total GameScore": round(scoring_chances + 0.5 * goals + 0.05 * shots + 0.03 * entries + 0.04 * oz_fc_rec, 2),
     }
     return out

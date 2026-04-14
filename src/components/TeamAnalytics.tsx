@@ -12,6 +12,7 @@ export function TeamAnalytics() {
   const [defIdx, setDefIdx] = useState(0);
   const [playerView, setPlayerView] = useState<'offense' | 'defense'>('defense');
   const [posPick, setPosPick] = useState<'ALL' | 'F' | 'D'>('ALL');
+  const [perGameSide, setPerGameSide] = useState<'for' | 'against'>('for');
   const hubTeam = data?.team_name ?? 'Seattle Torrent';
   const standingRow = PWHL_STANDINGS_2526.find((r) => r.team === hubTeam);
 
@@ -81,6 +82,34 @@ export function TeamAnalytics() {
     return rows.filter((r) => bucket(pos(r)) === posPick);
   }, [defGame?.table, posPick]);
 
+  const perGameRows = useMemo(() => {
+    const rows = data?.per_game_metrics ?? [];
+    if (perGameSide === 'for') return rows;
+    return rows.map((r) => ({
+      date: r.date,
+      opponent: r.opponent,
+      final_score: r.final_score,
+      Win: r.Win,
+      Shots: r['Opp Shots'] ?? r['Shots Against'],
+      'Shots on goal': r['Opp Shots on goal'],
+      Goals: r['Opp Goals'],
+      'Zone Entries': r['Opp Zone Entries'],
+      'Carry-ins': r['Opp Carry-ins'],
+      'Carry-in%': r['Opp Carry-in%'],
+      'Possession Exits': r['Opp Possession Exits'],
+      'Possession Exit %': r['Opp Possession Exit %'],
+      'Forecheck Recoveries': r['Opp Forecheck Recoveries'],
+      'NZ Turnovers': r['Opp NZ Turnovers'],
+      'Scoring Chances': r['Opp Scoring Chances'],
+      'Entry Scoring Chance %': r['Opp Entry Scoring Chance %'],
+      'Expected Goals (xG)': r['Opp Expected Goals (xG)'],
+      // Keep the “against” breakdown keys as-is (these are already opponent-oriented)
+      'SOG off Rush': r['SOGA off Rush'],
+      'SOG off FC cycle': r['SOGA off FC cycle'],
+      'SOG off NZ Turnovers': r['SOGA off NZ Turnovers'],
+    }));
+  }, [data?.per_game_metrics, perGameSide]);
+
   return (
     <div className="animate-in fade-in duration-500">
       <nav className="text-xs font-mono text-pwhl-muted mb-4 flex items-center gap-2 flex-wrap">
@@ -145,8 +174,32 @@ export function TeamAnalytics() {
         </div>
 
         <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm mb-6">
-          <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-4">Per-game metrics</h3>
-          <HubDataTable rows={data?.per_game_metrics ?? []} />
+          <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
+            <h3 className="font-serif font-bold text-lg text-pwhl-navy">Per-game metrics</h3>
+            <div className="flex gap-1 bg-pwhl-cream p-1 rounded-lg border border-pwhl-border">
+              <button
+                type="button"
+                onClick={() => setPerGameSide('for')}
+                className={cn(
+                  'px-3 py-1 text-xs font-semibold rounded',
+                  perGameSide === 'for' ? 'bg-white shadow-sm text-pwhl-navy' : 'text-pwhl-muted hover:text-pwhl-navy',
+                )}
+              >
+                Seattle (for)
+              </button>
+              <button
+                type="button"
+                onClick={() => setPerGameSide('against')}
+                className={cn(
+                  'px-3 py-1 text-xs font-semibold rounded',
+                  perGameSide === 'against' ? 'bg-white shadow-sm text-pwhl-navy' : 'text-pwhl-muted hover:text-pwhl-navy',
+                )}
+              >
+                Opponent (against)
+              </button>
+            </div>
+          </div>
+          <HubDataTable rows={perGameRows} />
         </div>
       </div>
 

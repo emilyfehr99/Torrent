@@ -155,11 +155,16 @@ def build_per_game_metrics(game: Dict[str, Any]) -> Dict[str, Any]:
     actions_for = Counter()
     actions_against = Counter()
     dz_shots = nz_shots = 0
+    events: List[Tuple[float, int, str, str]] = []
 
     for row in read_csv_rows(game["csv_file"]):
         team = (row.get("team") or "").strip()
         action = (row.get("action") or "").strip()
         pos_x = safe_float(row.get("pos_x"))
+        start = safe_float(row.get("start"))
+        rid = int(float(row.get("ID") or 0)) if (row.get("ID") or "").strip() else 0
+        if start is not None and start >= 0 and team and action:
+            events.append((float(start), rid, team, action))
 
         if team == TEAM_NAME:
             actions_for[action] += 1
@@ -185,6 +190,45 @@ def build_per_game_metrics(game: Dict[str, Any]) -> Dict[str, Any]:
     oz_fc_rec = float(actions_for.get("Puck recoveries in OZ", 0))
 
     shots_against = float(actions_against.get("Shots", 0))
+
+    events.sort(key=lambda x: (x[0], x[1]))
+
+    def count_shots_after(
+        trigger_team: str,
+        trigger_action: str,
+        shot_team: str,
+        shot_action: str,
+        window_sec: float = 10.0,
+    ) -> int:
+        # For each trigger, count a shot that occurs within (0, window] seconds after it.
+        # We count shots (not unique triggers with any shot) to match "shots off X" counting.
+        n = 0
+        for i, (t, _rid, team, action) in enumerate(events):
+            if team != trigger_team or action != trigger_action:
+                continue
+            t0 = t
+            j = i + 1
+            while j < len(events) and events[j][0] <= t0 + window_sec:
+                _tj, _ridj, teamj, actionj = events[j]
+                if teamj == shot_team and actionj == shot_action:
+                    n += 1
+                j += 1
+        return n
+
+    # First-principles (event-timeline) approximations:
+    # - Rush: shots shortly after entries
+    # - Forecheck/Cycle: shots shortly after OZ recoveries
+    # - NZ turnovers against: opponent shots shortly after our NZ losses
+    opp_team = (game["opponent"] or "").strip()
+    sog_off_rush = count_shots_after(TEAM_NAME, "Entries", TEAM_NAME, "Shots on goal", 10.0)
+    sog_off_fc = count_shots_after(TEAM_NAME, "Puck recoveries in OZ", TEAM_NAME, "Shots on goal", 10.0)
+    soga_off_nz_to = count_shots_after(TEAM_NAME, "Puck losses in NZ", opp_team, "Shots on goal", 10.0) if opp_team else 0
+
+    soga_off_rush = count_shots_after(opp_team, "Entries", opp_team, "Shots on goal", 10.0) if opp_team else 0
+    soga_off_fc = count_shots_after(opp_team, "Puck recoveries in OZ", opp_team, "Shots on goal", 10.0) if opp_team else 0
+
+    shots_off_rush = count_shots_after(TEAM_NAME, "Entries", TEAM_NAME, "Shots", 10.0)
+    shots_off_fc = count_shots_after(TEAM_NAME, "Puck recoveries in OZ", TEAM_NAME, "Shots", 10.0)
 
     # These tracked CSV exports don't explicitly label "scoring chances" or iXG.
     # We approximate them from available tracked proxies to avoid blank dashboard sections.
@@ -226,15 +270,15 @@ def build_per_game_metrics(game: Dict[str, Any]) -> Dict[str, Any]:
         "Exit off Retrieval %": exit_off_retrieval_pct,
         "Entry Scoring Chance %": entry_scoring_chance_pct,
         "Passes to the slot": slot_passes,
-        # Team-level breakdown placeholders (not directly labeled in this export)
-        "SOG off Rush": 0.0,
-        "SOGA off Rush": 0.0,
-        "SOG off FC cycle": 0.0,
-        "SOGA off FC cycle": 0.0,
-        "SOGA off NZ Turnovers": 0.0,
+        # Team-level breakdowns (event-timeline approximations)
+        "SOG off Rush": float(sog_off_rush),
+        "SOGA off Rush": float(soga_off_rush),
+        "SOG off FC cycle": float(sog_off_fc),
+        "SOGA off FC cycle": float(soga_off_fc),
+        "SOGA off NZ Turnovers": float(soga_off_nz_to),
         # Back-compat keys used in some UI blocks
-        "Shots off Rush": 0.0,
-        "Shots off Forecheck": 0.0,
+        "Shots off Rush": float(shots_off_rush),
+        "Shots off Forecheck": float(shots_off_fc),
         "Expected Goals (xG)": round(expected_xg, 2),
         "Total GameScore": round(scoring_chances + 0.5 * goals + 0.05 * shots + 0.03 * entries + 0.04 * oz_fc_rec, 2),
     }

@@ -15,6 +15,7 @@ import type { HubRow, VizShot, VizShotGame } from '../types/hub';
 import { formatPctCell } from '../lib/hubUtils';
 import { SortableTable, type SortableRow } from './SortableTable';
 import { ShotHeatmap } from './ShotHeatmap';
+import { ScoutingProfile } from './ScoutingProfile';
 import { findSimilarSkaters } from '../lib/playerSimilarity';
 import {
   SOURCE_LEAGUES,
@@ -201,7 +202,7 @@ export function PlayerDatabase() {
   const [posFilter, setPosFilter] = useState<'all' | 'F' | 'D' | 'G'>('all');
   const [seasonPick, setSeasonPick] = useState<'2526' | '2425' | '2324'>('2526');
   const [cardTab, setCardTab] = useState<
-    'overview' | 'transition' | 'pwhle' | 'pwhlproj' | 'heat' | 'flow' | 'similar'
+    'overview' | 'transition' | 'scouting' | 'heat' | 'flow' | 'similar'
   >('overview');
   const [similarOpen, setSimilarOpen] = useState(false);
   const [projLeagueId, setProjLeagueId] = useState<SourceLeagueId>('ncaa_d1');
@@ -558,6 +559,7 @@ export function PlayerDatabase() {
                   [
                     ['overview', 'Overview'],
                     ['transition', 'Transition'],
+                    ['scouting', 'Scouting Profile'],
                     ['heat', 'Shot heat'],
                   ] as const
                 ).map(([id, label]) => (
@@ -1104,6 +1106,15 @@ export function PlayerDatabase() {
                   </svg>
                 </div>
               ) : null}
+
+              {cardTab === 'scouting' && selected && (
+                <div className="mt-4">
+                  <ScoutingProfile 
+                    playerName={String(selected.Player ?? '')} 
+                    profile={data?.scouting_profiles?.[String(selected.Player ?? '')]} 
+                  />
+                </div>
+              )}
 
               {cardTab === 'similar' ? (
                 <div className="space-y-3">

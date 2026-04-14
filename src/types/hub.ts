@@ -95,6 +95,24 @@ export interface DefenseGamePayload {
   table: HubRow[];
 }
 
+export interface ScoutingComp {
+  Player: string;
+  Year: string | number;
+  distance: number;
+  GameScore: number;
+}
+
+export interface TrajectoryPoint {
+  Year: number;
+  AvgPercentile: number;
+}
+
+export interface ScoutingProfile {
+  percentiles: Record<string, number>;
+  comps: ScoutingComp[];
+  trajectory: TrajectoryPoint[];
+}
+
 export interface HubPayload {
   team_name: string;
   n_games: number;
@@ -126,6 +144,8 @@ export interface HubPayload {
   sequence_report?: SequenceReport;
   /** Tactical entry/breakout success rates by rink lane */
   viz_lane_efficiency?: LaneEfficiencyReport;
+  /** 3-year scouting data (percentiles, comps, trajectory) indexed by Player name */
+  scouting_profiles?: Record<string, ScoutingProfile>;
   metric_names: string[];
   /** Bump when new hub fields are added; client can refetch if stale */
   hub_schema_version?: number;

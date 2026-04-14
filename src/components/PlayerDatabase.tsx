@@ -194,6 +194,51 @@ function downloadSeasonCsv(rows: HubRow[], filename: string) {
   URL.revokeObjectURL(a.href);
 }
 
+function percentileRank(values: number[], v: number): number {
+  const xs = values.filter((n) => Number.isFinite(n)).sort((a, b) => a - b);
+  if (!xs.length || !Number.isFinite(v)) return 50;
+  let lo = 0;
+  let hi = xs.length;
+  while (lo < hi) {
+    const mid = (lo + hi) >> 1;
+    if (xs[mid] <= v) lo = mid + 1;
+    else hi = mid;
+  }
+  return (100 * lo) / xs.length;
+}
+
+function buildTeamDerivedScoutingProfile(selected: HubRow, seasonRows: HubRow[]) {
+  const metrics: Array<[string, string]> = [
+    ['GameScore', 'GameScore'],
+    ['xG/60', 'xG/60 est'],
+    ['Primary Shot Assists/60', 'Primary Shot Assists'],
+    ['Forecheck Recoveries/60', 'Forecheck Recoveries'],
+    ['Controlled Entries/60', 'Carry-ins'],
+    ['Controlled Exits/60', 'Exits w Possession'],
+    ['Retrievals leading to Exits/60', 'Retrievals w Exit'],
+  ];
+
+  const gp = Math.max(1, Number(selected['GP'] ?? 1));
+  const percentiles: Record<string, number> = {};
+
+  for (const [pKey, hubKey] of metrics) {
+    const vals: number[] = seasonRows.map((r) => {
+      const rGp = Math.max(1, Number(r['GP'] ?? 1));
+      const raw = Number(r[hubKey] ?? 0);
+      // Per-60 for counts: assume 60 min/game proxy since we don't have TOI in this static build.
+      return (raw / rGp) * 60;
+    });
+    const v = (Number(selected[hubKey] ?? 0) / gp) * 60;
+    percentiles[pKey] = Number(percentileRank(vals, v).toFixed(1));
+  }
+
+  return {
+    percentiles,
+    comps: [],
+    trajectory: [],
+  };
+}
+
 export function PlayerDatabase() {
   const { data, loading, error, refresh } = useHubData();
   const { query: q, setQuery: setQ } = useHubSearch();
@@ -1111,7 +1156,10 @@ export function PlayerDatabase() {
                 <div className="mt-4">
                   <ScoutingProfile 
                     playerName={String(selected.Player ?? '')} 
-                    profile={data?.scouting_profiles?.[String(selected.Player ?? '')]} 
+                    profile={
+                      data?.scouting_profiles?.[String(selected.Player ?? '')] ??
+                      buildTeamDerivedScoutingProfile(selected, activeSeason)
+                    } 
                   />
                 </div>
               )}

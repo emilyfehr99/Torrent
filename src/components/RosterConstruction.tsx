@@ -1,16 +1,9 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { BookOpen, Filter, UserCircle } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { useHubData } from '../context/HubDataContext';
 import { HubDataTable } from './HubDataTable';
 import LineupOptimizer from './LineupOptimizer';
-
-const freeAgents = [
-  { id: 1, name: 'S. Nurse', pos: 'F', currentTeam: 'TOR', projGS: 3.8, valueIndex: 88, value: 'High', age: 29 },
-  { id: 2, name: 'M. Keller', pos: 'D', currentTeam: 'BOS', projGS: 2.9, valueIndex: 76, value: 'Value', age: 27 },
-  { id: 3, name: 'A. Roque', pos: 'F', currentTeam: 'MIN', projGS: 3.2, valueIndex: 71, value: 'Fair', age: 26 },
-  { id: 4, name: 'E. Clark', pos: 'F', currentTeam: 'OTT', projGS: 2.1, valueIndex: 74, value: 'Value', age: 24 },
-];
 
 type RosterPanel = 'fa' | 'lineup';
 
@@ -23,6 +16,7 @@ export function RosterConstruction({
   const { data } = useHubData();
   const [panel, setPanel] = useState<RosterPanel>('fa');
   const [fitFor, setFitFor] = useState<string | null>(null);
+  const [posFilter, setPosFilter] = useState<'ALL' | 'F' | 'D'>('ALL');
   const lines = data?.line_combos_season ?? [];
   const pairs = data?.pairings_season ?? [];
   const playerCount = data?.player_season?.length ?? data?.roster?.length ?? 0;
@@ -45,6 +39,41 @@ export function RosterConstruction({
       return acc;
     }, []);
 
+  const rosterBoard = useMemo(() => {
+    const rows = [...(data?.player_season ?? [])].filter((r) => Number(r.GP ?? r['GP'] ?? 0) > 0);
+    const toPos = (r: any) => String(r.Pos ?? r['Pos'] ?? r.Pos_x ?? r.Pos_y ?? '').toUpperCase();
+    const pickPos = (p: string) => (p.includes('D') ? 'D' : 'F');
+
+    const byPos = posFilter === 'ALL' ? rows : rows.filter((r) => pickPos(toPos(r)) === posFilter);
+    const gsPerGp = (r: any) => (Number(r.GameScore ?? 0) / Math.max(1, Number(r.GP ?? 1)));
+
+    const gsVals = byPos.map(gsPerGp).filter((n) => Number.isFinite(n)).sort((a, b) => a - b);
+    const pct = (v: number) => {
+      if (!gsVals.length || !Number.isFinite(v)) return 50;
+      let lo = 0;
+      let hi = gsVals.length;
+      while (lo < hi) {
+        const mid = (lo + hi) >> 1;
+        if (gsVals[mid] <= v) lo = mid + 1;
+        else hi = mid;
+      }
+      return Math.round((100 * lo) / gsVals.length);
+    };
+
+    return byPos
+      .map((r, i) => {
+        const name = String(r.Player ?? '');
+        const pos = pickPos(toPos(r));
+        const gp = Number(r.GP ?? 0) || 0;
+        const proj = Number((gsPerGp(r) * 2.2).toFixed(2)); // lightweight “impact” proxy
+        const valueIndex = pct(gsPerGp(r));
+        const tier = valueIndex >= 85 ? 'Core' : valueIndex >= 70 ? 'Target' : valueIndex >= 55 ? 'Depth' : 'Replace';
+        return { id: i + 1, name, pos, gp, projGS: proj, valueIndex, value: tier, currentTeam: 'SEA', age: '—' as const };
+      })
+      .sort((a, b) => b.valueIndex - a.valueIndex)
+      .slice(0, 30);
+  }, [data?.player_season, posFilter]);
+
   return (
     <div className="animate-in fade-in duration-500">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
@@ -52,6 +81,10 @@ export function RosterConstruction({
           <h2 className="text-3xl font-serif font-bold text-pwhl-navy">Roster Construction</h2>
           <p className="text-pwhl-muted text-sm mt-1">
             Free agent evaluator (projected impact) · per-player value index · lineup optimizer
+          </p>
+          <p className="text-pwhl-muted text-xs mt-1">
+            No public PWHL cap/salary file loaded — use this as a <strong>relative</strong> impact + role-planning board (who to keep, who to upgrade,
+            where to allocate roster spots).
           </p>
         </div>
         <div className="flex gap-2 bg-pwhl-cream p-1 rounded-lg border border-pwhl-border">
@@ -140,19 +173,23 @@ export function RosterConstruction({
             <>
               <div className="p-6 border-b border-pwhl-border flex justify-between items-center bg-pwhl-surface">
                 <div>
-                  <h3 className="font-serif font-bold text-lg text-pwhl-navy">Free Agent Evaluator</h3>
-                  <p className="text-xs text-pwhl-muted mt-1">Ranked by Projected Game Score Impact</p>
+                  <h3 className="font-serif font-bold text-lg text-pwhl-navy">Value Board (Roster + Targets)</h3>
+                  <p className="text-xs text-pwhl-muted mt-1">Ranked by a GameScore-based value index (internal planning)</p>
                   <p className="text-xs text-pwhl-muted mt-0.5">
-                    Lineup optimizer for chemistry-based line and pair recommendations
+                    Use “Simulate Fit” to sanity-check which line/pair unit this profile supports.
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="flex items-center bg-pwhl-cream border border-pwhl-border rounded px-2 py-1">
                     <Filter size={14} className="text-pwhl-muted mr-2" />
-                    <select className="bg-transparent text-xs outline-none text-pwhl-navy font-medium">
-                      <option>All Positions</option>
-                      <option>Forwards</option>
-                      <option>Defense</option>
+                    <select
+                      className="bg-transparent text-xs outline-none text-pwhl-navy font-medium"
+                      value={posFilter}
+                      onChange={(e) => setPosFilter(e.target.value as any)}
+                    >
+                      <option value="ALL">All Positions</option>
+                      <option value="F">Forwards</option>
+                      <option value="D">Defense</option>
                     </select>
                   </div>
                 </div>
@@ -173,7 +210,7 @@ export function RosterConstruction({
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-pwhl-border font-mono text-sm">
-                    {freeAgents.map((player) => (
+                    {rosterBoard.map((player) => (
                       <tr key={player.id} className="hover:bg-pwhl-surface-hover transition-colors group">
                         <td className="px-6 py-4 font-sans font-semibold text-pwhl-navy flex items-center gap-3">
                           <div className="w-8 h-8 rounded-full bg-pwhl-cream border border-pwhl-border flex items-center justify-center text-pwhl-blue">
@@ -190,11 +227,13 @@ export function RosterConstruction({
                           <span
                             className={cn(
                               'text-[10px] px-2 py-1 rounded font-bold uppercase tracking-wider',
-                              player.value === 'Value'
+                              player.value === 'Target'
                                 ? 'bg-pwhl-success/10 text-pwhl-success'
-                                : player.value === 'High'
+                                : player.value === 'Core'
                                   ? 'bg-pwhl-accent/10 text-pwhl-accent'
-                                  : 'bg-pwhl-border text-pwhl-muted',
+                                  : player.value === 'Depth'
+                                    ? 'bg-pwhl-border text-pwhl-muted'
+                                    : 'bg-red-100 text-red-700',
                             )}
                           >
                             {player.value}
@@ -205,7 +244,7 @@ export function RosterConstruction({
                             type="button"
                             onClick={() =>
                               setFitFor(
-                                `${player.name} — proj GS ${player.projGS}, value ${player.value} (${player.currentTeam})`,
+                                `${player.name} — value ${player.value} (index ${player.valueIndex})`,
                               )
                             }
                             className="text-xs font-sans font-semibold text-pwhl-blue hover:underline opacity-0 group-hover:opacity-100 transition-opacity"

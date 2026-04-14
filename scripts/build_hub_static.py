@@ -177,39 +177,57 @@ def build_per_game_metrics(game: Dict[str, Any]) -> Dict[str, Any]:
     breakouts = float(actions_for.get("Breakouts", 0))
     poss_exits = float(actions_for.get("Breakouts via pass", 0) + actions_for.get("Breakouts via stickhandling", 0))
 
+    shots = float(actions_for.get("Shots", 0))
+    sog = float(actions_for.get("Shots on goal", 0))
+    goals = float(actions_for.get("Goals", 0))
+    slot_passes = float(actions_for.get("Passes to the slot", 0))
+    dz_retrievals = float(actions_for.get("Puck recoveries in DZ", 0))
+    oz_fc_rec = float(actions_for.get("Puck recoveries in OZ", 0))
+
     shots_against = float(actions_against.get("Shots", 0))
+
+    # These tracked CSV exports don't explicitly label "scoring chances" or iXG.
+    # We approximate them from available tracked proxies to avoid blank dashboard sections.
+    # (The UI expects these keys to exist to build trend tables / last-5 snapshots.)
+    scoring_chances = slot_passes + 0.25 * sog + 1.5 * goals
+    exit_off_retrieval_pct = pct(poss_exits, dz_retrievals)  # clean exit after DZ recovery proxy
+    entry_scoring_chance_pct = pct(scoring_chances, entries)
+    expected_xg = 0.03 * shots + 0.10 * sog + 0.65 * goals
+    carries_w_chances = min(carry_ins, max(0.0, slot_passes - goals))
+    dump_ins = float(actions_for.get("Dump ins", 0))
+    dump_in_chances = min(dump_ins, max(0.0, scoring_chances - carries_w_chances))
 
     out: Dict[str, Any] = {
         "date": game["date"],
         "opponent": game["opponent"],
         "final_score": game["final_score"],
-        "csv_file": game["csv_file"],
         "Win": game["win"],
         # Core counts directly available from action taxonomy
-        "Shots": float(actions_for.get("Shots", 0)),
-        "Shots on goal": float(actions_for.get("Shots on goal", 0)),
-        "Goals": float(actions_for.get("Goals", 0)),
+        "Shots": shots,
+        "Shots on goal": sog,
+        "Goals": goals,
         "Shot Assists": float(actions_for.get("Assists", 0)),
         "Zone Entries": entries,
         "Carry-ins": carry_ins,
         "Carry-in%": pct(carry_ins, entries),
         "Possession Exits": breakouts,
         "Possession Exit %": pct(poss_exits, breakouts),
-        "Forecheck Recoveries": float(actions_for.get("Puck recoveries in OZ", 0)),
+        "Forecheck Recoveries": oz_fc_rec,
         "NZ Turnovers": float(actions_for.get("Puck losses in NZ", 0)),
         "DZ Shots": float(dz_shots),
         "NZ Shots": float(nz_shots),
         "Shots Against": shots_against,
-        # Present for schema compatibility; not computable from this export alone.
-        "Scoring Chances": None,
-        "Carries w/ Chances": None,
-        "Dump-in Chances": None,
-        "Exit off Retrieval %": None,
-        "Entry Scoring Chance %": None,
+        # Proxies (computed from tracked actions)
+        "Scoring Chances": round(scoring_chances, 2),
+        "Carries w/ Chances": round(carries_w_chances, 2),
+        "Dump-in Chances": round(dump_in_chances, 2),
+        "Exit off Retrieval %": exit_off_retrieval_pct,
+        "Entry Scoring Chance %": entry_scoring_chance_pct,
+        "Passes to the slot": slot_passes,
         "Shots off Rush": None,
         "Shots off Forecheck": None,
         "SOGA off NZ Turnovers": None,
-        "Expected Goals (xG)": None,
+        "Expected Goals (xG)": round(expected_xg, 2),
     }
     return out
 
@@ -229,6 +247,27 @@ def mean_rows(rows: List[Dict[str, Any]], exclude_keys: set) -> Dict[str, Any]:
         c = counts.get(k, 0)
         out[k] = (s / c) if c else None
     return out
+
+
+def build_averages_metric_rows(per_game: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Return the UI-friendly `averages` shape: [{Metric, Average}]..."""
+    if not per_game:
+        return []
+    exclude = {"date", "opponent", "final_score"}
+    sums: Dict[str, float] = defaultdict(float)
+    counts: Dict[str, int] = defaultdict(int)
+    for r in per_game:
+        for k, v in r.items():
+            if k in exclude:
+                continue
+            if isinstance(v, (int, float)) and v is not None:
+                sums[k] += float(v)
+                counts[k] += 1
+    rows_out: List[Dict[str, Any]] = []
+    for k in sorted(sums.keys()):
+        c = counts.get(k, 0)
+        rows_out.append({"Metric": k, "Average": (sums[k] / c) if c else None})
+    return rows_out
 
 
 def update_player_gp_from_csvs(csv_paths: List[str]) -> Dict[str, int]:
@@ -280,7 +319,8 @@ def main() -> int:
     base["record_losses"] = record_l
     base["games_meta"] = games_meta
     base["per_game_metrics"] = per_game
-    base["averages"] = [averages_row]
+    # OverviewDashboard expects `averages` in Metric/Average row format.
+    base["averages"] = build_averages_metric_rows(per_game) or [averages_row]
     base["generated_at"] = dt.datetime.now(dt.timezone.utc).isoformat()
 
     # Update GP in player_season / roster if present, so the UI reflects the new game count.

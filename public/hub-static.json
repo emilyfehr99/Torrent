@@ -112,7 +112,6 @@
       "date": "Jan 03, 2026",
       "opponent": "Toronto Sceptres",
       "final_score": "3\u20132",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Toronto Sceptres 2 _ 3 Seattle Torrent 03.01.2026.csv",
       "Win": 1.0,
       "Shots": 78.0,
       "Shots on goal": 44.0,
@@ -128,21 +127,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 2.0,
       "Shots Against": 59.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 25.5,
+      "Carries w/ Chances": 7.0,
+      "Dump-in Chances": 18.5,
+      "Exit off Retrieval %": 72.6027397260274,
+      "Entry Scoring Chance %": 44.73684210526316,
+      "Passes to the slot": 10.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 8.69
     },
     {
       "date": "Jan 07, 2026",
       "opponent": "Boston Fleet",
       "final_score": "1\u20132",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Boston Fleet 2 _ 1 Seattle Torrent 07.01.2026.csv",
       "Win": 0.0,
       "Shots": 47.0,
       "Shots on goal": 17.0,
@@ -158,21 +157,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 8.0,
       "Shots Against": 69.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 15.75,
+      "Carries w/ Chances": 9.0,
+      "Dump-in Chances": 6.75,
+      "Exit off Retrieval %": 58.73015873015873,
+      "Entry Scoring Chance %": 41.44736842105263,
+      "Passes to the slot": 10.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 3.76
     },
     {
       "date": "Jan 11, 2026",
       "opponent": "Minnesota Frost",
       "final_score": "2\u20136",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Minnesota Frost 6 _ 2 Seattle Torrent 11.01.2026.csv",
       "Win": 0.0,
       "Shots": 50.0,
       "Shots on goal": 29.0,
@@ -188,21 +187,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 3.0,
       "Shots Against": 83.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 14.25,
+      "Carries w/ Chances": 2.0,
+      "Dump-in Chances": 12.25,
+      "Exit off Retrieval %": 85.71428571428571,
+      "Entry Scoring Chance %": 32.38636363636363,
+      "Passes to the slot": 4.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 5.7
     },
     {
       "date": "Jan 18, 2026",
       "opponent": "Boston Fleet",
       "final_score": "1\u20132",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Seattle Torrent 1 _ 2 Boston Fleet 18.01.2026.csv",
       "Win": 0.0,
       "Shots": 87.0,
       "Shots on goal": 39.0,
@@ -218,21 +217,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 1.0,
       "Shots Against": 51.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 26.25,
+      "Carries w/ Chances": 14.0,
+      "Dump-in Chances": 12.25,
+      "Exit off Retrieval %": 81.81818181818181,
+      "Entry Scoring Chance %": 46.875,
+      "Passes to the slot": 15.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 7.16
     },
     {
       "date": "Jan 20, 2026",
       "opponent": "Toronto Sceptres",
       "final_score": "6\u20134",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Seattle Torrent 6 _ 4 Toronto Sceptres 20.01.2026.csv",
       "Win": 1.0,
       "Shots": 62.0,
       "Shots on goal": 36.0,
@@ -248,21 +247,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 1.0,
       "Shots Against": 68.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 30.0,
+      "Carries w/ Chances": 6.0,
+      "Dump-in Chances": 24.0,
+      "Exit off Retrieval %": 89.28571428571429,
+      "Entry Scoring Chance %": 58.8235294117647,
+      "Passes to the slot": 12.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 9.36
     },
     {
       "date": "Jan 25, 2026",
       "opponent": "Vancouver Goldeneyes",
       "final_score": "1\u20133",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Seattle Torrent 1 _ 3 Vancouver Goldeneyes 25.01.2026.csv",
       "Win": 0.0,
       "Shots": 58.0,
       "Shots on goal": 33.0,
@@ -278,21 +277,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 2.0,
       "Shots Against": 45.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 19.75,
+      "Carries w/ Chances": 9.0,
+      "Dump-in Chances": 10.75,
+      "Exit off Retrieval %": 94.73684210526316,
+      "Entry Scoring Chance %": 30.384615384615383,
+      "Passes to the slot": 10.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 5.69
     },
     {
       "date": "Jan 28, 2026",
       "opponent": "Ottawa Charge",
       "final_score": "2\u20134",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Ottawa Charge 4 _ 2 Seattle Torrent 28.01.2026.csv",
       "Win": 0.0,
       "Shots": 46.0,
       "Shots on goal": 28.0,
@@ -308,21 +307,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 3.0,
       "Shots Against": 67.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 21.0,
+      "Carries w/ Chances": 9.0,
+      "Dump-in Chances": 12.0,
+      "Exit off Retrieval %": 96.07843137254902,
+      "Entry Scoring Chance %": 51.21951219512195,
+      "Passes to the slot": 11.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 5.48
     },
     {
       "date": "Feb 27, 2026",
       "opponent": "Toronto Sceptres",
       "final_score": "2\u20135",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Seattle Torrent 2 _ 5 Toronto Sceptres 27.02.2026.csv",
       "Win": 0.0,
       "Shots": 58.0,
       "Shots on goal": 34.0,
@@ -338,21 +337,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 1.0,
       "Shots Against": 52.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 23.5,
+      "Carries w/ Chances": 10.0,
+      "Dump-in Chances": 13.5,
+      "Exit off Retrieval %": 94.11764705882354,
+      "Entry Scoring Chance %": 47.0,
+      "Passes to the slot": 12.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 6.44
     },
     {
       "date": "Mar 04, 2026",
       "opponent": "Ottawa Charge",
       "final_score": "3\u20134",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Ottawa Charge 4 _ 3 Seattle Torrent 04.03.2026.csv",
       "Win": 0.0,
       "Shots": 45.0,
       "Shots on goal": 30.0,
@@ -368,21 +367,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 3.0,
       "Shots Against": 49.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 16.0,
+      "Carries w/ Chances": 1.0,
+      "Dump-in Chances": 15.0,
+      "Exit off Retrieval %": 73.07692307692308,
+      "Entry Scoring Chance %": 39.02439024390244,
+      "Passes to the slot": 4.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 6.3
     },
     {
       "date": "Mar 11, 2026",
       "opponent": "Boston Fleet",
       "final_score": "3\u20132",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Seattle Torrent 3 _ 2 Boston Fleet 11.03.2026.csv",
       "Win": 1.0,
       "Shots": 64.0,
       "Shots on goal": 34.0,
@@ -398,21 +397,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 2.0,
       "Shots Against": 59.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 21.0,
+      "Carries w/ Chances": 5.0,
+      "Dump-in Chances": 16.0,
+      "Exit off Retrieval %": 79.24528301886792,
+      "Entry Scoring Chance %": 47.72727272727273,
+      "Passes to the slot": 8.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 7.27
     },
     {
       "date": "Mar 15, 2026",
       "opponent": "Toronto Sceptres",
       "final_score": "0\u20132",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Toronto Sceptres 2 _ 0 Seattle Torrent 15.03.2026.csv",
       "Win": 0.0,
       "Shots": 53.0,
       "Shots on goal": 32.0,
@@ -428,21 +427,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 1.0,
       "Shots Against": 57.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 15.0,
+      "Carries w/ Chances": 7.0,
+      "Dump-in Chances": 8.0,
+      "Exit off Retrieval %": 67.79661016949153,
+      "Entry Scoring Chance %": 38.46153846153846,
+      "Passes to the slot": 7.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 4.79
     },
     {
       "date": "Mar 19, 2026",
       "opponent": "Montreal Victoire",
       "final_score": "1\u20134",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Montreal Victoire 4 _ 1 Seattle Torrent 19.03.2026.csv",
       "Win": 0.0,
       "Shots": 56.0,
       "Shots on goal": 26.0,
@@ -458,21 +457,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 3.0,
       "Shots Against": 71.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 14.0,
+      "Carries w/ Chances": 5.0,
+      "Dump-in Chances": 9.0,
+      "Exit off Retrieval %": 95.74468085106383,
+      "Entry Scoring Chance %": 26.41509433962264,
+      "Passes to the slot": 6.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 4.93
     },
     {
       "date": "Mar 21, 2026",
       "opponent": "Boston Fleet",
       "final_score": "0\u20133",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Boston Fleet 3 _ 0 Seattle Torrent 21.03.2026.csv",
       "Win": 0.0,
       "Shots": 38.0,
       "Shots on goal": 21.0,
@@ -488,21 +487,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 5.0,
       "Shots Against": 58.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 10.25,
+      "Carries w/ Chances": 5.0,
+      "Dump-in Chances": 5.25,
+      "Exit off Retrieval %": 58.46153846153846,
+      "Entry Scoring Chance %": 23.837209302325583,
+      "Passes to the slot": 5.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 3.24
     },
     {
       "date": "Mar 25, 2026",
       "opponent": "New York Sirens",
       "final_score": "4\u20131",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Seattle Torrent 4 _ 1 New York Sirens 25.03.2026.csv",
       "Win": 1.0,
       "Shots": 43.0,
       "Shots on goal": 18.0,
@@ -518,21 +517,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 3.0,
       "Shots Against": 65.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 18.5,
+      "Carries w/ Chances": 4.0,
+      "Dump-in Chances": 14.5,
+      "Exit off Retrieval %": 73.91304347826087,
+      "Entry Scoring Chance %": 44.04761904761905,
+      "Passes to the slot": 8.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 5.69
     },
     {
       "date": "Apr 04, 2026",
       "opponent": "New York Sirens",
       "final_score": "1\u20132",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/New York Sirens 2 _ 1 Seattle Torrent 04.04.2026.csv",
       "Win": 0.0,
       "Shots": 42.0,
       "Shots on goal": 17.0,
@@ -548,21 +547,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 0.0,
       "Shots Against": 69.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 14.75,
+      "Carries w/ Chances": 8.0,
+      "Dump-in Chances": 6.75,
+      "Exit off Retrieval %": 98.36065573770492,
+      "Entry Scoring Chance %": 29.5,
+      "Passes to the slot": 9.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 3.61
     },
     {
       "date": "Apr 07, 2026",
       "opponent": "Montreal Victoire",
       "final_score": "1\u20134",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Montreal Victoire 4 _ 1 Seattle Torrent 07.04.2026.csv",
       "Win": 0.0,
       "Shots": 49.0,
       "Shots on goal": 25.0,
@@ -578,21 +577,21 @@
       "DZ Shots": 0.0,
       "NZ Shots": 1.0,
       "Shots Against": 53.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 9.75,
+      "Carries w/ Chances": 1.0,
+      "Dump-in Chances": 8.75,
+      "Exit off Retrieval %": 88.70967741935483,
+      "Entry Scoring Chance %": 19.5,
+      "Passes to the slot": 2.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 4.62
     },
     {
       "date": "Apr 08, 2026",
       "opponent": "Ottawa Charge",
       "final_score": "5\u20133",
-      "csv_file": "/Users/emilyfehr8/Desktop/My Analytics Work/Torrent Data/Ottawa Charge 3 _ 5 Seattle Torrent 08.04.2026.csv",
       "Win": 1.0,
       "Shots": 58.0,
       "Shots on goal": 34.0,
@@ -608,34 +607,106 @@
       "DZ Shots": 0.0,
       "NZ Shots": 6.0,
       "Shots Against": 56.0,
-      "Scoring Chances": null,
-      "Carries w/ Chances": null,
-      "Dump-in Chances": null,
-      "Exit off Retrieval %": null,
-      "Entry Scoring Chance %": null,
+      "Scoring Chances": 24.0,
+      "Carries w/ Chances": 3.0,
+      "Dump-in Chances": 21.0,
+      "Exit off Retrieval %": 96.72131147540983,
+      "Entry Scoring Chance %": 48.97959183673469,
+      "Passes to the slot": 8.0,
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": null
+      "Expected Goals (xG)": 8.39
     }
   ],
   "averages": [
     {
-      "Win": 0.29411764705882354,
-      "Shots": 54.94117647058823,
-      "Shots on goal": 29.235294117647058,
-      "Goals": 2.1176470588235294,
-      "Shot Assists": 3.1176470588235294,
-      "Zone Entries": 47.8235294117647,
-      "Carry-ins": 26.58823529411765,
-      "Carry-in%": 55.180548019182794,
-      "Possession Exits": 48.23529411764706,
-      "Possession Exit %": 98.98634187636745,
-      "Forecheck Recoveries": 10.117647058823529,
-      "NZ Turnovers": 23.352941176470587,
-      "DZ Shots": 0.0,
-      "NZ Shots": 2.6470588235294117,
-      "Shots Against": 60.64705882352941
+      "Metric": "Carries w/ Chances",
+      "Average": 6.176470588235294
+    },
+    {
+      "Metric": "Carry-in%",
+      "Average": 55.180548019182794
+    },
+    {
+      "Metric": "Carry-ins",
+      "Average": 26.58823529411765
+    },
+    {
+      "Metric": "DZ Shots",
+      "Average": 0.0
+    },
+    {
+      "Metric": "Dump-in Chances",
+      "Average": 12.602941176470589
+    },
+    {
+      "Metric": "Entry Scoring Chance %",
+      "Average": 39.43329100665865
+    },
+    {
+      "Metric": "Exit off Retrieval %",
+      "Average": 82.65374849997761
+    },
+    {
+      "Metric": "Expected Goals (xG)",
+      "Average": 5.948235294117646
+    },
+    {
+      "Metric": "Forecheck Recoveries",
+      "Average": 10.117647058823529
+    },
+    {
+      "Metric": "Goals",
+      "Average": 2.1176470588235294
+    },
+    {
+      "Metric": "NZ Shots",
+      "Average": 2.6470588235294117
+    },
+    {
+      "Metric": "NZ Turnovers",
+      "Average": 23.352941176470587
+    },
+    {
+      "Metric": "Passes to the slot",
+      "Average": 8.294117647058824
+    },
+    {
+      "Metric": "Possession Exit %",
+      "Average": 98.98634187636745
+    },
+    {
+      "Metric": "Possession Exits",
+      "Average": 48.23529411764706
+    },
+    {
+      "Metric": "Scoring Chances",
+      "Average": 18.779411764705884
+    },
+    {
+      "Metric": "Shot Assists",
+      "Average": 3.1176470588235294
+    },
+    {
+      "Metric": "Shots",
+      "Average": 54.94117647058823
+    },
+    {
+      "Metric": "Shots Against",
+      "Average": 60.64705882352941
+    },
+    {
+      "Metric": "Shots on goal",
+      "Average": 29.235294117647058
+    },
+    {
+      "Metric": "Win",
+      "Average": 0.29411764705882354
+    },
+    {
+      "Metric": "Zone Entries",
+      "Average": 47.8235294117647
     }
   ],
   "win_correlations": [
@@ -49583,5 +49654,5 @@
     "Expected Goals (xG)"
   ],
   "hub_schema_version": 4,
-  "generated_at": "2026-04-14T14:00:17.152892+00:00"
+  "generated_at": "2026-04-14T14:07:34.572364+00:00"
 }

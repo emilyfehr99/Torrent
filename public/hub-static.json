@@ -133,10 +133,15 @@
       "Exit off Retrieval %": 72.6027397260274,
       "Entry Scoring Chance %": 44.73684210526316,
       "Passes to the slot": 10.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 3.46
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 3.46,
+      "Total GameScore": 33.17
     },
     {
       "date": "Jan 07, 2026",
@@ -163,10 +168,15 @@
       "Exit off Retrieval %": 58.73015873015873,
       "Entry Scoring Chance %": 41.44736842105263,
       "Passes to the slot": 10.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 1.55
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 1.55,
+      "Total GameScore": 20.06
     },
     {
       "date": "Jan 11, 2026",
@@ -193,10 +203,15 @@
       "Exit off Retrieval %": 85.71428571428571,
       "Entry Scoring Chance %": 32.38636363636363,
       "Passes to the slot": 4.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 2.27
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 2.27,
+      "Total GameScore": 19.43
     },
     {
       "date": "Jan 18, 2026",
@@ -223,10 +238,15 @@
       "Exit off Retrieval %": 81.81818181818181,
       "Entry Scoring Chance %": 46.875,
       "Passes to the slot": 15.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 2.92
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 2.92,
+      "Total GameScore": 33.18
     },
     {
       "date": "Jan 20, 2026",
@@ -253,10 +273,15 @@
       "Exit off Retrieval %": 89.28571428571429,
       "Entry Scoring Chance %": 58.8235294117647,
       "Passes to the slot": 12.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 3.69
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 3.69,
+      "Total GameScore": 37.99
     },
     {
       "date": "Jan 25, 2026",
@@ -283,10 +308,15 @@
       "Exit off Retrieval %": 94.73684210526316,
       "Entry Scoring Chance %": 30.384615384615383,
       "Passes to the slot": 10.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 2.27
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 2.27,
+      "Total GameScore": 25.46
     },
     {
       "date": "Jan 28, 2026",
@@ -313,10 +343,15 @@
       "Exit off Retrieval %": 96.07843137254902,
       "Entry Scoring Chance %": 51.21951219512195,
       "Passes to the slot": 11.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 2.17
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 2.17,
+      "Total GameScore": 26.01
     },
     {
       "date": "Feb 27, 2026",
@@ -343,10 +378,15 @@
       "Exit off Retrieval %": 94.11764705882354,
       "Entry Scoring Chance %": 47.0,
       "Passes to the slot": 12.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 2.56
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 2.56,
+      "Total GameScore": 29.5
     },
     {
       "date": "Mar 04, 2026",
@@ -373,10 +413,15 @@
       "Exit off Retrieval %": 73.07692307692308,
       "Entry Scoring Chance %": 39.02439024390244,
       "Passes to the slot": 4.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 2.48
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 2.48,
+      "Total GameScore": 21.3
     },
     {
       "date": "Mar 11, 2026",
@@ -403,10 +448,15 @@
       "Exit off Retrieval %": 79.24528301886792,
       "Entry Scoring Chance %": 47.72727272727273,
       "Passes to the slot": 8.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 2.9
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 2.9,
+      "Total GameScore": 27.54
     },
     {
       "date": "Mar 15, 2026",
@@ -433,10 +483,15 @@
       "Exit off Retrieval %": 67.79661016949153,
       "Entry Scoring Chance %": 38.46153846153846,
       "Passes to the slot": 7.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 1.92
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 1.92,
+      "Total GameScore": 19.1
     },
     {
       "date": "Mar 19, 2026",
@@ -463,10 +518,15 @@
       "Exit off Retrieval %": 95.74468085106383,
       "Entry Scoring Chance %": 26.41509433962264,
       "Passes to the slot": 6.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 2.0
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 2.0,
+      "Total GameScore": 19.29
     },
     {
       "date": "Mar 21, 2026",
@@ -493,10 +553,15 @@
       "Exit off Retrieval %": 58.46153846153846,
       "Entry Scoring Chance %": 23.837209302325583,
       "Passes to the slot": 5.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 1.31
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 1.31,
+      "Total GameScore": 13.88
     },
     {
       "date": "Mar 25, 2026",
@@ -523,10 +588,15 @@
       "Exit off Retrieval %": 73.91304347826087,
       "Entry Scoring Chance %": 44.04761904761905,
       "Passes to the slot": 8.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 2.28
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 2.28,
+      "Total GameScore": 24.39
     },
     {
       "date": "Apr 04, 2026",
@@ -553,10 +623,15 @@
       "Exit off Retrieval %": 98.36065573770492,
       "Entry Scoring Chance %": 29.5,
       "Passes to the slot": 9.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 1.48
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 1.48,
+      "Total GameScore": 19.01
     },
     {
       "date": "Apr 07, 2026",
@@ -583,10 +658,15 @@
       "Exit off Retrieval %": 88.70967741935483,
       "Entry Scoring Chance %": 19.5,
       "Passes to the slot": 2.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 1.86
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 1.86,
+      "Total GameScore": 14.48
     },
     {
       "date": "Apr 08, 2026",
@@ -613,24 +693,29 @@
       "Exit off Retrieval %": 96.72131147540983,
       "Entry Scoring Chance %": 48.97959183673469,
       "Passes to the slot": 8.0,
-      "Shots off Rush": null,
-      "Shots off Forecheck": null,
-      "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 3.31
+      "SOG off Rush": 0.0,
+      "SOGA off Rush": 0.0,
+      "SOG off FC cycle": 0.0,
+      "SOGA off FC cycle": 0.0,
+      "SOGA off NZ Turnovers": 0.0,
+      "Shots off Rush": 0.0,
+      "Shots off Forecheck": 0.0,
+      "Expected Goals (xG)": 3.31,
+      "Total GameScore": 31.43
     }
   ],
   "averages": [
     {
       "Metric": "Carries w/ Chances",
-      "Average": 6.176470588235294
+      "Average": 6.2
     },
     {
       "Metric": "Carry-in%",
-      "Average": 55.180548019182794
+      "Average": 55.2
     },
     {
       "Metric": "Carry-ins",
-      "Average": 26.58823529411765
+      "Average": 26.6
     },
     {
       "Metric": "DZ Shots",
@@ -638,75 +723,107 @@
     },
     {
       "Metric": "Dump-in Chances",
-      "Average": 12.602941176470589
+      "Average": 12.6
     },
     {
       "Metric": "Entry Scoring Chance %",
-      "Average": 39.43329100665865
+      "Average": 39.4
     },
     {
       "Metric": "Exit off Retrieval %",
-      "Average": 82.65374849997761
+      "Average": 82.7
     },
     {
       "Metric": "Expected Goals (xG)",
-      "Average": 2.378235294117647
+      "Average": 2.4
     },
     {
       "Metric": "Forecheck Recoveries",
-      "Average": 10.117647058823529
+      "Average": 10.1
     },
     {
       "Metric": "Goals",
-      "Average": 2.1176470588235294
+      "Average": 2.1
     },
     {
       "Metric": "NZ Shots",
-      "Average": 2.6470588235294117
+      "Average": 2.6
     },
     {
       "Metric": "NZ Turnovers",
-      "Average": 23.352941176470587
+      "Average": 23.4
     },
     {
       "Metric": "Passes to the slot",
-      "Average": 8.294117647058824
+      "Average": 8.3
     },
     {
       "Metric": "Possession Exit %",
-      "Average": 98.98634187636745
+      "Average": 99.0
     },
     {
       "Metric": "Possession Exits",
-      "Average": 48.23529411764706
+      "Average": 48.2
+    },
+    {
+      "Metric": "SOG off FC cycle",
+      "Average": 0.0
+    },
+    {
+      "Metric": "SOG off Rush",
+      "Average": 0.0
+    },
+    {
+      "Metric": "SOGA off FC cycle",
+      "Average": 0.0
+    },
+    {
+      "Metric": "SOGA off NZ Turnovers",
+      "Average": 0.0
+    },
+    {
+      "Metric": "SOGA off Rush",
+      "Average": 0.0
     },
     {
       "Metric": "Scoring Chances",
-      "Average": 18.779411764705884
+      "Average": 18.8
     },
     {
       "Metric": "Shot Assists",
-      "Average": 3.1176470588235294
+      "Average": 3.1
     },
     {
       "Metric": "Shots",
-      "Average": 54.94117647058823
+      "Average": 54.9
     },
     {
       "Metric": "Shots Against",
-      "Average": 60.64705882352941
+      "Average": 60.6
+    },
+    {
+      "Metric": "Shots off Forecheck",
+      "Average": 0.0
+    },
+    {
+      "Metric": "Shots off Rush",
+      "Average": 0.0
     },
     {
       "Metric": "Shots on goal",
-      "Average": 29.235294117647058
+      "Average": 29.2
+    },
+    {
+      "Metric": "Total GameScore",
+      "Average": 24.4
     },
     {
       "Metric": "Win",
-      "Average": 0.29411764705882354
+      "Average": 0.3
     },
     {
       "Metric": "Zone Entries",
-      "Average": 47.8235294117647
+      "Average": 47.8
     }
   ],
   "win_correlations": [
@@ -49654,5 +49771,5 @@
     "Expected Goals (xG)"
   ],
   "hub_schema_version": 4,
-  "generated_at": "2026-04-14T14:21:26.873764+00:00"
+  "generated_at": "2026-04-14T14:33:39.953152+00:00"
 }

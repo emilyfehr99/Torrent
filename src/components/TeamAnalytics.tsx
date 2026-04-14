@@ -9,6 +9,8 @@ import { HubDataTable } from './HubDataTable';
 export function TeamAnalytics() {
   const { data, loading, error } = useHubData();
   const [defIdx, setDefIdx] = useState(0);
+  const [playerView, setPlayerView] = useState<'offense' | 'defense'>('defense');
+  const [posPick, setPosPick] = useState<'ALL' | 'F' | 'D'>('ALL');
   const hubTeam = data?.team_name ?? 'Seattle Torrent';
   const standingRow = PWHL_STANDINGS_2526.find((r) => r.team === hubTeam);
 
@@ -61,6 +63,22 @@ export function TeamAnalytics() {
   }
 
   const defGame = data?.defense_by_game?.[defIdx];
+
+  const defenseRows = useMemo(() => {
+    const rows = [...(data?.defense_season ?? [])];
+    const pos = (r: any) => String(r.Pos ?? '').toUpperCase();
+    const bucket = (p: string) => (p.includes('D') ? 'D' : 'F');
+    if (posPick === 'ALL') return rows;
+    return rows.filter((r) => bucket(pos(r)) === posPick);
+  }, [data?.defense_season, posPick]);
+
+  const defenseGameRows = useMemo(() => {
+    const rows = [...(defGame?.table ?? [])];
+    const pos = (r: any) => String(r.Pos ?? '').toUpperCase();
+    const bucket = (p: string) => (p.includes('D') ? 'D' : 'F');
+    if (posPick === 'ALL') return rows;
+    return rows.filter((r) => bucket(pos(r)) === posPick);
+  }, [defGame?.table, posPick]);
 
   return (
     <div className="animate-in fade-in duration-500">
@@ -157,13 +175,51 @@ export function TeamAnalytics() {
       {(data?.defense_season?.length || data?.defense_by_game?.length) ? (
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm flex flex-col">
-          <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-4">Defense · season totals (player)</h3>
-          <HubDataTable rows={data?.defense_season ?? []} />
+          <div className="flex items-start justify-between gap-3 mb-4 flex-wrap">
+            <div>
+              <h3 className="font-serif font-bold text-lg text-pwhl-navy">Players · season totals</h3>
+              <p className="text-xs text-pwhl-muted">Toggle offense/defense views and filter by position bucket.</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="flex gap-1 bg-pwhl-cream p-1 rounded-lg border border-pwhl-border">
+                <button
+                  type="button"
+                  onClick={() => setPlayerView('offense')}
+                  className={cn(
+                    'px-3 py-1 text-xs font-semibold rounded',
+                    playerView === 'offense' ? 'bg-white shadow-sm text-pwhl-navy' : 'text-pwhl-muted hover:text-pwhl-navy',
+                  )}
+                >
+                  Offense
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPlayerView('defense')}
+                  className={cn(
+                    'px-3 py-1 text-xs font-semibold rounded',
+                    playerView === 'defense' ? 'bg-white shadow-sm text-pwhl-navy' : 'text-pwhl-muted hover:text-pwhl-navy',
+                  )}
+                >
+                  Defense
+                </button>
+              </div>
+              <select
+                className="bg-pwhl-cream border border-pwhl-border text-xs rounded-lg px-2 py-1 outline-none"
+                value={posPick}
+                onChange={(e) => setPosPick(e.target.value as any)}
+              >
+                <option value="ALL">All</option>
+                <option value="F">F</option>
+                <option value="D">D</option>
+              </select>
+            </div>
+          </div>
+          <HubDataTable rows={playerView === 'defense' ? defenseRows : (data?.player_season ?? [])} />
         </div>
 
         {data?.defense_by_game?.length ? (
         <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-6 shadow-sm flex flex-col">
-          <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-2">Defense · single game</h3>
+          <h3 className="font-serif font-bold text-lg text-pwhl-navy mb-2">Players · single game</h3>
           <select
             className="mb-4 w-full bg-pwhl-cream border border-pwhl-border text-sm rounded-lg px-3 py-2 outline-none focus:border-torrent-teal font-medium"
             value={defIdx}
@@ -175,7 +231,7 @@ export function TeamAnalytics() {
               </option>
             ))}
           </select>
-          <HubDataTable rows={defGame?.table ?? []} />
+          <HubDataTable rows={defenseGameRows} />
         </div>
         ) : null}
       </div>

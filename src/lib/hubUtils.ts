@@ -12,7 +12,12 @@ export function formatPctCell(val: unknown, fractionalDigits = 1): string {
 export function averageDisplay(averages: HubRow[], metric: string): string {
   const row = averages.find((r) => r.Metric === metric);
   const v = row?.Average;
-  return v != null && v !== '' ? String(v) : '—';
+  if (v == null || v === '') return '—';
+  if (metric.includes('%')) return formatPctCell(v, 1);
+  const n = Number(String(v).replace(/%/g, ''));
+  if (!Number.isFinite(n)) return String(v);
+  if (Math.abs(n - Math.round(n)) < 1e-6) return String(Math.round(n));
+  return n.toFixed(1);
 }
 
 export function numericFromAverage(averages: HubRow[], metric: string): number | null {

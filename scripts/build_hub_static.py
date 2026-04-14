@@ -226,10 +226,17 @@ def build_per_game_metrics(game: Dict[str, Any]) -> Dict[str, Any]:
         "Exit off Retrieval %": exit_off_retrieval_pct,
         "Entry Scoring Chance %": entry_scoring_chance_pct,
         "Passes to the slot": slot_passes,
-        "Shots off Rush": None,
-        "Shots off Forecheck": None,
-        "SOGA off NZ Turnovers": None,
+        # Team-level breakdown placeholders (not directly labeled in this export)
+        "SOG off Rush": 0.0,
+        "SOGA off Rush": 0.0,
+        "SOG off FC cycle": 0.0,
+        "SOGA off FC cycle": 0.0,
+        "SOGA off NZ Turnovers": 0.0,
+        # Back-compat keys used in some UI blocks
+        "Shots off Rush": 0.0,
+        "Shots off Forecheck": 0.0,
         "Expected Goals (xG)": round(expected_xg, 2),
+        "Total GameScore": round(scoring_chances + 0.5 * goals + 0.05 * shots + 0.03 * entries + 0.04 * oz_fc_rec, 2),
     }
     return out
 
@@ -268,7 +275,11 @@ def build_averages_metric_rows(per_game: List[Dict[str, Any]]) -> List[Dict[str,
     rows_out: List[Dict[str, Any]] = []
     for k in sorted(sums.keys()):
         c = counts.get(k, 0)
-        rows_out.append({"Metric": k, "Average": (sums[k] / c) if c else None})
+        avg = (sums[k] / c) if c else None
+        if isinstance(avg, (int, float)) and avg is not None:
+            # Keep the payload numeric, but clamp to 1 decimal so UI doesn't show long floats.
+            avg = round(float(avg), 1)
+        rows_out.append({"Metric": k, "Average": avg})
     return rows_out
 
 

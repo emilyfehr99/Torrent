@@ -81,22 +81,19 @@ export function ScoutingProfile({ playerName, profile }: Props) {
               {percentileData.map((m) => {
                 const t = tier(m.value);
                 return (
-                  <div
-                    key={m.key}
-                    className="grid grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-2 items-center min-w-0"
-                  >
-                    <div className="min-w-0 text-[11px] font-semibold text-pwhl-navy truncate">{m.name}</div>
-                    <div className="min-w-0">
-                      <div className="relative h-5 rounded-full bg-pwhl-cream border border-pwhl-border overflow-hidden">
+                  <div key={m.key} className="min-w-0">
+                    <div className="flex items-baseline justify-between gap-3 min-w-0">
+                      <div className="min-w-0 text-[11px] font-semibold text-pwhl-navy truncate">{m.name}</div>
+                      <div className="shrink-0 text-[11px] font-mono font-black tabular-nums text-pwhl-navy">
+                        {m.value.toFixed(1)}
+                      </div>
+                    </div>
+                    <div className="mt-1">
+                      <div className="relative h-2.5 rounded-full bg-pwhl-cream border border-pwhl-border overflow-hidden">
                         <div
                           className={`h-full ${t.bar}`}
                           style={{ width: `${Math.max(0, Math.min(100, m.value))}%` }}
                         />
-                        <div className="absolute inset-0 z-10 flex items-center justify-end pr-1.5 pointer-events-none">
-                          <span className="rounded bg-black/40 px-1.5 py-0.5 text-[11px] leading-none font-mono font-black tabular-nums text-white drop-shadow">
-                            {m.value.toFixed(1)}
-                          </span>
-                        </div>
                       </div>
                     </div>
                   </div>

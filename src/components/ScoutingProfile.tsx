@@ -92,8 +92,8 @@ export function ScoutingProfile({ playerName, profile }: Props) {
                           className={`h-full ${t.bar}`}
                           style={{ width: `${Math.max(0, Math.min(100, m.value))}%` }}
                         />
-                        <div className="absolute inset-0 z-10 flex items-center justify-end pr-2 pointer-events-none">
-                          <span className="rounded-sm bg-white/85 px-1 text-[10px] leading-none font-mono font-bold tabular-nums text-pwhl-navy">
+                        <div className="absolute inset-0 z-10 flex items-center justify-end pr-1.5 pointer-events-none">
+                          <span className="rounded bg-black/40 px-1.5 py-0.5 text-[11px] leading-none font-mono font-black tabular-nums text-white drop-shadow">
                             {m.value.toFixed(1)}
                           </span>
                         </div>

@@ -71,8 +71,8 @@ export function ScoutingProfile({ playerName, profile }: Props) {
           </div>
         </div>
 
-        <div className="mt-5 flex flex-col lg:flex-row lg:flex-wrap gap-4">
-          <div className="flex-1 min-w-0 lg:min-w-[420px]">
+        <div className="mt-5 flex flex-col lg:flex-row lg:flex-wrap gap-4 overflow-x-hidden">
+          <div className="flex-1 min-w-0 lg:min-w-[420px] overflow-x-hidden">
             <div className="flex items-center gap-2 mb-2">
               <Gauge size={16} className="text-torrent-teal" />
               <h4 className="text-xs font-black uppercase tracking-widest text-pwhl-navy">Percentiles</h4>
@@ -81,14 +81,19 @@ export function ScoutingProfile({ playerName, profile }: Props) {
               {percentileData.map((m) => {
                 const t = tier(m.value);
                 return (
-                  <div key={m.key} className="grid grid-cols-12 gap-2 items-center">
-                    <div className="col-span-5 text-[11px] font-semibold text-pwhl-navy truncate">{m.name}</div>
-                    <div className="col-span-6">
+                  <div key={m.key} className="flex items-center gap-2 min-w-0">
+                    <div className="flex-1 min-w-0 text-[11px] font-semibold text-pwhl-navy truncate">
+                      {m.name}
+                    </div>
+                    <div className="flex-[2] min-w-0">
                       <div className="h-2 rounded-full bg-pwhl-cream border border-pwhl-border overflow-hidden">
-                        <div className={`h-2 ${t.bar}`} style={{ width: `${Math.max(0, Math.min(100, m.value))}%` }} />
+                        <div
+                          className={`h-2 ${t.bar}`}
+                          style={{ width: `${Math.max(0, Math.min(100, m.value))}%` }}
+                        />
                       </div>
                     </div>
-                    <div className="col-span-1 text-right text-[11px] font-mono font-bold text-pwhl-navy">
+                    <div className="w-12 text-right text-[11px] font-mono font-bold text-pwhl-navy tabular-nums shrink-0">
                       {m.value.toFixed(1)}
                     </div>
                   </div>

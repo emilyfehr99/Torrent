@@ -71,8 +71,8 @@ export function ScoutingProfile({ playerName, profile }: Props) {
           </div>
         </div>
 
-        <div className="mt-5 flex flex-col lg:flex-row lg:flex-wrap gap-4 overflow-x-hidden">
-          <div className="flex-1 min-w-0 lg:min-w-[420px] overflow-x-hidden">
+        <div className="mt-5 flex flex-col lg:flex-row lg:flex-wrap gap-4">
+          <div className="flex-1 min-w-0 lg:min-w-[420px]">
             <div className="flex items-center gap-2 mb-2">
               <Gauge size={16} className="text-torrent-teal" />
               <h4 className="text-xs font-black uppercase tracking-widest text-pwhl-navy">Percentiles</h4>
@@ -93,8 +93,10 @@ export function ScoutingProfile({ playerName, profile }: Props) {
                         />
                       </div>
                     </div>
-                    <div className="w-12 text-right text-[11px] font-mono font-bold text-pwhl-navy tabular-nums shrink-0">
-                      {m.value.toFixed(1)}
+                    <div className="w-14 shrink-0 text-right">
+                      <span className="inline-block rounded-md bg-white border border-pwhl-border px-1.5 py-0.5 text-[11px] font-mono font-bold text-pwhl-navy tabular-nums">
+                        {m.value.toFixed(1)}
+                      </span>
                     </div>
                   </div>
                 );

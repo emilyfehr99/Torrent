@@ -48,23 +48,23 @@ export function ScoutingProfile({ playerName, profile }: Props) {
 
   return (
     <div className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
-      <div className="bg-white border border-pwhl-border rounded-2xl p-5 shadow-sm overflow-x-hidden">
+      <div className="bg-white border border-pwhl-border rounded-2xl p-6 shadow-sm overflow-hidden">
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
-            <div className="text-[10px] uppercase tracking-widest font-bold text-pwhl-muted">Scouting profile</div>
-            <div className="mt-1 text-xl font-serif font-black text-pwhl-navy truncate">{playerName}</div>
-            <div className="mt-2 flex items-center gap-2 text-xs text-pwhl-muted">
-              <Info size={14} />
+            <div className="text-[10px] uppercase tracking-widest font-black text-torrent-teal mb-1">Scouting profile</div>
+            <div className="mt-1 text-2xl font-serif font-black text-pwhl-navy leading-none">{playerName}</div>
+            <div className="mt-3 flex items-center gap-2 text-xs text-pwhl-muted">
+              <Info size={14} className="text-pwhl-blue" />
               <span>Percentiles are computed within this hub export (team-derived).</span>
             </div>
           </div>
           <div className="shrink-0 text-right">
-            <div className="text-[10px] uppercase tracking-widest font-bold text-pwhl-muted">Overall</div>
-            <div className="mt-1 inline-flex items-center gap-2">
-              <span className="text-2xl font-mono font-black text-pwhl-navy">
+            <div className="text-[10px] uppercase tracking-widest font-black text-pwhl-muted mb-1">Overall</div>
+            <div className="mt-1 flex flex-col items-end gap-1">
+              <span className="text-3xl font-mono font-black text-pwhl-navy leading-none">
                 {Number.isFinite(overall) ? overall.toFixed(1) : '—'}
               </span>
-              <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${overallTier.cls}`}>
+              <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full border-2 ${overallTier.cls}`}>
                 {overallTier.label}
               </span>
             </div>
@@ -72,26 +72,28 @@ export function ScoutingProfile({ playerName, profile }: Props) {
         </div>
 
         <div className="mt-5 flex flex-col lg:flex-row lg:flex-wrap gap-4">
-          <div className="flex-1 min-w-0 lg:min-w-[420px]">
-            <div className="flex items-center gap-2 mb-2">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-3">
               <Gauge size={16} className="text-torrent-teal" />
-              <h4 className="text-xs font-black uppercase tracking-widest text-pwhl-navy">Percentiles</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-widest text-pwhl-navy">Metric Percentiles</h4>
             </div>
-            <div className="space-y-2">
+            <div className="mt-4 space-y-3">
               {percentileData.map((m) => {
                 const t = tier(m.value);
                 return (
                   <div key={m.key} className="min-w-0">
-                    <div className="flex items-baseline justify-between gap-3 min-w-0">
-                      <div className="min-w-0 text-[11px] font-semibold text-pwhl-navy truncate">{m.name}</div>
-                      <div className="shrink-0 text-[12px] font-mono font-black tabular-nums text-pwhl-navy">
+                    <div className="flex items-baseline justify-between gap-4 mb-1">
+                      <div className="min-w-0 flex-1">
+                        <div className="text-xs font-bold text-pwhl-navy truncate uppercase tracking-tight">{m.name}</div>
+                      </div>
+                      <div className="shrink-0 text-[12px] font-mono font-black tabular-nums text-pwhl-navy bg-pwhl-cream px-1.5 py-0.5 rounded border border-pwhl-border/50">
                         {m.value.toFixed(1)}
                       </div>
                     </div>
                     <div className="mt-1">
                       <div className="relative h-3 w-full rounded-full bg-pwhl-cream border border-pwhl-border overflow-hidden">
                         <div
-                          className={`h-full ${t.bar}`}
+                          className={`h-full ${t.bar} transition-all duration-1000 ease-out`}
                           style={{ width: `${Math.max(0, Math.min(100, m.value))}%` }}
                         />
                       </div>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Users,
-  Bell,
   Database,
   LayoutDashboard,
   Video,
@@ -172,21 +171,8 @@ export default function App() {
           <div className="flex items-center gap-6">
             <div className="text-xs font-mono text-pwhl-muted hidden lg:block max-w-md truncate">
               <span className="inline-block w-2 h-2 rounded-full bg-torrent-teal mr-2 align-middle" />
-              {syncLabel}
+              {data?.generated_at ? `Updated ${new Date(data.generated_at).toLocaleString()}` : 'Starting hub…'}
             </div>
-            {data && (
-              <span className="text-xs font-mono text-pwhl-blue hidden xl:inline">
-                {data.n_games} games · {data.record_wins}–{data.record_losses}
-              </span>
-            )}
-            <button
-              type="button"
-              className="text-pwhl-muted hover:text-pwhl-navy transition-colors relative"
-              aria-label="Notifications"
-            >
-              <Bell size={20} />
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-torrent-coral rounded-full border-2 border-pwhl-surface" />
-            </button>
           </div>
         </header>
 

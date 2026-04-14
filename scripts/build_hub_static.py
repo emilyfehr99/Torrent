@@ -192,7 +192,9 @@ def build_per_game_metrics(game: Dict[str, Any]) -> Dict[str, Any]:
     scoring_chances = slot_passes + 0.25 * sog + 1.5 * goals
     exit_off_retrieval_pct = pct(poss_exits, dz_retrievals)  # clean exit after DZ recovery proxy
     entry_scoring_chance_pct = pct(scoring_chances, entries)
-    expected_xg = 0.03 * shots + 0.10 * sog + 0.65 * goals
+    # Keep this conservative: approximate iXG from shots/SOG with a small goal bump.
+    # (We do not have shot quality labels in this export, so avoid inflated values.)
+    expected_xg = 0.015 * shots + 0.035 * sog + 0.25 * goals
     carries_w_chances = min(carry_ins, max(0.0, slot_passes - goals))
     dump_ins = float(actions_for.get("Dump ins", 0))
     dump_in_chances = min(dump_ins, max(0.0, scoring_chances - carries_w_chances))

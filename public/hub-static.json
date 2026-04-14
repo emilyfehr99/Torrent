@@ -136,7 +136,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 8.69
+      "Expected Goals (xG)": 3.46
     },
     {
       "date": "Jan 07, 2026",
@@ -166,7 +166,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 3.76
+      "Expected Goals (xG)": 1.55
     },
     {
       "date": "Jan 11, 2026",
@@ -196,7 +196,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 5.7
+      "Expected Goals (xG)": 2.27
     },
     {
       "date": "Jan 18, 2026",
@@ -226,7 +226,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 7.16
+      "Expected Goals (xG)": 2.92
     },
     {
       "date": "Jan 20, 2026",
@@ -256,7 +256,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 9.36
+      "Expected Goals (xG)": 3.69
     },
     {
       "date": "Jan 25, 2026",
@@ -286,7 +286,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 5.69
+      "Expected Goals (xG)": 2.27
     },
     {
       "date": "Jan 28, 2026",
@@ -316,7 +316,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 5.48
+      "Expected Goals (xG)": 2.17
     },
     {
       "date": "Feb 27, 2026",
@@ -346,7 +346,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 6.44
+      "Expected Goals (xG)": 2.56
     },
     {
       "date": "Mar 04, 2026",
@@ -376,7 +376,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 6.3
+      "Expected Goals (xG)": 2.48
     },
     {
       "date": "Mar 11, 2026",
@@ -406,7 +406,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 7.27
+      "Expected Goals (xG)": 2.9
     },
     {
       "date": "Mar 15, 2026",
@@ -436,7 +436,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 4.79
+      "Expected Goals (xG)": 1.92
     },
     {
       "date": "Mar 19, 2026",
@@ -466,7 +466,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 4.93
+      "Expected Goals (xG)": 2.0
     },
     {
       "date": "Mar 21, 2026",
@@ -496,7 +496,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 3.24
+      "Expected Goals (xG)": 1.31
     },
     {
       "date": "Mar 25, 2026",
@@ -526,7 +526,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 5.69
+      "Expected Goals (xG)": 2.28
     },
     {
       "date": "Apr 04, 2026",
@@ -556,7 +556,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 3.61
+      "Expected Goals (xG)": 1.48
     },
     {
       "date": "Apr 07, 2026",
@@ -586,7 +586,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 4.62
+      "Expected Goals (xG)": 1.86
     },
     {
       "date": "Apr 08, 2026",
@@ -616,7 +616,7 @@
       "Shots off Rush": null,
       "Shots off Forecheck": null,
       "SOGA off NZ Turnovers": null,
-      "Expected Goals (xG)": 8.39
+      "Expected Goals (xG)": 3.31
     }
   ],
   "averages": [
@@ -650,7 +650,7 @@
     },
     {
       "Metric": "Expected Goals (xG)",
-      "Average": 5.948235294117646
+      "Average": 2.378235294117647
     },
     {
       "Metric": "Forecheck Recoveries",
@@ -49654,5 +49654,5 @@
     "Expected Goals (xG)"
   ],
   "hub_schema_version": 4,
-  "generated_at": "2026-04-14T14:07:34.572364+00:00"
+  "generated_at": "2026-04-14T14:21:26.873764+00:00"
 }

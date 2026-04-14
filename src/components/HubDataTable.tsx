@@ -15,13 +15,14 @@ function formatTableCell(col: string, val: unknown) {
   // Percentages
   if (col.includes('%')) {
     const n = Number(val);
-    if (Number.isFinite(n)) return `${n.toFixed(0)}%`;
+    if (Number.isFinite(n)) return `${n.toFixed(1)}%`;
   }
 
   // Rounded numbers
-  if (typeof val === 'number') {
-    if (Math.abs(val - Math.round(val)) < 1e-6) return String(Math.round(val));
-    return val.toFixed(col.toLowerCase().includes('xg') ? 3 : 2);
+  const asNum = typeof val === 'number' ? val : Number(val);
+  if (Number.isFinite(asNum)) {
+    if (Math.abs(asNum - Math.round(asNum)) < 1e-6) return String(Math.round(asNum));
+    return asNum.toFixed(1);
   }
 
   return String(val);
@@ -42,7 +43,18 @@ export function HubDataTable({
     return <p className="text-sm text-pwhl-muted">{emptyHint}</p>;
   }
 
-  const cols = Object.keys(rows[0]).filter(c => c !== 'date' || c === 'date'); // Keep everything for now
+  const visibleCols = useMemo(() => {
+    const keys = Object.keys(rows[0] ?? {});
+    return keys.filter((k) => {
+      for (const r of rows) {
+        const v = r[k];
+        if (v === '' || v === null || v === undefined) continue;
+        // Treat 0 as real data (don't hide), but hide if it's literally all empty.
+        return true;
+      }
+      return false;
+    });
+  }, [rows]);
 
   const filtered = useMemo(() => {
     let rs = rows.filter((r) =>
@@ -89,7 +101,7 @@ export function HubDataTable({
         <table className="w-full text-xs text-left font-mono">
           <thead className="text-[10px] text-pwhl-muted uppercase bg-pwhl-cream sticky top-0 z-[1]">
             <tr>
-              {Object.keys(rows[0]).map((c) => (
+              {visibleCols.map((c) => (
                 <th
                   key={c}
                   className="px-2 py-2 font-bold whitespace-nowrap cursor-pointer hover:bg-pwhl-surface-hover select-none transition-colors"
@@ -108,7 +120,7 @@ export function HubDataTable({
           <tbody className="divide-y divide-pwhl-border text-pwhl-navy bg-white">
             {filtered.map((r, i) => (
               <tr key={i} className="hover:bg-pwhl-surface-hover">
-                {Object.keys(r).map((c) => (
+                {visibleCols.map((c) => (
                   <td key={c} className="px-2 py-1.5 whitespace-nowrap max-w-[280px] truncate" title={String(r[c] ?? '')}>
                     {formatTableCell(c, r[c])}
                   </td>
@@ -117,7 +129,7 @@ export function HubDataTable({
             ))}
             {!filtered.length && (
               <tr>
-                <td colSpan={cols.length} className="px-4 py-8 text-center text-pwhl-muted italic">
+                <td colSpan={visibleCols.length} className="px-4 py-8 text-center text-pwhl-muted italic">
                   No matching results.
                 </td>
               </tr>

@@ -19,7 +19,15 @@ export function TeamAnalytics() {
     return av
       .map((r) => ({
         metric: String((r['Metric'] ?? r['metric'] ?? '') as string),
-        value: String((r['Average'] ?? r['value'] ?? '—') as string),
+        value: (() => {
+          const metric = String((r['Metric'] ?? r['metric'] ?? '') as string);
+          const raw = (r['Average'] ?? r['value'] ?? null) as any;
+          if (raw == null || raw === '') return '—';
+          if (metric.includes('%')) return formatPctCell(raw, 1);
+          const n = Number(String(raw).replace('%', ''));
+          if (!Number.isFinite(n)) return String(raw);
+          return Math.abs(n - Math.round(n)) < 1e-6 ? String(Math.round(n)) : n.toFixed(1);
+        })(),
       }))
       .filter((r) => r.metric && !hideTeamOnly.has(r.metric));
   }, [av]);

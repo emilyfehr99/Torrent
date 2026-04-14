@@ -83,16 +83,21 @@ export function ScoutingProfile({ playerName, profile }: Props) {
                 return (
                   <div
                     key={m.key}
-                    className="grid grid-cols-[minmax(0,1fr)_minmax(0,2fr)_40px] gap-2 items-center min-w-0"
+                    className="grid grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-2 items-center min-w-0"
                   >
                     <div className="min-w-0 text-[11px] font-semibold text-pwhl-navy truncate">{m.name}</div>
                     <div className="min-w-0">
-                      <div className="h-2 rounded-full bg-pwhl-cream border border-pwhl-border overflow-hidden">
-                        <div className={`h-2 ${t.bar}`} style={{ width: `${Math.max(0, Math.min(100, m.value))}%` }} />
+                      <div className="relative h-4 rounded-full bg-pwhl-cream border border-pwhl-border overflow-hidden">
+                        <div
+                          className={`h-4 ${t.bar}`}
+                          style={{ width: `${Math.max(0, Math.min(100, m.value))}%` }}
+                        />
+                        <div className="absolute inset-0 flex items-center justify-end pr-2">
+                          <span className="text-[10px] font-mono font-bold tabular-nums text-pwhl-navy drop-shadow-[0_1px_0_rgba(255,255,255,0.9)]">
+                            {m.value.toFixed(1)}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <div className="text-right text-[10px] font-mono font-bold text-pwhl-navy tabular-nums whitespace-nowrap">
-                      {m.value.toFixed(1)}
                     </div>
                   </div>
                 );

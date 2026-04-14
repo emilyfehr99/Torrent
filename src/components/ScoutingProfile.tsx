@@ -48,7 +48,7 @@ export function ScoutingProfile({ playerName, profile }: Props) {
 
   return (
     <div className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
-      <div className="bg-white border border-pwhl-border rounded-2xl p-5 shadow-sm">
+      <div className="bg-white border border-pwhl-border rounded-2xl p-5 shadow-sm overflow-x-hidden">
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
             <div className="text-[10px] uppercase tracking-widest font-bold text-pwhl-muted">Scouting profile</div>
@@ -71,7 +71,7 @@ export function ScoutingProfile({ playerName, profile }: Props) {
           </div>
         </div>
 
-        <div className="mt-5 flex flex-col lg:flex-row lg:flex-wrap gap-4">
+        <div className="mt-5 flex flex-col lg:flex-row lg:flex-wrap gap-4 overflow-x-hidden">
           <div className="flex-1 min-w-0 lg:min-w-[420px]">
             <div className="flex items-center gap-2 mb-2">
               <Gauge size={16} className="text-torrent-teal" />
@@ -81,22 +81,18 @@ export function ScoutingProfile({ playerName, profile }: Props) {
               {percentileData.map((m) => {
                 const t = tier(m.value);
                 return (
-                  <div key={m.key} className="flex items-center gap-2 min-w-0">
-                    <div className="flex-1 min-w-0 text-[11px] font-semibold text-pwhl-navy truncate">
-                      {m.name}
-                    </div>
-                    <div className="flex-[2] min-w-0">
+                  <div
+                    key={m.key}
+                    className="grid grid-cols-[minmax(0,1fr)_minmax(0,2fr)_40px] gap-2 items-center min-w-0"
+                  >
+                    <div className="min-w-0 text-[11px] font-semibold text-pwhl-navy truncate">{m.name}</div>
+                    <div className="min-w-0">
                       <div className="h-2 rounded-full bg-pwhl-cream border border-pwhl-border overflow-hidden">
-                        <div
-                          className={`h-2 ${t.bar}`}
-                          style={{ width: `${Math.max(0, Math.min(100, m.value))}%` }}
-                        />
+                        <div className={`h-2 ${t.bar}`} style={{ width: `${Math.max(0, Math.min(100, m.value))}%` }} />
                       </div>
                     </div>
-                    <div className="w-14 shrink-0 text-right">
-                      <span className="inline-block rounded-md bg-white border border-pwhl-border px-1.5 py-0.5 text-[11px] font-mono font-bold text-pwhl-navy tabular-nums">
-                        {m.value.toFixed(1)}
-                      </span>
+                    <div className="text-right text-[10px] font-mono font-bold text-pwhl-navy tabular-nums whitespace-nowrap">
+                      {m.value.toFixed(1)}
                     </div>
                   </div>
                 );

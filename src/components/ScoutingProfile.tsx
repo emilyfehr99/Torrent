@@ -72,7 +72,7 @@ export function ScoutingProfile({ playerName, profile }: Props) {
         </div>
 
         <div className="mt-5 grid grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 min-w-0">
             <div className="flex items-center gap-2 mb-2">
               <Gauge size={16} className="text-torrent-teal" />
               <h4 className="text-xs font-black uppercase tracking-widest text-pwhl-navy">Percentiles</h4>
@@ -100,7 +100,7 @@ export function ScoutingProfile({ playerName, profile }: Props) {
             </div>
           </div>
 
-          <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-4">
+          <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-4 min-w-0 w-full overflow-hidden">
             <div className="flex items-center gap-2 mb-3">
               <Sparkles size={16} className="text-pwhl-blue" />
               <h4 className="text-xs font-black uppercase tracking-widest text-pwhl-navy">Quick read</h4>
@@ -111,8 +111,8 @@ export function ScoutingProfile({ playerName, profile }: Props) {
                 {strengths.length ? (
                   <ul className="space-y-1 text-pwhl-navy">
                     {strengths.map((s) => (
-                      <li key={s.key} className="flex justify-between gap-2">
-                        <span className="truncate">{s.name}</span>
+                      <li key={s.key} className="flex justify-between gap-2 min-w-0">
+                        <span className="truncate min-w-0">{s.name}</span>
                         <span className="font-mono font-bold">{s.value.toFixed(1)}</span>
                       </li>
                     ))}
@@ -127,8 +127,8 @@ export function ScoutingProfile({ playerName, profile }: Props) {
                 {gaps.length ? (
                   <ul className="space-y-1 text-pwhl-navy">
                     {gaps.map((s) => (
-                      <li key={s.key} className="flex justify-between gap-2">
-                        <span className="truncate">{s.name}</span>
+                      <li key={s.key} className="flex justify-between gap-2 min-w-0">
+                        <span className="truncate min-w-0">{s.name}</span>
                         <span className="font-mono font-bold">{s.value.toFixed(1)}</span>
                       </li>
                     ))}

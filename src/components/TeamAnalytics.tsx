@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Shield, Users, Check, X } from 'lucide-react';
 import { PWHL_STANDINGS_2526 } from '../data/pwhlStandings2526';
 import { projectedPoints30, mockSosScore } from '../lib/leagueKpis';
+import { cn } from '../lib/utils';
 import { useHubData } from '../context/HubDataContext';
 import { averageDisplay, formatPctCell, numericFromAverage } from '../lib/hubUtils';
 import { HubDataTable } from './HubDataTable';

@@ -71,7 +71,7 @@ export function ScoutingProfile({ playerName, profile }: Props) {
           </div>
         </div>
 
-        <div className="mt-5 flex flex-col lg:flex-row lg:flex-wrap gap-4 overflow-x-hidden">
+        <div className="mt-5 flex flex-col lg:flex-row lg:flex-wrap gap-4">
           <div className="flex-1 min-w-0 lg:min-w-[420px]">
             <div className="flex items-center gap-2 mb-2">
               <Gauge size={16} className="text-torrent-teal" />
@@ -84,12 +84,12 @@ export function ScoutingProfile({ playerName, profile }: Props) {
                   <div key={m.key} className="min-w-0">
                     <div className="flex items-baseline justify-between gap-3 min-w-0">
                       <div className="min-w-0 text-[11px] font-semibold text-pwhl-navy truncate">{m.name}</div>
-                      <div className="shrink-0 text-[11px] font-mono font-black tabular-nums text-pwhl-navy">
+                      <div className="shrink-0 text-[12px] font-mono font-black tabular-nums text-pwhl-navy">
                         {m.value.toFixed(1)}
                       </div>
                     </div>
                     <div className="mt-1">
-                      <div className="relative h-2.5 rounded-full bg-pwhl-cream border border-pwhl-border overflow-hidden">
+                      <div className="relative h-3 w-full rounded-full bg-pwhl-cream border border-pwhl-border overflow-hidden">
                         <div
                           className={`h-full ${t.bar}`}
                           style={{ width: `${Math.max(0, Math.min(100, m.value))}%` }}

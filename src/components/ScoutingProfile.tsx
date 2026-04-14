@@ -71,8 +71,8 @@ export function ScoutingProfile({ playerName, profile }: Props) {
           </div>
         </div>
 
-        <div className="mt-5 flex flex-col lg:flex-row gap-4">
-          <div className="flex-1 min-w-0">
+        <div className="mt-5 flex flex-col lg:flex-row lg:flex-wrap gap-4">
+          <div className="flex-1 min-w-0 lg:min-w-[420px]">
             <div className="flex items-center gap-2 mb-2">
               <Gauge size={16} className="text-torrent-teal" />
               <h4 className="text-xs font-black uppercase tracking-widest text-pwhl-navy">Percentiles</h4>
@@ -100,7 +100,7 @@ export function ScoutingProfile({ playerName, profile }: Props) {
             </div>
           </div>
 
-          <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-4 min-w-0 w-full overflow-hidden lg:w-80 lg:shrink-0">
+          <div className="bg-pwhl-surface border border-pwhl-border rounded-xl p-4 min-w-0 w-full overflow-hidden lg:basis-80 lg:max-w-80 lg:shrink-0">
             <div className="flex items-center gap-2 mb-3">
               <Sparkles size={16} className="text-pwhl-blue" />
               <h4 className="text-xs font-black uppercase tracking-widest text-pwhl-navy">Quick read</h4>
